@@ -25,9 +25,6 @@ void test1_1()
 
 		cout << "The unique result = " << result << endl << endl;
 
-		mergeSort(testString, 0, testString.size() - 1);
-		cout << "The sorted string is" << endl << testString << endl;
-
 		cout << "To stop enter 1" << endl;
 		cin >> toStop;
 	}
@@ -48,53 +45,4 @@ bool isUnique_ASCII(const string& s)
 		totalChar[c] = true;
 	}
 	return true;
-void mergeSort(string& s, int begin, int end)
-{
-	if (end == begin)
-		return;
-
-	int middle = (begin + end) / 2;
-	mergeSort(s, begin, middle);
-	mergeSort(s, middle + 1, end);
-
-	int size = end - begin + 1;
-
-	char* pFirst = &s[begin];
-	char* pSecond = &s[middle + 1];
-	char* pFirstEnd = pSecond - 1;
-	char* pSecondEnd = pFirst + size - 1;
-
-	
-	char* tmp = new char[size];
-	
-	for (int i = 0; i < size; i ++)
-	{
-		if (pFirst > pFirstEnd)
-		{
-			tmp[i] = *pSecond;
-			pSecond++;
-		}
-		else if (pSecond > pSecondEnd)
-		{
-			tmp[i] = *pFirst;
-			pFirst++;
-		}
-		else if (*pFirst <= *pSecond)
-		{
-			tmp[i] = *pFirst;
-			pFirst++;
-		}
-		else 
-		{
-			tmp[i] = *pSecond;
-			pSecond++;
-		}
-	}
-
-	for (int i = 0; i < size; i++)
-	{
-		s[i + begin] = tmp[i];
-	}
-
-	free(tmp);
 }

@@ -1,4 +1,8 @@
 #pragma once
+#include <iostream>
+#include <sstream>
+#include <ctype.h>
+#include <vector>
 #include "../../Common.h"
 
 void test1_2();
