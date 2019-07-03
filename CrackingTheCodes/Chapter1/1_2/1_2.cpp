@@ -1,5 +1,6 @@
 #include "1_2.h"
 
+// Check Permutation
 void test1_2()
 {
 	int toStop = 0;
@@ -44,13 +45,23 @@ void test1_2()
 
 		cout << "The permutation result = " << result << endl << endl;
 
+		string perS = getPermutations(testString1);
+		cout << "The random string1 " << testString1  << endl;
+		cout << "The permutation of string1 " << perS << endl;
+		result = isPermutation(testString1, perS);
+		cout << "The permutation result = " << result << endl << endl;
+
 		cout << "To stop enter 1" << endl;
 		cin >> toStop;
 	}
 }
 
+// Use array to store the amount of each char, and check the two string has equal numbers.
 bool isPermutation(string& s1, string& s2)
 {
+	if (s1.length() != s2.length())
+		return false;
+
 	const int length = 128;
 	char c[length] = { 0 }; // ASCII Table
 
@@ -72,6 +83,7 @@ bool isPermutation(string& s1, string& s2)
 	return true;
 }
 
+// Helper function to get all the permutation of string s
 string getPermutations(const string& s)
 {
 	if (s.length() < 2)
@@ -82,7 +94,7 @@ string getPermutations(const string& s)
 
 	getPermutation("", tmp, ' ', sVector);
 
-	return "s";
+	return sVector.back();
 }
 
 void getPermutation(string cur, string sRemain, char chosen, vector<string>& sVector)
