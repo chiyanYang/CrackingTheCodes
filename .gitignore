@@ -5,7 +5,6 @@ CrackingTheCodes/Chapter1/package/xmlrpc.config
 *.dat
 *.exe
 CrackingTheCodes/Chapter1/package/License.txt
-*.vcxproj
 *.obj
 *.ilk
 *.log
