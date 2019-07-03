@@ -1,11 +1,9 @@
 #pragma once
-#include <iostream>
-#include <sstream>
-#include <ctype.h>
-#include <vector>
 #include "../../Common.h"
 
-void test1_2();
-bool isPermutation(string& s1, string& s2);
-void getPermutation(string cur, string sRemain, char chosen, vector<string>& sVector);
-string getPermutations(const string& s);
+void test1_8();
+void zeroArrayExtraSpace(int** array, int m, int n);
+void printArr(int** arr, int m, int n);
+void zeroCol(int** arr, int m, int idx);
+void zeroLine(int** arr, int n, int idx);
+void zeroArrayInplace(int** array, int m, int n);
