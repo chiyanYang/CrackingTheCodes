@@ -15,4 +15,5 @@ CrackingTheCodes/Chapter1/package/License.txt
 *.filters
 *.user
 *.idb
+*.bak
 CrackingTheCodes/.vs/CrackingTheCodes/v15/.suo
