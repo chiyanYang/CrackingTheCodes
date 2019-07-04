@@ -92,7 +92,7 @@ string getPermutations(const string& s)
 	vector<string> sVector;
 	string tmp = s;
 
-	getPermutation("", tmp, ' ', sVector);
+	getPermutation("", tmp, NULL, sVector);
 
 	return sVector.back();
 }

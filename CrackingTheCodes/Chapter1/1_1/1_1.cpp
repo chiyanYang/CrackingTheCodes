@@ -48,6 +48,8 @@ bool isUnique_ASCII(const string& s)
 		totalChar[c] = true;
 	}
 	return true;
+}
+
 void mergeSort(string& s, int begin, int end)
 {
 	if (end == begin)
