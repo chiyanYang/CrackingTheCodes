@@ -1,5 +1,6 @@
 #include "1_1.h"
 
+// Is Unique
 void test1_1()
 {
 	int toStop = 0;
@@ -26,7 +27,12 @@ void test1_1()
 		cout << "The unique result = " << result << endl << endl;
 
 		mergeSort(testString, 0, testString.size() - 1);
+
 		cout << "The sorted string is" << endl << testString << endl;
+
+		result = isUnique_ASCII_SortedString(testString);
+		cout << "The unique result for sorted string = " << result << endl << endl;
+
 
 		cout << "To stop enter 1" << endl;
 		cin >> toStop;
@@ -50,8 +56,27 @@ bool isUnique_ASCII(const string& s)
 	return true;
 }
 
+bool isUnique_ASCII_SortedString(const string& s)
+{
+	if (s.length() == 0 || s.length() == 1)
+		return true;
+
+	char pre = s.at(0);
+	for (auto it = s.cbegin() + 1; it != s.cend(); ++it)
+	{
+		if (pre == *it)
+			return false;
+
+		pre = *it;
+	}
+	return true;
+}
+
 void mergeSort(string& s, int begin, int end)
 {
+	if (s.length() == 0 || s.length() == 1)
+		return;
+
 	if (end == begin)
 		return;
 
