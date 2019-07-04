@@ -30,6 +30,7 @@ void test1_1()
 
 		cout << "The sorted string is" << endl << testString << endl;
 
+		
 		result = isUnique_ASCII_SortedString(testString);
 		cout << "The unique result for sorted string = " << result << endl << endl;
 
@@ -124,4 +125,42 @@ void mergeSort(string& s, int begin, int end)
 	}
 
 	free(tmp);
+}
+
+void mergeSortInplace(string& s, int begin, int end)
+{
+	if (s.length() == 0 || s.length() == 1)
+		return;
+
+	if (begin == end)
+		return;
+
+	int middle = end / 2;
+	mergeSortInplace(s, begin, middle);
+	mergeSortInplace(s, middle + 1, end);
+
+	merge(s, begin, middle + 1);
+}
+
+void merge(string& s, int first, int second)
+{
+	int firstEnd = second - 1;
+
+	if (s[first] <= s[second])
+	{
+		first++;
+	}
+	else if (s[first] > s[second])
+	{
+		int tmp = s[second];
+
+		int index = second;
+		while (index - 1 > first)
+		{
+			s[index] = s[index - 1];
+			index--;
+		}
+
+		s[first] = tmp;
+	}
 }
