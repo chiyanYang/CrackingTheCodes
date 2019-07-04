@@ -1,5 +1,5 @@
 // #include "Chapter1/1_1/1_1.h" // Is Unique
-#include "Chapter1/1_1/1_1.h" // Check Permutation
+#include "Chapter2/2_1/2_1.h" // Check Permutation
 
 
 /* Every exercise start in Test function.
@@ -8,6 +8,6 @@
  */
 int main()
 {
-	test1_1();
+	test2_1();
 	return 0;
 }

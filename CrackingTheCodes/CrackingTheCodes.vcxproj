@@ -124,6 +124,8 @@
     <ClCompile Include="Chapter1\1_7\1_7.cpp" />
     <ClCompile Include="Chapter1\1_8\1_8.cpp" />
     <ClCompile Include="Chapter1\1_9\1_9.cpp" />
+    <ClCompile Include="Chapter2\2_1\2_1.cpp" />
+    <ClCompile Include="Chapter2\Ch2Common.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -137,6 +139,8 @@
     <ClInclude Include="Chapter1\1_7\1_7.h" />
     <ClInclude Include="Chapter1\1_8\1_8.h" />
     <ClInclude Include="Chapter1\1_9\1_9.h" />
+    <ClInclude Include="Chapter2\2_1\2_1.h" />
+    <ClInclude Include="Chapter2\Ch2Common.h" />
     <ClInclude Include="Common.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

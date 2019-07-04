@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <vector>
 #include <algorithm>    // std::swap
+#include <unordered_set>
 
 using namespace std;
 
