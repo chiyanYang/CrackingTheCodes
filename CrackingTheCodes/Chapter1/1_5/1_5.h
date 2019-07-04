@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Common.h"
+#include "../Ch1Common.h"
 
 void test1_5();
 bool isOneWay(string& s1, string& s2);

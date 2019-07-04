@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Common.h"
+#include "../Ch1Common.h"
 
 void test1_9();
 bool stringRotation(string& s1, string& s2);

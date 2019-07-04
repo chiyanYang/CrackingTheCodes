@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Common.h"
+#include "../Ch1Common.h"
 
 void test1_7();
 void rotateArray(int** array, int length);

@@ -10,6 +10,3 @@
 #include <unordered_set>
 
 using namespace std;
-
-string generateTestString(int limitLengrh);
-bool is_number(const string& s);
