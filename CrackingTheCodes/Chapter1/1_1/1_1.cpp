@@ -26,13 +26,22 @@ void test1_1()
 
 		cout << "The unique result = " << result << endl << endl;
 
-		mergeSort(testString, 0, testString.size() - 1);
+		string tmpTestString = testString;
+		mergeSort(tmpTestString, 0, tmpTestString.size() - 1);
 
-		cout << "The sorted string is" << endl << testString << endl;
+		cout << "The sorted string is" << endl << tmpTestString << endl;
 
 		
-		result = isUnique_ASCII_SortedString(testString);
+		result = isUnique_ASCII_SortedString(tmpTestString);
 		cout << "The unique result for sorted string = " << result << endl << endl;
+
+		tmpTestString = testString;
+		mergeSortInplace(tmpTestString, 0, tmpTestString.size() - 1);
+
+		cout << "The sorted in place string is" << endl << tmpTestString << endl;
+
+		result = isUnique_ASCII_SortedString(tmpTestString);
+		cout << "The unique result for sorted in place string = " << result << endl << endl;
 
 
 		cout << "To stop enter 1" << endl;
@@ -135,32 +144,36 @@ void mergeSortInplace(string& s, int begin, int end)
 	if (begin == end)
 		return;
 
-	int middle = end / 2;
+	int middle = begin + (end - begin) / 2;
 	mergeSortInplace(s, begin, middle);
 	mergeSortInplace(s, middle + 1, end);
 
-	merge(s, begin, middle + 1);
+	mergeTwoParts(s, begin, middle + 1, end);
 }
 
-void merge(string& s, int first, int second)
+void mergeTwoParts(string& s, int first, int second, int end)
 {
 	int firstEnd = second - 1;
 
-	if (s[first] <= s[second])
+	while (first < second && second <= end)
 	{
-		first++;
-	}
-	else if (s[first] > s[second])
-	{
-		int tmp = s[second];
-
-		int index = second;
-		while (index - 1 > first)
+		if (s[first] <= s[second])
 		{
-			s[index] = s[index - 1];
-			index--;
+			first++;
 		}
+		else if (s[first] > s[second])
+		{
+			int tmp = s[second];
 
-		s[first] = tmp;
+			int index = second;
+			while (index - 1 >= first)
+			{
+				s[index] = s[index - 1];
+				index--;
+			}
+
+			s[first] = tmp;
+		}
 	}
+
 }
