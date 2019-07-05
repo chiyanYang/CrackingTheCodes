@@ -42,16 +42,3 @@ void removeDups(sNode* head)
 		    head = head->getNextNode();
 	}
 }
-
-sNode* removeCurSNode(sNode* pre, sNode* cur)
-{
-	if (pre == NULL || cur == NULL)
-		return pre;
-
-	sNode* tmp = cur;
-	cur = cur->getNextNode();
-	pre->setNextNode(cur);
-
-	free(tmp);
-	return pre;
-}

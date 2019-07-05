@@ -127,6 +127,7 @@
     <ClCompile Include="Chapter1\Ch1Common.cpp" />
     <ClCompile Include="Chapter2\2_1\2_1.cpp" />
     <ClCompile Include="Chapter2\2_2\2_2.cpp" />
+    <ClCompile Include="Chapter2\2_3\2_3.cpp" />
     <ClCompile Include="Chapter2\Ch2Common.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Chapter1\Ch1Common.h" />
     <ClInclude Include="Chapter2\2_1\2_1.h" />
     <ClInclude Include="Chapter2\2_2\2_2.h" />
+    <ClInclude Include="Chapter2\2_3\2_3.h" />
     <ClInclude Include="Chapter2\Ch2Common.h" />
     <ClInclude Include="Common.h" />
   </ItemGroup>

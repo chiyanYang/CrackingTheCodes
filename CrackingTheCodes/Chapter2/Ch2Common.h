@@ -20,3 +20,4 @@ private:
 sNode* createSingleLinkedList(int length);
 void printSList(sNode* head);
 void freeSList(sNode* head);
+sNode* removeCurSNode(sNode* pre, sNode* cur);
