@@ -38,6 +38,7 @@ void test1_2()
 		cout << "Generating the string" << endl;
 
 		// Random string inteval should be more than 1 sec.
+		this_thread::sleep_for(chrono::seconds(1));
 		string testString2 = generateTestString(atoi(stringLength2.c_str()));
 		cout << "The random string2 is" << endl << testString2 << endl;
 
