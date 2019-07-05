@@ -28,8 +28,6 @@ void test2_5()
 	freeSList(result);
 }
 
-
-
 sNode* sumListForward(sNode* head1, sNode* head2)
 {
 	int carry = 0;
@@ -71,4 +69,27 @@ sNode* sumListForward(sNode* head1, sNode* head2)
 	}
 
 	return resultHead;
+}
+
+// Assume list can be modified
+// Instead of using vector to store the values and sum
+// Use reversing list to practice
+sNode* sumListBackward(sNode* head1, sNode* head2)
+{
+	head1 = reverseList(head1);
+	head2 = reverseList(head2);
+	
+	return sumListForward(head1, head2);
+}
+
+sNode* reverseList(sNode* head)
+{
+	sNode* cur = head->getNextNode();
+	sNode* pre = head;
+	sNode* next = cur->getNextNode();
+
+	while (next != NULL)
+	{
+
+	}
 }
