@@ -14,14 +14,14 @@ void test2_3()
 	head = createSingleLinkedList(length);
 	cout << "Print the list" << endl;
 	printSList(head);
-    RemoveMiddleNode(head);
+    removeMiddleNode(head);
 	printSList(head);
 
 	cin >> stop;
 	freeSList(head);
 }
 
-void RemoveMiddleNode(sNode* head)
+void removeMiddleNode(sNode* head)
 {
 	sNode* front = head;
 	sNode* middle = head;
