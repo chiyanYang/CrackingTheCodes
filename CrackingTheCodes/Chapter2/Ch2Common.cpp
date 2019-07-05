@@ -27,12 +27,12 @@ sNode::sNode(int data)
 
 sNode* createSingleLinkedList(int length)
 {
-	sNode *head = new sNode(NULL);
-
-	sNode *tmp = head;
 	srand(time(NULL));  // Initialize random number generator.
+	
+	sNode *head = new sNode(rand() % 10);
+	sNode *tmp = head;
 
-	for (int i = 0; i < length; i++)
+	for (int i = 1; i < length; i++)
 	{
 		int data = rand() % 10;
 		sNode* cur = new sNode(data);
