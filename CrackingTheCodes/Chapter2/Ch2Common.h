@@ -21,3 +21,4 @@ sNode* createSingleLinkedList(int length);
 void printSList(sNode* head);
 void freeSList(sNode* head);
 sNode* removeCurSNode(sNode* pre, sNode* cur);
+sNode* reverseList(sNode* head);

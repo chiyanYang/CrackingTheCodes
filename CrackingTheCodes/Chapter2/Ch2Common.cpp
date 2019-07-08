@@ -79,3 +79,23 @@ sNode* removeCurSNode(sNode* pre, sNode* cur)
 	free(tmp);
 	return pre;
 }
+
+sNode* reverseList(sNode* head)
+{
+	sNode* cur = head;
+	sNode* pre = NULL;
+	sNode* next = cur->getNextNode();
+
+	while (next != NULL)
+	{
+		cur->setNextNode(pre);
+
+		pre = cur;
+		cur = next;
+		next = cur->getNextNode();
+	}
+
+	cur->setNextNode(pre);
+
+	return cur;
+}

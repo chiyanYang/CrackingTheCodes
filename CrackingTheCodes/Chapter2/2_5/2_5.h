@@ -4,4 +4,3 @@
 void test2_5();
 sNode* sumListForward(sNode* head1, sNode* head2);
 sNode* sumListBackward(sNode* head1, sNode* head2);
-sNode* reverseList(sNode* head);

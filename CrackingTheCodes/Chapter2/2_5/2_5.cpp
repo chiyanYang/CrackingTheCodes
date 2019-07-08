@@ -23,6 +23,7 @@ void test2_5()
 	result1 = sumListForward(head1, head2);
 	cout << "Sun list result (forward):" << endl;
 	printSList(result1);
+	cout << endl;
 
 	result2 = sumListBackward(head1, head2);
 	cout << "Sun list result (backward):" << endl;
@@ -85,30 +86,9 @@ sNode* sumListForward(sNode* head1, sNode* head2)
 sNode* sumListBackward(sNode* head1, sNode* head2)
 {
 	head1 = reverseList(head1);
-	
 	head2 = reverseList(head2);
 
-	return sumListForward(head1, head2);
-}
+	sNode* reversedResult = sumListForward(head1, head2);
 
-sNode* reverseList(sNode* head)
-{
-	sNode* cur = head;
-	sNode* pre = NULL;
-	sNode* next = cur->getNextNode();
-
-	while (next != NULL)
-	{
-		cur->setNextNode(pre);
-
-		pre = cur;
-		cur = next;
-		next = cur->getNextNode();
-	}
-
-	cur->setNextNode(pre);
-
-	printSList(cur);
-
-	return cur;
+	return reverseList(reversedResult);
 }
