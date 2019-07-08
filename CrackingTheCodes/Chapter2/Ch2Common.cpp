@@ -99,3 +99,56 @@ sNode* reverseList(sNode* head)
 
 	return cur;
 }
+
+sNode* copyList(sNode* head)
+{
+	if (head == NULL)
+		return NULL;
+
+	sNode* copiedList = new sNode(head->getData());
+	sNode* cur = copiedList;
+
+	head = head->getNextNode();
+
+	while (head != NULL)
+	{
+		sNode* copiedNode = new sNode(head->getData());
+		cur->setNextNode(copiedNode);
+		cur = cur->getNextNode();
+		head = head->getNextNode();
+	}
+
+	return copiedList;
+}
+
+sNode* createSinglePalindromeLinkedList(int length)
+{
+	srand(time(NULL));  // Initialize random number generator.
+
+	sNode *head = new sNode(rand() % 10);
+	sNode *tmp = head;
+
+	int middle = length / 2;
+	for (int i = 1; i < middle; i++)
+	{
+		int data = rand() % 10;
+		sNode* cur = new sNode(data);
+		tmp->setNextNode(cur);
+		tmp = cur;
+	}
+
+	sNode *copiedList = copyList(head);
+	sNode *reversedList = reverseList(copiedList);
+
+	if (length % 2 == 1)
+	{
+		int data = rand() % 10;
+		sNode* cur = new sNode(data);
+		tmp->setNextNode(cur);
+		tmp = cur;
+	}
+
+	tmp->setNextNode(reversedList);
+
+	return head;
+}
