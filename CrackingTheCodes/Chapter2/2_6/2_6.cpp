@@ -12,7 +12,7 @@ void test2_6()
 	cin >> length;
 	cout << endl;
 
-	head1 = createSinglePalindromeLinkedList(length);
+	head1 = createSingleLinkedListWithPalindrome(length);
 	cout << "Print the list" << endl;
 	printSList(head1);
 	bool result1 = isPalindrome(head1);

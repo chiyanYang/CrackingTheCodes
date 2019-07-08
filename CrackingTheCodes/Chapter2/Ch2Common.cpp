@@ -121,7 +121,7 @@ sNode* copyList(sNode* head)
 	return copiedList;
 }
 
-sNode* createSinglePalindromeLinkedList(int length)
+sNode* createSingleLinkedListWithPalindrome(int length)
 {
 	srand(time(NULL));  // Initialize random number generator.
 
@@ -151,4 +151,64 @@ sNode* createSinglePalindromeLinkedList(int length)
 	tmp->setNextNode(reversedList);
 
 	return head;
+}
+
+// Create intersection list, the node which is intersection, the value is set to -1 for debugging purpose.
+pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length)
+{
+	srand(time(NULL));  // Initialize random number generator.
+
+	pair<sNode*, sNode*>* twoLists = NULL;
+	sNode *head1 = new sNode(rand() % 10);
+	sNode *tmp1 = head1;
+
+	int interSecNodeLoc = rand() % length; // the location of the intersection node
+	
+	cout << "intersection node location is at: " << interSecNodeLoc << endl;
+
+	for (int i = 1; i < length; i++)
+	{
+		int data = rand() % 10;
+		sNode* cur = new sNode(data);
+		tmp1->setNextNode(cur);
+		tmp1 = cur;
+	}
+
+	sNode *head2;
+	sNode *tmp2;
+
+	if (interSecNodeLoc != 0)
+	{
+		head2 = new sNode(rand() % 10);
+		tmp2 = head2;
+		tmp1 = head1;
+
+		for (int i = 1; i < length; i++)
+		{
+			tmp1 = tmp1->getNextNode();
+			if (i == interSecNodeLoc)
+			{
+				tmp2->setNextNode(tmp1);
+				tmp1->setData(-1);
+				break;
+			}
+
+			int data = rand() % 10;
+			sNode* cur = new sNode(data);
+			tmp2->setNextNode(cur);
+			tmp2 = cur;
+		}
+	}
+	else
+	{
+		head2 = head1;
+		head2->setData(-1);
+	}
+
+	return make_pair(head1, head2);;
+}
+
+void freeSListsWithIntersection(sNode* list1, sNode* list2)
+{
+	// to be done
 }
