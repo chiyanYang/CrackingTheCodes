@@ -7,7 +7,8 @@ void test2_5()
 	int stop;
 	sNode* head1 = NULL;
 	sNode* head2 = NULL;
-	sNode* result = NULL;
+	sNode* result1 = NULL;
+	sNode* result2 = NULL;
 
 	cout << "Enter the length of the list: ";
 	cin >> length;
@@ -16,16 +17,23 @@ void test2_5()
 	this_thread::sleep_for(chrono::seconds(1));
 	head2 = createSingleLinkedList(length);
 	cout << "Print the list" << endl;
+
 	printSList(head1);
 	printSList(head2);
+	result1 = sumListForward(head1, head2);
+	cout << "Sun list result (forward):" << endl;
+	printSList(result1);
 
-	result = sumListForward(head1, head2);
-	printSList(result);
+	result2 = sumListBackward(head1, head2);
+	cout << "Sun list result (backward):" << endl;
+	printSList(result2);
+
 
 	cin >> stop;
 	freeSList(head1);
 	freeSList(head2);
-	freeSList(result);
+	freeSList(result1);
+	freeSList(result2);
 }
 
 sNode* sumListForward(sNode* head1, sNode* head2)
@@ -77,19 +85,30 @@ sNode* sumListForward(sNode* head1, sNode* head2)
 sNode* sumListBackward(sNode* head1, sNode* head2)
 {
 	head1 = reverseList(head1);
-	head2 = reverseList(head2);
 	
+	head2 = reverseList(head2);
+
 	return sumListForward(head1, head2);
 }
 
 sNode* reverseList(sNode* head)
 {
-	sNode* cur = head->getNextNode();
-	sNode* pre = head;
+	sNode* cur = head;
+	sNode* pre = NULL;
 	sNode* next = cur->getNextNode();
 
 	while (next != NULL)
 	{
+		cur->setNextNode(pre);
 
+		pre = cur;
+		cur = next;
+		next = cur->getNextNode();
 	}
+
+	cur->setNextNode(pre);
+
+	printSList(cur);
+
+	return cur;
 }
