@@ -24,5 +24,5 @@ sNode* removeCurSNode(sNode* pre, sNode* cur);
 sNode* reverseList(sNode* head);
 sNode* copyList(sNode* head);
 sNode* createSingleLinkedListWithPalindrome(int length);
-pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length);
+pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length1, int length2);
 void freeSListsWithIntersection(sNode* list1, sNode* list2);

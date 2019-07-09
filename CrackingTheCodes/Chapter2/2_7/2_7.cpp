@@ -3,14 +3,18 @@
 // Intersection
 void test2_7()
 {
-	int length;
-	int stop;
+	int length1;
+	int length2;
 
-	cout << "Enter the length of the list: ";
-	cin >> length;
+	cout << "Enter the length of the list1, can not be zero: ";
+	cin >> length1;
 	cout << endl;
 
-	pair<sNode*, sNode*> intersecLists = createSingleLinkedListWithIntersection(length);
+	cout << "Enter the length of the list2, can not be zero: ";
+	cin >> length2;
+	cout << endl;
+
+	pair<sNode*, sNode*> intersecLists = createSingleLinkedListWithIntersection(length1, length2);
 
 	cout << "Print the list" << endl;
 	printSList(intersecLists.first);
@@ -20,8 +24,7 @@ void test2_7()
 
 	cout << "Does the list have intersection: " << result;
 
-	cin >> stop;
-	//freeSList(head);
+	freeSListsWithIntersection(intersecLists.first, intersecLists.second);
 }
 
 bool hasIntersection(sNode* list1, sNode* list2)

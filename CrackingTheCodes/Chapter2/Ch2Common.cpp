@@ -63,6 +63,7 @@ void freeSList(sNode* cur)
 	{
 		sNode* tmp = cur;
 		cur = cur->getNextNode();
+		tmp->setNextNode(NULL); // Make sure the pointer set to NULL, in case of free this list twice
 		free(tmp);
 	}
 }
@@ -154,7 +155,8 @@ sNode* createSingleLinkedListWithPalindrome(int length)
 }
 
 // Create intersection list, the node which is intersection, the value is set to -1 for debugging purpose.
-pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length)
+// length1 is the length of list1, length2 is the length of list2 but intersection nde and the following nodes not included.
+pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length1, int length2)
 {
 	srand(time(NULL));  // Initialize random number generator.
 
@@ -162,11 +164,11 @@ pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length)
 	sNode *head1 = new sNode(rand() % 10);
 	sNode *tmp1 = head1;
 
-	int interSecNodeLoc = rand() % length; // the location of the intersection node
+	int interSecNodeLoc = rand() % length1; // the location of the intersection node in list1
 	
 	cout << "intersection node location is at: " << interSecNodeLoc << endl;
 
-	for (int i = 1; i < length; i++)
+	for (int i = 1; i < length1; i++)
 	{
 		int data = rand() % 10;
 		sNode* cur = new sNode(data);
@@ -177,32 +179,59 @@ pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length)
 	sNode *head2;
 	sNode *tmp2;
 
-	if (interSecNodeLoc != 0)
+	if (length2 == 0) // list2 is all in list1
+	{
+		tmp1 = head1;
+
+		for (int i = 0; i < interSecNodeLoc; i++)
+		{
+			tmp1 = tmp1->getNextNode();
+		}
+
+		head2 = tmp1;
+		head2->setData(-1);
+	}
+	else if (interSecNodeLoc == 0) // list1 head node is the intersection node, and list2 tail node' next node is list1 head node.
 	{
 		head2 = new sNode(rand() % 10);
 		tmp2 = head2;
-		tmp1 = head1;
 
-		for (int i = 1; i < length; i++)
+		for (int i = 1; i < length2; i++)
 		{
-			tmp1 = tmp1->getNextNode();
-			if (i == interSecNodeLoc)
-			{
-				tmp2->setNextNode(tmp1);
-				tmp1->setData(-1);
-				break;
-			}
-
 			int data = rand() % 10;
 			sNode* cur = new sNode(data);
 			tmp2->setNextNode(cur);
 			tmp2 = cur;
 		}
+
+		tmp2->setNextNode(head1);
+		head1->setData(-1);
 	}
 	else
 	{
-		head2 = head1;
-		head2->setData(-1);
+		// Build list2
+		head2 = new sNode(rand() % 10);
+		tmp2 = head2;
+
+		for (int i = 1; i < length2; i++)
+		{
+			int data = rand() % 10;
+			sNode* cur = new sNode(data);
+			tmp2->setNextNode(cur);
+			tmp2 = cur;
+		}
+
+		tmp1 = head1;
+
+		// Get the pointer to the intersection node
+		for (int i = 0; i < interSecNodeLoc; i++)
+		{
+			tmp1 = tmp1->getNextNode();
+		}
+
+		// tmp1 is the intersection node
+		tmp2->setNextNode(tmp1);
+		tmp1->setData(-1);
 	}
 
 	return make_pair(head1, head2);;
@@ -210,5 +239,5 @@ pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length)
 
 void freeSListsWithIntersection(sNode* list1, sNode* list2)
 {
-	// to be done
+	// to be done later
 }
