@@ -26,3 +26,4 @@ sNode* copyList(sNode* head);
 sNode* createSingleLinkedListWithPalindrome(int length);
 pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length1, int length2);
 void freeSListsWithIntersection(sNode* list1, sNode* list2);
+int listLength(sNode* list);
