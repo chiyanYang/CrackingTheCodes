@@ -27,3 +27,6 @@ sNode* createSingleLinkedListWithPalindrome(int length);
 pair<sNode*, sNode*> createSingleLinkedListWithIntersection(int length1, int length2);
 void freeSListsWithIntersection(sNode* list1, sNode* list2);
 int listLength(sNode* list);
+sNode* createSingleLinkedListWithLoop(int length);
+void freeSListsWithLoop(sNode* list);
+void printSListWithLoop(sNode* cur);
