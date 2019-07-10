@@ -4,10 +4,10 @@ To practice the coding skills, I created this repo for solving the questions in 
 ## Structure
 ####  Top layer
 (1) Main.cpp: runs the test for the question. Changing the including files and test name can run different test.
-(2) Common.cpp and Common.h is for common functions throughout the whole exercises.  
+(2) Common.cpp: for common functions throughout the whole exercises.  
 ####  Second layer
 (1) Chapter folder: contains the exercises in this chapter.
-(2) ChxCommon.cpp and ChxCommon.h is for common functions throughout this chapter exercises.
+(2) ChxCommon.cpp: common functions throughout this chapter exercises.
 ####  Third layer
 (1) Exercise folder: contains the test function and solution for the question.
 ## Table of contents
