@@ -3,50 +3,41 @@
 // Is Unique
 void test1_1()
 {
-	int toStop = 0;
+	string stringLength;
+	cout << "Set the length of the string" << endl;
 
-	while (toStop != 1)
+	while (true)
 	{
-		string stringLength;
-		cout << "Set the length of the string" << endl;
-
-		while (true)
-		{
-			getline(cin >> ws, stringLength); // cin >> ws is to remove white space / new line from last input that cause getline to return
-			if (is_number(stringLength))
-				break;
-			cout << "Not a number, reEnter please" << endl;
-		}
-
-		cout << "Generating the string" << endl;
-
-		string testString = generateTestString(atoi(stringLength.c_str()));
-		cout << "The random string is" << endl << testString << endl;
-		bool result = isUnique_ASCII(testString);
-
-		cout << "The unique result = " << result << endl << endl;
-
-		string tmpTestString = testString;
-		mergeSort(tmpTestString, 0, tmpTestString.size() - 1);
-
-		cout << "The sorted string is" << endl << tmpTestString << endl;
-
-		
-		result = isUnique_ASCII_SortedString(tmpTestString);
-		cout << "The unique result for sorted string = " << result << endl << endl;
-
-		tmpTestString = testString;
-		mergeSortInplace(tmpTestString, 0, tmpTestString.size() - 1);
-
-		cout << "The sorted in place string is" << endl << tmpTestString << endl;
-
-		result = isUnique_ASCII_SortedString(tmpTestString);
-		cout << "The unique result for sorted in place string = " << result << endl << endl;
-
-
-		cout << "To stop enter 1" << endl;
-		cin >> toStop;
+		getline(cin >> ws, stringLength); // cin >> ws is to remove white space / new line from last input that cause getline to return
+		if (is_number(stringLength))
+			break;
+		cout << "Not a number, reEnter please" << endl;
 	}
+
+	cout << "Generating the string" << endl;
+
+	string testString = generateTestString(atoi(stringLength.c_str()));
+	cout << "The random string is" << endl << testString << endl;
+	bool result = isUnique_ASCII(testString);
+
+	cout << "The unique result = " << result << endl << endl;
+
+	string tmpTestString = testString;
+	mergeSort(tmpTestString, 0, tmpTestString.size() - 1);
+
+	cout << "The sorted string is" << endl << tmpTestString << endl;
+
+
+	result = isUnique_ASCII_SortedString(tmpTestString);
+	cout << "The unique result for sorted string = " << result << endl << endl;
+
+	tmpTestString = testString;
+	mergeSortInplace(tmpTestString, 0, tmpTestString.size() - 1);
+
+	cout << "The sorted in place string is" << endl << tmpTestString << endl;
+
+	result = isUnique_ASCII_SortedString(tmpTestString);
+	cout << "The unique result for sorted in place string = " << result << endl << endl;
 }
 
 // 1. Assume AscII code char only, extention not included

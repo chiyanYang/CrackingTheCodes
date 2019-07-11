@@ -12,7 +12,7 @@ void test1_2()
 	{
 		string stringLength1;
 		string stringLength2;
-		cout << "Set the length of the string" << endl;
+		cout << "Set the length of the first string" << endl;
 
 		while (true)
 		{
@@ -26,7 +26,7 @@ void test1_2()
 
 		string testString1 = generateTestString(atoi(stringLength1.c_str()));
 		cout << "The random string1 is" << endl << testString1 << endl;
-
+		cout << "Set the length of the string" << endl;
 		while (true)
 		{
 			getline(cin >> ws, stringLength2); // cin >> ws is to remove white space / new line from last input that cause getline to return
@@ -64,7 +64,7 @@ bool isPermutation(string& s1, string& s2)
 		return false;
 
 	const int length = 128;
-	char c[length] = { 0 }; // ASCII Table
+	int c[length] = { 0 }; // ASCII Table
 
 	for (auto it = s1.cbegin(); it != s1.cend(); ++it)
 		c[*it]++;
@@ -82,43 +82,6 @@ bool isPermutation(string& s1, string& s2)
 	}
 
 	return true;
-}
-
-// Helper function to get all the permutation of string s
-string getPermutations(const string& s)
-{
-	if (s.length() < 2)
-		return s;
-
-	vector<string> sVector;
-	string tmp = s;
-
-	getPermutation("", tmp, NULL, sVector);
-
-	return sVector.back();
-}
-
-void getPermutation(string cur, string sRemain, char chosen, vector<string>& sVector)
-{
-	if (chosen != NULL)
-		cur.push_back(chosen);
-
-	if (sRemain.length() < 2)
-	{
-		if (sRemain.length() == 1)
-			cur.append(sRemain);
-		sVector.push_back(cur);
-		return;
-	}
-
-	for (unsigned int i = 0; i < sRemain.length(); i++)
-	{
-		char c = sRemain.at(i);
-		string s = sRemain;
-
-		getPermutation(cur, s.erase(i, 1), c, sVector);
-	}
-	return;
 }
 
 
