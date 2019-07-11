@@ -5,9 +5,7 @@ Is Unique: Implement an algorithm to determine if a string has all unique charac
 cannot use additional data structures?  
   
 (1) Make assumption for the chars in the string: ASCII (128), extended ASCII (256), Unicode.  
-<pre>
     In my soultion assume character set is extended ASCII.  
-</pre>
 (2) Solution1: Use boolean array to store the count of each char.  
 (3) Solution2: Use bit vector to store the count of each char -- to be done  
 (4) Solution3: Without additional data structures, use merge sort with inplace.  
@@ -17,9 +15,7 @@ Check Permutation: Given two strings, write a method to decide if one is a permu
 other.  
   
 (1) Make assumption for the case sensitive and whitespace, also for the char set.  
-<pre>
     In my soultion assume character set is ASCII, so it is case sensitive and take whitespace into account.   
-</pre>
 (2) Solution: Count how many times each character appears for each string. They should be the same.  
 ### [1_3](./1_3)
 ### [1_4](./1_4)
