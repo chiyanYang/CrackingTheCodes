@@ -3,16 +3,12 @@
 // URLify
 void test1_3()
 {
-	int toStop = 0;
-
 	string s1 = "Mr John Smith    ";
 
 	cout << "Input string" << endl << s1 << endl;
 	urLify(s1);
 
 	cout << "Output string" << endl << s1 << endl;
-
-	cin >> toStop;
 }
 
 // Move the char to the end of the string one by one, encounter a while space then replace it with %20.

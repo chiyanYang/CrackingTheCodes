@@ -3,7 +3,6 @@
 // Palindrome Permutation
 void test1_4()
 {
-	int toStop = 0;
 	int result;
 
 	string s1 = "Tact Coa";
@@ -12,8 +11,6 @@ void test1_4()
 	result = isPalindrome(s1);
 
 	cout << "is Palindrome: " << result << endl;
-
-	cin >> toStop;
 }
 
 // (1) Remove capital and space
