@@ -38,15 +38,18 @@ bool isOneWay(string& s1, string& s2)
 
 bool isOneWayByAddChar(string& sLong, string& sShort)
 {
-	int difCount = 0;
+	bool foundDif = false;
+
 	for (unsigned int i = 0, j = 0; j < sShort.size(); i++, j++)
 	{
 		if (sLong[i] != sShort[j])
 		{
-			difCount++;
-			j--;
-			if (difCount > 1)
+			if (foundDif)
+			{
 				return false;
+			}
+			foundDif  = true;
+			j--;
 		}
 	}
 	return true;
@@ -54,15 +57,18 @@ bool isOneWayByAddChar(string& sLong, string& sShort)
 
 bool isOneWayByModifyChar(string& s1, string& s2)
 {
-	int difCount = 0;
+	bool foundDif = false;
 
 	for (unsigned int i = 0; i < s1.size(); i++)
 	{
 		if (s1[i] != s2[i])
 		{
-			difCount++;
-			if (difCount > 1)
+			if (foundDif)
+			{
 				return false;
+			}
+				
+			foundDif = true;
 		}
 	}
 	return true;
