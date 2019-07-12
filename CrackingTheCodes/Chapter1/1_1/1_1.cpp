@@ -38,6 +38,12 @@ void test1_1()
 
 	result = isUnique_ASCII_SortedString(tmpTestString);
 	cout << "The unique result for sorted in place string = " << result << endl << endl;
+
+	string sAlphabet = generateTestStringInAlphabet(atoi(stringLength.c_str()));
+	cout << "The alphabet string is" << endl << sAlphabet << endl;
+	result = isUnique_Alphabet_Int(sAlphabet);
+
+	cout << "The unique result for isUnique_Alphabet_Int = " << result << endl << endl;
 }
 
 // 1. Assume AscII code char only, extention not included
@@ -53,6 +59,26 @@ bool isUnique_ASCII(const string& s)
 		if (totalChar[c] != false)
 			return false;
 		totalChar[c] = true;
+	}
+	return true;
+}
+
+// Assume Alphabet char only(a~z)
+bool isUnique_Alphabet_Int(const string& s)
+{
+	if (s.length() > 26) // a~z has 26 char
+		return false;
+
+	int bitVector = 0;
+	for (auto c : s) // bytes(char)
+	{
+		int locInBitVector = c - 'a';
+		int valueInInt = 1 << locInBitVector;
+
+		if ((bitVector & valueInInt) != 0)
+			return false;
+
+		bitVector |= valueInInt;
 	}
 	return true;
 }

@@ -16,6 +16,22 @@ string generateTestString(int limitLengrh)
 	return s;
 }
 
+string generateTestStringInAlphabet(int limitLengrh)
+{
+	int rChar;
+	string s;
+
+	srand(time(NULL));  // Initialize random number generator.
+
+	for (int i = 0; i < limitLengrh; i++)
+	{
+		rChar = (rand() % 26) + 97; // AscII code char a start from 97
+		s.push_back(static_cast<char>(rChar));
+	}
+
+	return s;
+}
+
 // Check the input is number
 bool is_number(const string& s)
 {

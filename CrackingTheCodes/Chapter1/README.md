@@ -7,7 +7,7 @@ cannot use additional data structures?
 (1) Make assumption for the chars in the string: ASCII (128), extended ASCII (256), Unicode.  
     In my soultion assume character set is extended ASCII.  
 (2) Solution1: Use boolean array to store the count of each char.  
-(3) Solution2: Use bit vector to store the count of each char -- to be done  
+(3) Solution2: Use bit vector to store the count of each char   
 (4) Solution3: Without additional data structures, use merge sort with inplace.  
 (5) Optimization: early break when the string length greater than the char set.
 ### [1_2](./1_2)
