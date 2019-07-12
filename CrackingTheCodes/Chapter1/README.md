@@ -30,9 +30,10 @@ a palindrome. A palindrome is a word or phrase that is the same forwards and bac
 permutation is a rearrangement of letters. The palindrome does not need to be limited to just
 dictionary words.  
 
-(1) Solution1: Count the how many times each character appears, should be at most only one odd times to form Palindrome.  
-(2) Optimization1: Count odd times while calculateing each characters.  
-(3) Solution2: Use bit vector to store and toggle concept to indicate is odd or even, then use simple bit manipulation to get the result.
+(1) Make assumption char only a to z.  
+(2) Solution1: Count the how many times each character appears, should be at most only one odd times to form Palindrome.  
+(3) Optimization1: Count odd times while calculateing each characters.  
+(4) Solution2: Use bit vector to store and toggle concept to indicate is odd or even, then use simple bit manipulation to get the result.
 ### [1_5](./1_5)
 One Away: There are three types of edits that can be performed on strings: insert a character,
 remove a character, or replace a character. Given two strings, write a function to check if they are
