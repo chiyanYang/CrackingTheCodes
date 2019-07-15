@@ -12,7 +12,7 @@ void test1_6()
 
 	string sCompressed = stringCompression(sToCompress);
 
-	if (sToCompress.length() > sCompressed.length())
+	if (sCompressed.length() != 0)
 		result = sCompressed;
 	else
 		result = sToCompress;
@@ -24,6 +24,13 @@ void test1_6()
 
 string stringCompression(string& sToCompress)
 {
+	int compressedLength = checkComressedLength(sToCompress);
+
+	if (compressedLength >= sToCompress.length())
+	{
+		return string();
+	}
+
 	string sCompressing;
 
 	for (unsigned int i = 0; i < sToCompress.size(); i++)
@@ -42,4 +49,26 @@ string stringCompression(string& sToCompress)
 	}
 
 	return sCompressing;
+}
+
+int checkComressedLength(string& sToCompress)
+{
+	int length = 0;
+
+	for (unsigned int i = 0; i < sToCompress.size(); i++)
+	{
+		int count = 1;
+		char c = sToCompress.at(i);
+
+		while (i + 1 < sToCompress.size() && c == sToCompress.at(i + 1))
+		{
+			count++;
+			i++;
+		}
+
+		int compressedNumLength = to_string(count).length(); // Can be furthur improving the performance
+		length = length + compressedNumLength + 1;
+	}
+
+	return length;
 }

@@ -42,6 +42,29 @@ one edit (or zero edits) away.
 (1) Solution: Specialize for each case, and merge simliar case (insert and removal), also use string length to decide which case.  
 (2) Optimization: This is refactor. Cases can be merged into one function. (Not implemented in my solution).
 ### [1_6](./1_6)
+String Compression: Implement a method to perform basic string compression using the counts
+of repeated characters. For example, the string aabcccccaaa would become a2blc5a3. If the
+"compressed" string would not become smaller than the original string, your method should return
+the original string. You can assume the string has only uppercase and lowercase letters (a - z).  
+
+(1) Solution: This is easy, one thing to notice is to use effective way to combine string (C++ string).  
+(2) Optimization: Check the compressed length first.
 ### [1_7](./1_7)
+Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
+bytes, write a method to rotate the image by 90 degrees. Can you do this in place?  
+
+(1) Solution: Layer to layer, use swap concept to reduce memory.
 ### [1_8](./1_8)
+Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
+column are set to 0.  
+
+(1) Solution1: Extra vector to store zeros.  
+(2) Solution2: Extra colum and row to store zeros.  
+(3) Solution3: Find a zero, then use this line and column to store zeros
+(4) Solution4: Use first column and row to store zeros, and two variable to see if this column and row should be all zero. (Not implemented)  
 ### [1_9](./1_9)
+String Rotation: Assume you have a method i 5Su b 5 tr ing which checks if one word is a substring
+of another. Given two strings, 51 and 52, write code to check if 52 is a rotation of 51 using only one
+call to i5Sub5tring (e.g., "waterbottle" is a rotation of" erbottlewat").  
+
+(1) Solution1: Concatenate the same string twice, it will include any rotation of the original string.
