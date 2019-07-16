@@ -57,6 +57,7 @@ void partitionList(sNode* head, int value)
 			swapData(smaller, larger);
 		}
 
+		// This movement is important, remove this cause infinite loop. (in the case "LargerPosition >= smallerPosition")
 		smaller = smaller->getNextNode();
 		smallerPosition++;
 	}
