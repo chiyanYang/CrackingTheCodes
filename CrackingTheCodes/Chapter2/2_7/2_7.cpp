@@ -47,6 +47,7 @@ void test2_7()
 
 bool hasIntersection(sNode* list1, sNode* list2)
 {
+	// To furthur optimization, compared the two lists tail node to find if there is intersection.
 	int length1 = listLength(list1);
 	int length2 = listLength(list2);
 
