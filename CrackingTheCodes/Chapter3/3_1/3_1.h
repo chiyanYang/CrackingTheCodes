@@ -7,8 +7,8 @@ template <typename T> class fixStack;
 template <typename T>
 class fixStack
 {
-	const int numOfStack = 3;
-	T* index[numOfStack];
+	int numOfStack;
+	T** index;
 
 	struct idx
 	{
@@ -19,10 +19,12 @@ class fixStack
 	idx states[3];
 
 public:
-	fixStack(int length)
+	fixStack(int length, int stackAmount)
 	{
+		numOfStack = stackAmount;
 		int average = length / numOfStack;
-		
+		index = new T*[numOfStack];
+
 		index[0] = new T[length];
 		states[0].curIdx = -1;
 		states[0].length = average;
@@ -102,5 +104,6 @@ public:
 	~fixStack()
 	{
 		free(index[0]);
+		free(index);
 	}
 };

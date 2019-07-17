@@ -11,9 +11,6 @@ int main()
 	int toBreak = 0;
 	while (true)
 	{
-
-
-
 		test3_1();
 		cout << "To Leave the test, enter 1: " << endl;
 		cin >> toBreak;
