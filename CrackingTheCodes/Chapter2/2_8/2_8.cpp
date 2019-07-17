@@ -46,12 +46,6 @@ sNode* loopDetection(sNode* list)
 
 		fast = fast->getNextNode();
 		countFast++;
-		if (fast == slow)
-		{
-			isLoop = true;
-			break;
-		}
-
 		fast = fast->getNextNode();
 		countFast++;
 		if (fast == slow)

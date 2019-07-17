@@ -75,5 +75,7 @@ EXAMPLE
 Input: A - > B - > C - > D - > E - > C [the same C as earlier]  
 Output: C  
 
-(1) Solution1: 
-### [2_9](./2_9)
+(1) Solution1: Two pointers, one is twice faster then another, when they meet, means detecting loop.  
+               If slow one walks k steps to the loop entry node, which means faster one walks k steps in loop already.  
+			   so it takes (loop_size - k) step to catch up with slow one, which means k more steps to the loop entry node.  
+			   So the slow one move from head again, and both move at the same speed (1 step), they will meet at entry node.
