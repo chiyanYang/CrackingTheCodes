@@ -2,6 +2,24 @@
 #include "../Ch3Common.h"
 
 void test3_1();
+
+template <typename T> class fixStack;
+
+template <typename T>
+void callPush(fixStack<T>& myStack);
+
+template <typename T>
+void callPop(fixStack<T>& myStack);
+
+template <typename T>
+void callPeek(fixStack<T>& myStack);
+
+template <typename T>
+void callIsEmpty(fixStack<T>& myStack);
+
+template <typename T>
+void callIsFull(fixStack<T>& myStack);
+
 template <typename T> class fixStack;
 
 template <typename T>

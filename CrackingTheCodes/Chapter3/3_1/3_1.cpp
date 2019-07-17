@@ -15,6 +15,8 @@ void test3_1()
 	cout << "The fix size for each stack is \"length / numOfStack\"" << endl;
 	cout << "The fix size per stack is:" << length / numOfStack << "Number of stack is:" << numOfStack  << endl;
 
+	fixStack<int> myStack(length, numOfStack);
+
 	while (true)
 	{
 		cout << "method 1: callPush" << endl;
@@ -27,20 +29,50 @@ void test3_1()
 
 		switch (method)
 		{
-		    case 1: callPush();
+		    case 1: callPush(myStack);
 				    break;
-			case 2: callPop();
+			case 2: callPop(myStack);
 					break;
-			case 3: callPeek();
+			case 3: callPeek(myStack);
 					break;
-			case 4: callIsEmpty();
+			case 4: callIsEmpty(myStack);
 					break;
-			case 5: callIsFull();
+			case 5: callIsFull(myStack);
 					break;
-			default: "No Method found"
+			default: "No Method found";
 		}
 	}
+}
 
-	fixStack<int> myStack(length, numOfStack);
+
+template <typename T>
+void callPush(fixStack<T>& myStack)
+{
+
+}
+
+template <typename T>
+void callPop(fixStack<T>& myStack)
+{
+
+}
+
+template <typename T>
+void callPeek(fixStack<T>& myStack)
+{
+	
+}
+
+template <typename T>
+void callIsEmpty(fixStack<T>& myStack)
+{
+	bool result = myStack.isEmpty(0);
+	cout << "IsEmpty:" << result << endl;
+}
+
+template <typename T>
+void callIsFull(fixStack<T>& myStack)
+{
+
 }
 
