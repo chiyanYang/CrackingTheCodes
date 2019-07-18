@@ -6,22 +6,22 @@ void test3_1();
 template <typename T> class fixStack;
 
 template <typename T>
-void callPush(fixStack<T>& myStack, int stackIdx);
+void callFixPush(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callPop(fixStack<T>& myStack, int stackIdx);
+void callFixPop(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callPeek(fixStack<T>& myStack, int stackIdx);
+void callFixPeek(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callIsEmpty(fixStack<T>& myStack, int stackIdx);
+void callFixIsEmpty(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callIsFull(fixStack<T>& myStack, int stackIdx);
+void callFixIsFull(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callPrintStack(fixStack<T>& myStack);
+void callFixPrintStack(fixStack<T>& myStack);
 
 template <typename T> class fixStack;
 

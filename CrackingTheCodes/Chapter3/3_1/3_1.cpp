@@ -5,18 +5,30 @@ void test3_1()
 {
 	int length;
 	int numOfStack;
+	int stackType;
 	int method;
 
 	cout << "Please enter the length the array: ";
 	cin >> length;
 	cout << "Please enter the number of stack: ";
 	cin >> numOfStack;
+
+	cout << "Stack Type: 1 for fix size, 2 for variable ";
+	cout << "Please enter the type of stack: ";
+	cin >> stackType;
 	cout << endl;
-	cout << "The fix size for each stack is \"length / numOfStack\"" << endl;
-	cout << "The fix size per stack is: " << length / numOfStack << endl;
 	cout << "Number of stack is: " << numOfStack << endl;
 
-	fixStack<int> myStack(length, numOfStack);
+	if (stackType == 1)
+	{
+		cout << "The fix size for each stack is \"length / numOfStack\"" << endl;
+		cout << "The fix size per stack is: " << length / numOfStack << endl;
+		fixStack<int> myStack(length, numOfStack);
+	}
+
+
+
+	
 
 	while (true)
 	{
@@ -59,7 +71,6 @@ void test3_1()
 		}
 	}
 }
-
 
 template <typename T>
 void callPush(fixStack<T>& myStack, int stackIdx)
