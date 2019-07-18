@@ -6,19 +6,22 @@ void test3_1();
 template <typename T> class fixStack;
 
 template <typename T>
-void callPush(fixStack<T>& myStack);
+void callPush(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callPop(fixStack<T>& myStack);
+void callPop(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callPeek(fixStack<T>& myStack);
+void callPeek(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callIsEmpty(fixStack<T>& myStack);
+void callIsEmpty(fixStack<T>& myStack, int stackIdx);
 
 template <typename T>
-void callIsFull(fixStack<T>& myStack);
+void callIsFull(fixStack<T>& myStack, int stackIdx);
+
+template <typename T>
+void callPrintStack(fixStack<T>& myStack);
 
 template <typename T> class fixStack;
 
@@ -61,20 +64,15 @@ public:
 
 	bool push(int stackIdx, T data)
 	{
-		if (stackIdx >= numOfStack)
-			return;
+		if (stackIdx >= numOfStack || this->isFull(stackIdx))
+			return false;
 
 		T* nextSpace;
 
-		if (!this.isFull(stackIdx))
-		{
-			nextSpace = index[stackIdx] + states[stackIdx].curIdx + 1;
-			*nextSpace = data;
-			states[stackIdx].curIdx += 1;
-			return true;
-		}
-
-		return false;
+		nextSpace = index[stackIdx] + states[stackIdx].curIdx + 1;
+		*nextSpace = data;
+		states[stackIdx].curIdx += 1;
+		return true;
 	}
 
 	void pop(int stackIdx)
@@ -82,7 +80,7 @@ public:
 		if (stackIdx >= numOfStack)
 			return;
 
-		if (!this.isEmpty(stackIdx))
+		if (!this->isEmpty(stackIdx))
 		{
 			states[stackIdx].curIdx--;
 		}
@@ -90,21 +88,22 @@ public:
 
 	T peek(int stackIdx)
 	{
-		if (stackIdx >= numOfStack)
-			return;
+		if (stackIdx >= numOfStack || this->isEmpty(stackIdx))
+			return NULL;
 
-		if (!this.isEmpty(stackIdx))
-		{
-			states[stackIdx].curIdx--;
-			T* curData = index[stackIdx] + states[stackIdx].curIdx;
-			return *curData;
-		}
-
-		return NULL;
+		int curShowIdx = states[stackIdx].curIdx - 1;
+		T* curData = index[stackIdx] + curShowIdx;
+		return *curData;
 	}
 
 	bool isEmpty(int stackIdx)
 	{
+		if (stackIdx >= numOfStack)
+		{
+			cout << "Out of range, numOfStack = " << numOfStack << endl;
+			return false;
+		}
+
 		if (states[stackIdx].curIdx == -1)
 			return true;
 
@@ -113,10 +112,32 @@ public:
 
 	bool isFull(int stackIdx)
 	{
+		if (stackIdx >= numOfStack)
+		{
+			cout << "Out of range, numOfStack = " << numOfStack << endl;
+			return false;
+		}
+
 		if (states[stackIdx].curIdx == states[stackIdx].length - 1)
 			return true;
 
 		return false;
+	}
+
+	// For debugging purpose
+	void printStack()
+	{
+		for (int i = 0; i < numOfStack - 1; i++)
+		{
+			cout << "stack " << i << ": ";
+
+			for (int j = 0; j <= states[i].curIdx; j++)
+			{
+				cout << " " << *(index[i] + j);
+			}
+
+			cout << endl;
+		}
 	}
 
 	~fixStack()
