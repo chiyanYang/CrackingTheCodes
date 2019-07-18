@@ -52,14 +52,14 @@ public:
 
 		for (int i = 1; i < numOfStack - 1; i++)
 		{
-			index[i] = index[i - 1] + average;
+			index[i] = index[i - 1] + average + 1;
 			states[i].curIdx = -1;
 			states[i].length = average;
 		}
 
-		index[numOfStack - 1] = index[numOfStack - 2] + average;
+		index[numOfStack - 1] = index[numOfStack - 2] + average + 1;
 		states[numOfStack - 1].curIdx = -1;
-		states[numOfStack - 1].length = length - average * 2;
+		states[numOfStack - 1].length = length - average * (numOfStack - 1);
 	}
 
 	bool push(int stackIdx, T data)
@@ -91,8 +91,7 @@ public:
 		if (stackIdx >= numOfStack || this->isEmpty(stackIdx))
 			return NULL;
 
-		int curShowIdx = states[stackIdx].curIdx - 1;
-		T* curData = index[stackIdx] + curShowIdx;
+		T* curData = index[stackIdx] + states[stackIdx].curIdx;
 		return *curData;
 	}
 
@@ -127,7 +126,7 @@ public:
 	// For debugging purpose
 	void printStack()
 	{
-		for (int i = 0; i < numOfStack - 1; i++)
+		for (int i = 0; i < numOfStack; i++)
 		{
 			cout << "stack " << i << ": ";
 
