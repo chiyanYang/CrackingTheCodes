@@ -6,14 +6,17 @@ void test3_1()
 	int length;
 	int numOfStack;
 	int stackType;
-	int method;
+
 
 	cout << "Please enter the length the array: ";
 	cin >> length;
 	cout << "Please enter the number of stack: ";
 	cin >> numOfStack;
+	cout << endl;
 
-	cout << "Stack Type: 1 for fix size, 2 for variable ";
+	cout << "Stack Type:" << endl;
+	cout << "1 for fix size" << endl;
+	cout << "2 for variable" << endl;
 	cout << "Please enter the type of stack: ";
 	cin >> stackType;
 	cout << endl;
@@ -24,14 +27,23 @@ void test3_1()
 		cout << "The fix size for each stack is \"length / numOfStack\"" << endl;
 		cout << "The fix size per stack is: " << length / numOfStack << endl;
 		fixStack<int> myStack(length, numOfStack);
+		testFunction(&myStack);
+	}
+	else
+	{
+		variableStack<int> myStack(length, numOfStack);
+		testFunction(&myStack);
 	}
 
 
+}
 
-	
-
+void testFunction(baseStack<int>* myStack)
+{
 	while (true)
 	{
+		int method;
+
 		cout << endl << "---------------------" << endl;
 		cout << "method 1: callPush" << endl;
 		cout << "method 2: callPop" << endl;
@@ -55,8 +67,8 @@ void test3_1()
 
 		switch (method)
 		{
-		    case 1: callPush(myStack, stackIdx);
-				    break;
+			case 1: callPush(myStack, stackIdx);
+					break;
 			case 2: callPop(myStack, stackIdx);
 					break;
 			case 3: callPeek(myStack, stackIdx);
@@ -73,48 +85,48 @@ void test3_1()
 }
 
 template <typename T>
-void callPush(fixStack<T>& myStack, int stackIdx)
+void callPush(baseStack<T>* myStack, int stackIdx)
 {
 	int data;
 	cout << "Enter the data: ";
 	cin >> data;
 	cout << endl;
 
-	bool result = myStack.push(stackIdx, data);
+	bool result = myStack->push(stackIdx, data);
 
 	cout << "Push success: " << result;
 }
 
 template <typename T>
-void callPop(fixStack<T>& myStack, int stackIdx)
+void callPop(baseStack<T>* myStack, int stackIdx)
 {
-	myStack.pop(stackIdx);
+	myStack->pop(stackIdx);
 }
 
 template <typename T>
-void callPeek(fixStack<T>& myStack, int stackIdx)
+void callPeek(baseStack<T>* myStack, int stackIdx)
 {
-	T data = myStack.peek(stackIdx);
+	T data = myStack->peek(stackIdx);
 	cout << "Data is: " << data << endl;
 }
 
 template <typename T>
-void callIsEmpty(fixStack<T>& myStack, int stackIdx)
+void callIsEmpty(baseStack<T>* myStack, int stackIdx)
 {
-	bool result = myStack.isEmpty(stackIdx);
+	bool result = myStack->isEmpty(stackIdx);
 	cout << "IsEmpty: " << result << endl;
 }
 
 template <typename T>
-void callIsFull(fixStack<T>& myStack, int stackIdx)
+void callIsFull(baseStack<T>* myStack, int stackIdx)
 {
-	bool result = myStack.isFull(stackIdx);
+	bool result = myStack->isFull(stackIdx);
 	cout << "IsFull: " << result << endl;
 }
 
 template <typename T>
-void callPrintStack(fixStack<T>& myStack)
+void callPrintStack(baseStack<T>* myStack)
 {
-	myStack.printStack();
+	myStack->printStack();
 }
 

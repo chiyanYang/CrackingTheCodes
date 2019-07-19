@@ -4,31 +4,60 @@
 void test3_1();
 
 template <typename T> class fixStack;
+template <typename T> class baseStack;
+void testFunction(baseStack<int>* myStack);
+
 
 template <typename T>
-void callFixPush(fixStack<T>& myStack, int stackIdx);
+void callPush(baseStack<T>* myStack, int stackIdx);
 
 template <typename T>
-void callFixPop(fixStack<T>& myStack, int stackIdx);
+void callPop(baseStack<T>* myStack, int stackIdx);
 
 template <typename T>
-void callFixPeek(fixStack<T>& myStack, int stackIdx);
+void callPeek(baseStack<T>* myStack, int stackIdx);
 
 template <typename T>
-void callFixIsEmpty(fixStack<T>& myStack, int stackIdx);
+void callIsEmpty(baseStack<T>* myStack, int stackIdx);
 
 template <typename T>
-void callFixIsFull(fixStack<T>& myStack, int stackIdx);
+void callIsFull(baseStack<T>* myStack, int stackIdx);
 
 template <typename T>
-void callFixPrintStack(fixStack<T>& myStack);
+void callPrintStack(baseStack<T>* myStack);
 
-template <typename T> class fixStack;
+///////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
-class fixStack
+class baseStack
 {
+public:
 	int numOfStack;
+
+	virtual bool push(int stackIdx, T data) = 0;
+	virtual void pop(int stackIdx) = 0;
+	virtual T peek(int stackIdx) = 0;
+	virtual bool isEmpty(int stackIdx) = 0;
+	virtual bool isFull(int stackIdx) = 0;
+	virtual void printStack() = 0;
+	virtual ~baseStack() {};
+
+protected:
+	bool checkIfIndexOutOfRange(int stackIdx)
+	{
+		if (stackIdx >= this->numOfStack)
+		{
+			cout << "Out of range, numOfStack = " << numOfStack << endl;
+			return true;
+		}
+
+		return false;
+	}
+};
+
+template <typename T>
+class fixStack: public baseStack<T>
+{
 	T** index;
 
 	struct idx
@@ -58,9 +87,9 @@ public:
 			this->states[i].length = average;
 		}
 
-		this->index[numOfStack - 1] = this->index[numOfStack - 2] + average + 1;
-		this->states[numOfStack - 1].curIdx = -1;
-		this->states[numOfStack - 1].length = length - average * (this->numOfStack - 1);
+		this->index[this->numOfStack - 1] = this->index[this->numOfStack - 2] + average + 1;
+		this->states[this->numOfStack - 1].curIdx = -1;
+		this->states[this->numOfStack - 1].length = length - average * (this->numOfStack - 1);
 	}
 
 	bool push(int stackIdx, T data)
@@ -126,7 +155,7 @@ public:
 	// For debugging purpose
 	void printStack()
 	{
-		for (int i = 0; i < numOfStack; i++)
+		for (int i = 0; i < this->numOfStack; i++)
 		{
 			cout << "stack " << i << ": ";
 
@@ -145,24 +174,11 @@ public:
 		free(index);
 		free(states);
 	}
-
-private:
-	bool checkIfIndexOutOfRange(int stackIdx)
-	{
-		if (stackIdx >= this->numOfStack)
-		{
-			cout << "Out of range, numOfStack = " << numOfStack << endl;
-			return true;
-		}
-
-		return false;
-	}
 };
 
 template <typename T>
-class variableStack
+class variableStack : public baseStack<T>
 {
-	int numOfStack;
 	int totalLength;
 	T* index;
 	int* stackLength;
@@ -176,12 +192,12 @@ public:
 
 		// All the stacks' lengths should be zero at the beginning
 		this->index = new T[this->totalLength];
-		this->stackLength[0].length = 0;
+		this->stackLength[0] = 0;
 
 		for (int i = 1; i < this->numOfStack; i++)
 		{
 			this->index[i] = this->index[i - 1];
-			this->stackLength[i].length = 0;
+			this->stackLength[i] = 0;
 		}
 	}
 
@@ -226,7 +242,7 @@ public:
 			return false;
 		}
 
-		return this->stackLength[stackIdx].length == -1;
+		return this->stackLength[stackIdx] == -1;
 	}
 
 	bool isFull(int stackIdx)
@@ -250,7 +266,7 @@ public:
 
 			for (int j = 0; j <= this->stackLength[i] - 1; j++)
 			{
-				cout << " " << *(this->index[j + idx]);
+				cout << " " << this->index[j + idx];
 			}
 
 			idx += this->stackLength[i];
@@ -272,7 +288,7 @@ private:
 
 		for (int i = 0; i < this->numOfStack; i++)
 		{
-			curLength += this->stackLength[i].length;
+			curLength += this->stackLength[i];
 		}
 
 		return curLength == this->totalLength;
@@ -289,20 +305,9 @@ private:
 
 		for (int i = 0; i < this->numOfStack; i++)
 		{
-			curLength += this->stackLength[i].length;
+			curLength += this->stackLength[i];
 		}
 
 		return curLength;
-	}
-
-	bool checkIfIndexOutOfRange(int stackIdx)
-	{
-		if (stackIdx >= this->numOfStack)
-		{
-			cout << "Out of range, numOfStack = " << numOfStack << endl;
-			return true;
-		}
-
-		return false;
 	}
 };
