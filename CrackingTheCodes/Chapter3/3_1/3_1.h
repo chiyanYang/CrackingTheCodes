@@ -45,7 +45,7 @@ public:
 protected:
 	bool checkIfIndexOutOfRange(int stackIdx)
 	{
-		if (stackIdx >= this->numOfStack)
+		if (stackIdx >= this->numOfStack || stackIdx < 0)
 		{
 			cout << "Out of range, numOfStack = " << numOfStack << endl;
 			return true;
@@ -96,6 +96,7 @@ public:
 	{
 		if (this->checkIfIndexOutOfRange(stackIdx) || this->isFull(stackIdx))
 		{
+			cout << "Index Out of Range or is full" << endl;
 			return false;
 		}
 
@@ -125,6 +126,7 @@ public:
 	{
 		if (this->checkIfIndexOutOfRange(stackIdx) || this->isEmpty(stackIdx))
 		{
+			cout << "Index Out of Range or No Data" << endl;
 			return NULL;
 		}
 
@@ -203,7 +205,10 @@ public:
 	bool push(int stackIdx, T data)
 	{
 		if (this->checkIfIndexOutOfRange(stackIdx) || this->isFull(stackIdx))
+		{
+			cout << "Index Out of Range or is full" << endl;
 			return false;
+		}
 
 		if (isRestStackEmptyAndLeftSpace(stackIdx))
 		{
@@ -233,6 +238,7 @@ public:
 		if (!this->isEmpty(stackIdx))
 		{
 			shiftRest(stackIdx + 1, 1);
+			this->stackLength[stackIdx]--;
 		}
 	}
 
@@ -240,6 +246,7 @@ public:
 	{
 		if (this->checkIfIndexOutOfRange(stackIdx) || this->isEmpty(stackIdx))
 		{
+			cout << "Index Out of Range or No Data" << endl;
 			return NULL;
 		}
 
@@ -256,7 +263,7 @@ public:
 			return false;
 		}
 
-		return this->stackLength[stackIdx] == -1;
+		return this->stackLength[stackIdx] == 0;
 	}
 
 	bool isFull(int stackIdx)
@@ -298,6 +305,11 @@ public:
 private:
 	bool isArrayAllFull()
 	{
+		return getfilledLength() == this->totalLength;
+	}
+
+	int getfilledLength()
+	{
 		int curLength = 0;
 
 		for (int i = 0; i < this->numOfStack; i++)
@@ -305,7 +317,7 @@ private:
 			curLength += this->stackLength[i];
 		}
 
-		return curLength == this->totalLength;
+		return curLength;
 	}
 
 	// Current idx (contains data)
@@ -314,11 +326,17 @@ private:
 		return this->getCurLength(stackIdx) - 1;
 	}
 
+	// last idx (contains data)
+	int getlastIdx()
+	{
+		return this->getCurLength(this->numOfStack - 1) - 1;
+	}
+
 	int getCurLength(int stackIdx)
 	{
 		int curLength = 0;
 
-		for (int i = 0; i < this->numOfStack; i++)
+		for (int i = 0; i <= stackIdx; i++)
 		{
 			curLength += this->stackLength[i];
 		}
@@ -352,6 +370,19 @@ private:
 	// direction: 0 for right shift, 1 for left shift
 	void shiftRest(int stackIdx, int direction)
 	{
-
+		if (direction == 0)
+		{
+			for (int i = this->getlastIdx(); i > this->getCurIdx(stackIdx - 1); i--)
+			{
+				this->index[i + 1] = this->index[i];
+			}
+		}
+		else
+		{
+			for (int i = this->getCurIdx(stackIdx - 1); i < this->getfilledLength() - 1; i++)
+			{
+				this->index[i] = this->index[i + 1];
+			}
+		}
 	}
 };

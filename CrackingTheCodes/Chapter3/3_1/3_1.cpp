@@ -17,6 +17,7 @@ void test3_1()
 	cout << "Stack Type:" << endl;
 	cout << "1 for fix size" << endl;
 	cout << "2 for variable" << endl;
+	cout << endl;
 	cout << "Please enter the type of stack: ";
 	cin >> stackType;
 	cout << endl;
