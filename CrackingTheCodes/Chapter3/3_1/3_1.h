@@ -196,7 +196,6 @@ public:
 
 		for (int i = 1; i < this->numOfStack; i++)
 		{
-			this->index[i] = this->index[i - 1];
 			this->stackLength[i] = 0;
 		}
 	}
@@ -206,7 +205,22 @@ public:
 		if (this->checkIfIndexOutOfRange(stackIdx) || this->isFull(stackIdx))
 			return false;
 
-		// Todo
+		if (isRestStackEmptyAndLeftSpace(stackIdx))
+		{
+			int curIdx = getCurIdx(stackIdx);
+
+			index[curIdx + 1] = data;
+			this->stackLength[stackIdx] += 1;
+		}
+		else
+		{
+			shiftRest(stackIdx + 1, 0);
+
+			int curIdx = getCurIdx(stackIdx);
+
+			index[curIdx + 1] = data;
+			this->stackLength[stackIdx] += 1;
+		}
 
 		return true;
 	}
@@ -218,7 +232,7 @@ public:
 
 		if (!this->isEmpty(stackIdx))
 		{
-			// Todo
+			shiftRest(stackIdx + 1, 1);
 		}
 	}
 
@@ -294,6 +308,7 @@ private:
 		return curLength == this->totalLength;
 	}
 
+	// Current idx (contains data)
 	int getCurIdx(int stackIdx)
 	{
 		return this->getCurLength(stackIdx) - 1;
@@ -309,5 +324,34 @@ private:
 		}
 
 		return curLength;
+	}
+
+	bool isRestStackEmptyAndLeftSpace(int stackIdx)
+	{
+		if (this->checkIfIndexOutOfRange(stackIdx + 1))
+		{
+			if (isArrayAllFull())
+			{
+				return false;
+			}
+
+			return true;
+		}
+
+		for (int i = stackIdx + 1; i < this->numOfStack; i++)
+		{
+			if (this->stackLength[i] != 0)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	// direction: 0 for right shift, 1 for left shift
+	void shiftRest(int stackIdx, int direction)
+	{
+
 	}
 };
