@@ -4,6 +4,7 @@
 void test3_1();
 
 template <typename T> class fixStack;
+template <typename T> class variableStack;
 template <typename T> class baseStack;
 void testFunction(baseStack<int>* myStack);
 
