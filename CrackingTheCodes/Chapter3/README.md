@@ -17,6 +17,8 @@ Three in One: Describe how you could use a single array to implement three stack
 Stack Min: How would you design a stack which, in addition to push and pop, has a function min  
 which returns the minimum element? Push, pop and min should all operate in 0(1) time.  
 
+(1) Soultion1: Add one more stack to memorize the current min, if push/pop is called, update this stack accordingly.
+
 ### [3_3](./3_3)
 Stack of Plates: Imagine a (literal) stack of plates. If the stack gets too high, it might topple.  
 Therefore, in real life, we would likely start a new stack when the previous stack exceeds some  
