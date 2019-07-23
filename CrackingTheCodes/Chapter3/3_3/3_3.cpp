@@ -3,7 +3,12 @@
 // Stack of Plates
 void test3_3()
 {
-	SetOfStacks<int> myStack;
+	int innerSize = 0;
+	cout << "Enter the size for each inner stack: ";
+	cin >> innerSize;
+	cout << endl;
+
+	SetOfStacks<int> myStack(innerSize);
 	testFunction(myStack);
 }
 

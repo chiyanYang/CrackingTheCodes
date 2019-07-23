@@ -18,7 +18,7 @@ private:
 public:
 	SetOfStacks(int perVecSize)
 	{
-		this.vectorMaxSize = perVecSize;
+		this->vectorMaxSize = perVecSize;
 	}
 
 	bool push(T data)
@@ -29,9 +29,10 @@ public:
 			return false;
 		}
 
-		if (vSet.back().size() == this.vectorMaxSize)
+		if (vSet.size() == 0 || vSet.back().size() == this->vectorMaxSize)
 		{
-			vSet.push_back(vector<T>);
+			vector<T> v;
+			vSet.push_back(v);
 			vSet.back().push_back(data);
 		}
 		else
@@ -89,14 +90,15 @@ public:
 
 	void printStack()
 	{
-		int count = 0;
+		int count = vSet.size();
 		for (auto ritV = vSet.crbegin(); ritV != vSet.crend(); ++ritV)
 		{
 			cout << "Stack " << count << ": " << endl;
-			for (auto rit = ritV.crbegin(); ritV != vSet.crend(); ++ritV)
+			for (auto rit = ritV->crbegin(); rit != ritV->crend(); ++rit)
 			{
 				cout << *rit << " ";
 			}
+			count--;
 			cout << endl;
 		}
 	}
