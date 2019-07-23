@@ -29,11 +29,27 @@ public:
 			return false;
 		}
 
-		if (vSet.size() == 0 || vSet.back().size() == this->vectorMaxSize)
+		bool isNotFullInInnerStack = false;
+		int index = -1;
+		for (auto itV = vSet.cbegin(); itV != vSet.cend(); ++itV)
+		{
+			index++;
+			if (itV->size() != this->vectorMaxSize)
+			{
+				isNotFullInInnerStack = true;
+				break;
+			}
+		}
+
+		if (isNotFullInInnerStack == false && (vSet.size() == 0 || vSet.back().size() == this->vectorMaxSize))
 		{
 			vector<T> v;
 			vSet.push_back(v);
 			vSet.back().push_back(data);
+		}
+		else if (isNotFullInInnerStack == true)
+		{
+			vSet[index].push_back(data);
 		}
 		else
 		{
