@@ -62,6 +62,17 @@ public:
 		}
 	}
 
+	void popAt(int index)
+	{
+		if (vSet.size() >= index || vSet[index].size() == 0)
+		{
+			cout << "No data inside" << endl;
+			return;
+		}
+
+		vSet[index].erase(vSet[index].end() - 1);
+	}
+
 	T peek()
 	{
 		if (this->isEmpty())
