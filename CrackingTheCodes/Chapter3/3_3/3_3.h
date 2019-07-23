@@ -2,3 +2,104 @@
 #include "../Ch3Common.h"
 
 void test3_3();
+
+template <typename T> class SetOfStacks;
+
+template <typename T>
+void testFunction(SetOfStacks<T>& myStack);
+
+template <typename T>
+class SetOfStacks
+{
+private:
+	int vectorMaxSize;
+	vector<vector<T>> vSet;
+
+public:
+	SetOfStacks(int perVecSize)
+	{
+		this.vectorMaxSize = perVecSize;
+	}
+
+	bool push(T data)
+	{
+		if (this->isFull())
+		{
+			cout << "Stack is full" << endl;
+			return false;
+		}
+
+		if (vSet.back().size() == this.vectorMaxSize)
+		{
+			vSet.push_back(vector<T>);
+			vSet.back().push_back(data);
+		}
+		else
+		{
+			vSet.back().push_back(data);
+		}
+
+		return true;
+	}
+
+	void pop()
+	{
+		if (this->isEmpty())
+		{
+			cout << "No data inside" << endl;
+			return;
+		}
+
+		if (vSet.back().size() == 1)
+		{
+			vSet.erase(vSet.end() - 1);
+		}
+		else
+		{
+			vector<T>& v = vSet.back();
+			v.erase(v.end() - 1);
+		}
+	}
+
+	T peek()
+	{
+		if (this->isEmpty())
+		{
+			cout << "No data inside" << endl;
+			return NULL;
+		}
+
+		return vSet.back().back();
+	}
+
+	bool isEmpty()
+	{
+		if (vSet.size() == 0)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool isFull()
+	{
+		return false;
+	}
+
+	void printStack()
+	{
+		int count = 0;
+		for (auto ritV = vSet.crbegin(); ritV != vSet.crend(); ++ritV)
+		{
+			cout << "Stack " << count << ": " << endl;
+			for (auto rit = ritV.crbegin(); ritV != vSet.crend(); ++ritV)
+			{
+				cout << *rit << " ";
+			}
+			cout << endl;
+		}
+	}
+
+	~SetOfStacks() {};
+};

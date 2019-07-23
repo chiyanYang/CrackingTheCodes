@@ -115,7 +115,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chapter3\3_2\3_2.cpp" />
     <ClCompile Include="Chapter3\3_3\3_3.cpp" />
     <ClCompile Include="Chapter3\3_4\3_4.cpp" />
     <ClCompile Include="Chapter3\3_5\3_5.cpp" />
@@ -125,7 +124,6 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chapter3\3_2\3_2.h" />
     <ClInclude Include="Chapter3\3_3\3_3.h" />
     <ClInclude Include="Chapter3\3_4\3_4.h" />
     <ClInclude Include="Chapter3\3_5\3_5.h" />
