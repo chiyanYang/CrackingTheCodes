@@ -27,9 +27,10 @@ composed of several stacks and should create a new stack once the previous one e
 SetOfStacks. push() and SetOfStacks. pop() should behave identically to a single stack  
 (that is, pop () should return the same values as it would if there were just a single stack).  
 FOLLOW UP  
-Implement a function popAt ( int index) which performs a pop operation on a specific sub-stack.  
+Implement a function popAt (int index) which performs a pop operation on a specific sub-stack.  
 
-
+(1) Soultion1: Use two dimention vector to implement this. Once current stack full, add to next stack.  
+               Push loop through all the vector to see if there is one not full in popAt case.
 ### [3_4](./3_4)
 Queue via Stacks: Implement a MyQueue class which implements a queue using two stacks.  
 
