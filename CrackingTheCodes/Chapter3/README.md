@@ -42,6 +42,9 @@ Sort Stack: Write a program to sort a stack such that the smallest items are on 
 an additional temporary stack, but you may not copy the elements into any other data structure  
 (such as an array). The stack supports the following operations: push, pop, peek, and is Empty.  
 
+(1) Soultion1(Using 3 stacks): Find the max in stack, then push to sorted stack, pop from original stack until the original stack is empty.  
+(2) Solution2(Using 2 stacks): Find the max in stack. put it to a variable, reorder the stacks, put max to sorted stack.
+
 ### [3_6](./3_6)
 Animal Shelter: An animal shelter, which holds only dogs and cats, operates on a strictly"first in, first  
 out" basis. People must adopt either the "oldest" (based on arrival time) of all animals at the shelter,  
