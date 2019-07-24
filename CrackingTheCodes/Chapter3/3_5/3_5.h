@@ -3,9 +3,14 @@
 
 void test3_5();
 
-stack<int> sortStack(stack<int> myStack);
-int findMax(stack<int> myStack);
-void popMax(stack<int>& myStack, int value);
-void pushMax(stack<int>& myStack, int data);
+stack<int> sortStack_NoLimitation(stack<int> myStack);
+int findMax(stack<int>& unSortedStack, stack<int>& tmpStack);
+void popMax(stack<int>& unSortedStack, stack<int>& tmpStack, int value);
+void pushMax(stack<int>& sortedStack, int data);
 
+stack<int> sortStack_TwoStacksOnly(stack<int> unSortedStack);
+int getMax(stack<int>& unSortedStack, stack<int>& sortedStack);
+int pushMax(stack<int>& unSortedStack, stack<int>& sortedStack);
+
+void pushItemsToDes(stack<int>& src, stack<int>& des);
 void printStack(stack<int> printStack);

@@ -16,73 +16,135 @@ void test3_5()
 	cout << "Print unsorted stack" << endl;
 	printStack(unSortedStack);
 
-	stack<int> sortedStack = sortStack(unSortedStack);
+	stack<int> sortedStack = sortStack_TwoStacksOnly(unSortedStack);
 
 	cout << "Print sorted stack" << endl;
 	printStack(sortedStack);
 }
 
-stack<int> sortStack(stack<int> unSortedStack)
+stack<int> sortStack_NoLimitation(stack<int> unSortedStack)
 {
 	stack<int> sortedStack;
+	stack<int> tmpStack;
 
 	while (unSortedStack.size() != 0)
 	{
-		int max = findMax(unSortedStack);
-		popMax(unSortedStack, max);
+		int max = findMax(unSortedStack, tmpStack);
+		popMax(unSortedStack, tmpStack, max);
 		pushMax(sortedStack, max);
 	}
 	
 	return sortedStack;
 }
 
-int findMax(stack<int> myStack)
+int findMax(stack<int>& unSortedStack, stack<int>& tmpStack)
 {
 	int max = INT32_MIN;
 
-	while (myStack.size() != 0)
+	while (unSortedStack.size() != 0)
 	{
-		int data = myStack.top();
+		int data = unSortedStack.top();
 		if (data > max)
 		{
 			max = data;
 		}
 
-		myStack.pop();
+		unSortedStack.pop();
+		tmpStack.push(data);
 	}
+
+	pushItemsToDes(tmpStack, unSortedStack);
 
 	return max;
 }
 
-void popMax(stack<int>& myStack, int value)
+void popMax(stack<int>& unSortedStack, stack<int>& tmpStack, int value)
 {
-	stack<int> tmpStack;
-
-	while (myStack.size() != 0)
+	while (unSortedStack.size() != 0)
 	{
-		int data = myStack.top();
+		int data = unSortedStack.top();
 		if (data == value)
 		{
-			myStack.pop();
+			unSortedStack.pop();
 			break;
 		}
 
 		tmpStack.push(data);
-		myStack.pop();
+		unSortedStack.pop();
 	}
 
 	while (tmpStack.size() != 0)
 	{
 		int data = tmpStack.top();
-		myStack.push(data);
+		unSortedStack.push(data);
 
 		tmpStack.pop();
 	}
 }
 
-void pushMax(stack<int>& myStack, int data)
+stack<int> sortStack_TwoStacksOnly(stack<int> unSortedStack)
 {
-	myStack.push(data);
+	stack<int> sortedStack;
+
+	while (unSortedStack.size() != 0)
+	{
+		int max = getMax(unSortedStack, sortedStack);
+		pushMax(sortedStack, max);
+	}
+
+	return sortedStack;
+}
+
+int getMax(stack<int>& unSortedStack, stack<int>& sortedStack)
+{
+	int max = INT32_MIN;
+	int count = 0;
+
+	while (unSortedStack.size() != 0)
+	{
+		int data = unSortedStack.top();
+
+		if (data > max)
+		{
+			max = data;
+		}
+		sortedStack.push(data);
+		unSortedStack.pop();
+		count++;
+	}
+
+	bool isFirstTime = true;
+	while (count != 0)
+	{
+		int data = sortedStack.top();
+		sortedStack.pop();
+		count--;
+
+		if (data == max && isFirstTime)
+		{
+			isFirstTime = false;
+			continue;
+		}
+
+		unSortedStack.push(data);
+	}
+
+	return max;
+}
+
+void pushMax(stack<int>& sortedStack, int data)
+{
+	sortedStack.push(data);
+}
+
+void pushItemsToDes(stack<int>& src, stack<int>& des)
+{
+	while (src.size() != 0)
+	{
+		int data = src.top();
+		src.pop();
+		des.push(data);
+	}
 }
 
 void printStack(stack<int> printStack)
