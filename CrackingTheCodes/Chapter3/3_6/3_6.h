@@ -8,6 +8,10 @@ class Cat;
 class Dog;
 class AnimalShelter;
 
+void testFunction(AnimalShelter& animalShelter, int method);
+
+
+
 enum animalType
 {
 	ACat,
@@ -18,33 +22,33 @@ class Animal
 {
 public:
 	animalType type;
-	int sequenceNum;
 	virtual void whoAmI() = 0;
 
-	Animal(animalType t, int num)
+	Animal(animalType t)
 	{
 		this->type = t;
-		this->sequenceNum = num;
 	}
 };
 
 class Cat : public Animal
 {
-	Cat(int num): Animal(ACat, num) {}
+public:
+	Cat(): Animal(ACat) {}
 
 	void whoAmI()
 	{
-		cout << "I'm a cute cate, meow" << endl;
+		cout << "I'm a cute CAT, meow" << endl;
 	}
 };
 
 class Dog : public Animal
 {
-	Dog(int num) : Animal(ADog, num) {}
+public:
+	Dog() : Animal(ADog) {}
 
 	void whoAmI()
 	{
-		cout << "I'm a big dog, wan" << endl;
+		cout << "I'm a big DOG, wan" << endl;
 	}
 };
 
@@ -69,31 +73,50 @@ public:
 
 	Animal* dequeueDog()
 	{
-		return this->raiseAnimal(ADog);
+		if (animals.size() != 0)
+		{
+			return this->raiseAnimal(ADog);
+		}
+		
+		cout << "No animal now" << endl << endl;
+		return NULL;
 	}
 
 	Animal* dequeueCat()
 	{
-		return this->raiseAnimal(ACat);
+		if (animals.size() != 0)
+		{
+			return this->raiseAnimal(ACat);
+		}
+
+		cout << "No animal now" << endl << endl;
+		return NULL;
+	}
+
+	void print()
+	{
+		for (auto it : animals)
+		{
+			it->whoAmI();
+		}
+
+		cout << endl;
 	}
 
 private:
 	Animal* raiseAnimal(animalType t)
 	{
-		auto itBegin = animals.cbegin();
-		itBegin--;
-
-		auto it = animals.cend();
-		it--;
-
-		while (it != (itBegin))
+		int pos = animals.size();
+		for (auto rit = animals.crbegin(); rit != animals.crend(); ++rit)
 		{
-			if ((*it)->type == t)
+			if ((*rit)->type == t)
 			{
-				Animal* raised = (*it);
-				animals.erase(it);
+				Animal* raised = (*rit);
+				animals.erase(next(rit).base());
 				return raised;
 			}
 		}
+
+		return this->dequeueAny();
 	}
 };
