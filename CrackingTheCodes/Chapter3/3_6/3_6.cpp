@@ -4,7 +4,8 @@
 void test3_6()
 {
 	int method;
-	AnimalShelter animalShelter;
+	// AnimalShelter shelter; // unmark this to test AnimalShelter
+	AnimalShelterOrdered shelter;
 
 	while (true)
 	{
@@ -21,7 +22,7 @@ void test3_6()
 
 		if (method != 7)
 		{
-			testFunction(animalShelter, method);
+			testFunction(shelter, method);
 		}
 		else
 		{
@@ -45,19 +46,58 @@ void testFunction(AnimalShelter& animalShelter, int method)
 				break;
 		case 3: toBeRaised = animalShelter.dequeueDog();
 				toBeRaised->whoAmI();
+				cout << endl;
 				delete toBeRaised;
 				break;
 		case 4: toBeRaised = animalShelter.dequeueCat();
 				toBeRaised->whoAmI();
+				cout << endl;
 				delete toBeRaised;
 				break;
 		case 5: toBeRaised = animalShelter.dequeueAny();
 				toBeRaised->whoAmI();
+				cout << endl;
 				delete toBeRaised;
 				break;
 		case 6: animalShelter.print();
 				cout << endl;
 				break;
+	}
+
+	toBeRaised = NULL;
+	toBeEnqueued = NULL;
+}
+
+void testFunction(AnimalShelterOrdered& animalShelterOrdered, int method)
+{
+	Animal* toBeRaised = NULL;
+	Animal* toBeEnqueued = NULL;
+
+	switch (method)
+	{
+	case 1: toBeEnqueued = new Dog();
+		animalShelterOrdered.enqueue(toBeEnqueued);
+		break;
+	case 2: toBeEnqueued = new Cat();
+		animalShelterOrdered.enqueue(toBeEnqueued);
+		break;
+	case 3: toBeRaised = animalShelterOrdered.dequeueDog();
+		toBeRaised->whoAmI();
+		delete toBeRaised;
+		break;
+	case 4: toBeRaised = animalShelterOrdered.dequeueCat();
+		toBeRaised->whoAmI();
+		cout << endl;
+		delete toBeRaised;
+		break;
+	case 5: toBeRaised = animalShelterOrdered.dequeueAny();
+		toBeRaised->whoAmI();
+		cout << endl;
+		delete toBeRaised;
+		break;
+	case 6: animalShelterOrdered.print();
+		cout << endl;
+		break;
 	}
 
 	toBeRaised = NULL;

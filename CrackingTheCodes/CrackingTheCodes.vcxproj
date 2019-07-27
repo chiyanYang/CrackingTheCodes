@@ -115,8 +115,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chapter3\3_3\3_3.cpp" />
-    <ClCompile Include="Chapter3\3_4\3_4.cpp" />
     <ClCompile Include="Chapter3\3_5\3_5.cpp" />
     <ClCompile Include="Chapter3\3_6\3_6.cpp" />
     <ClCompile Include="Chapter3\Ch3Common.cpp" />
@@ -124,15 +122,10 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chapter3\3_3\3_3.h" />
-    <ClInclude Include="Chapter3\3_4\3_4.h" />
     <ClInclude Include="Chapter3\3_5\3_5.h" />
     <ClInclude Include="Chapter3\3_6\3_6.h" />
     <ClInclude Include="Chapter3\Ch3Common.h" />
     <ClInclude Include="Common.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Chapter3\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
