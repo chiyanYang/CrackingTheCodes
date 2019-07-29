@@ -115,16 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chapter3\3_5\3_5.cpp" />
-    <ClCompile Include="Chapter3\3_6\3_6.cpp" />
-    <ClCompile Include="Chapter3\Ch3Common.cpp" />
+    <ClCompile Include="Chapter4\4_1\4_1.cpp" />
+    <ClCompile Include="Chapter4\Ch4Common.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chapter3\3_5\3_5.h" />
-    <ClInclude Include="Chapter3\3_6\3_6.h" />
-    <ClInclude Include="Chapter3\Ch3Common.h" />
+    <ClInclude Include="Chapter4\4_1\4_1.h" />
+    <ClInclude Include="Chapter4\Ch4Common.h" />
     <ClInclude Include="Common.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
