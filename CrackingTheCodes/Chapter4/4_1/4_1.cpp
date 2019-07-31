@@ -46,7 +46,7 @@ void test4_1()
 	cin >> n2;
 	cout << endl;
 
-	bool result = existRouteInTwoNodes(g, n1, n2);
+	bool result = existRouteInTwoNodes_UseQueue(g, n1, n2);
 
 	cout << "Does connection exist: " << result << endl << endl;
 }
@@ -84,6 +84,55 @@ bool existConnection(node* nodeStart, int target)
 	{
 		if (existConnection((*it), target))
 			return true;
+	}
+
+	return false;
+}
+
+bool existRouteInTwoNodes_UseQueue(directedGraph &g, int n1, int n2)
+{
+	bool resultStart = existConnection_UseQueue(g, n1, n2);
+
+	g.resetNodeState();
+
+	bool resultEnd = existConnection_UseQueue(g, n2, n1);
+
+	return resultStart || resultEnd;
+}
+
+bool existConnection_UseQueue(directedGraph &g, int n1, int n2)
+{
+	queue<node*> qToBeVisited;
+
+	node* nodeStart = g.findNode(n1);
+	node* nodeEnd = g.findNode(n2);
+
+	nodeStart->state = Visiting;
+
+	qToBeVisited.push(nodeStart);
+
+	while (qToBeVisited.size() != 0)
+	{
+		node* cur = qToBeVisited.front();
+		qToBeVisited.pop();
+
+		if (cur == nodeEnd)
+		{
+			return true;
+		}
+
+		cur->state = Visited;
+
+		vector<node*> adj = cur->adjacent();
+
+		for (auto it = adj.begin(); it != adj.end(); ++it)
+		{
+			if ((*it)->state == NotVisited)
+			{
+				(*it)->state = Visiting;
+				qToBeVisited.push((*it));
+			}
+		}
 	}
 
 	return false;

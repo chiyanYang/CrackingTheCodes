@@ -6,7 +6,9 @@ route between two nodes.
 
 Solution1: (Depth-First Search) Use recursive to loop through all the adjacent nodes. Do this method for both direction (n1 -> n2 and n2-> n1), use tag visited/Notvisited in case of loop in Graph.
 
-Soultion2: (Breadth-First Search) Use queue to store the nodes to be visited.
+Soultion2: (Breadth-First Search) Use queue to store the nodes to be visited.  
+
+Note: Breadth-First Search can find the shortest path, however Depth-First Search is easy to be implemented. This can be discussed with interviewer.
 
 ### [4_2](./4_2)
 Minimal Tree: Given a sorted (increasing order) array with unique integer elements, write an algorithm

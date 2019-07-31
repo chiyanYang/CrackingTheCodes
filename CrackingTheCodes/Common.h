@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <vector>
 #include <stack>
+#include <queue>        // std::queue
 #include <algorithm>    // std::swap
 #include <unordered_set>
 #include <thread> // For sleep function

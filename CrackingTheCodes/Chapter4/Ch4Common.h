@@ -6,7 +6,8 @@ typedef pair<int, int> Pair;
 enum status
 {
 	NotVisited,
-	Visited
+	Visiting, // For nodes in Queue
+	Visited,
 };
 
 // Assume value indicate the id of node, which is unique for each node, and is positive unless root node
@@ -128,6 +129,14 @@ public:
 		}
 
 		cout << endl;
+	}
+
+	void resetNodeState()
+	{
+		for (auto it = debugHead.begin(); it != debugHead.end(); ++it)
+		{
+			(*it)->state = NotVisited;
+		}
 	}
 
 	node* findNode(int target)
