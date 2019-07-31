@@ -3,15 +3,23 @@
 
 typedef pair<int, int> Pair;
 
+enum status
+{
+	NotVisited,
+	Visited
+};
+
 // Assume value indicate the id of node, which is unique for each node, and is positive unless root node
 class node
 {
 public:
 	int value;
+	status state;
 
 	node(int value)
 	{
 		this->value = value;
+		state = NotVisited;
 	}
 
 	void SetNextNode(node* n)
@@ -20,8 +28,8 @@ public:
 			return item->value == n->value;
 		});
 
-		if (result != nextNodes.end()) {
-			nextNodes.push_back(*result);
+		if (result == nextNodes.end()) {
+			nextNodes.push_back(n);
 		}
 	}
 
@@ -34,22 +42,21 @@ public:
 
 	vector<node*> adjacent()
 	{
-		return nextNodes;
+		return this->nextNodes;
 	}
 
 private:
 	vector<node*> nextNodes;
-
-
 };
 
 // Assume value indicate the id of node, which is unique for each node, and is positive unless root node
+// Directed Graph
 // The head nodes (standalone nodes) will not be connected by another nodes.
-class graph
+class directedGraph
 {
 public:
 
-	graph() {}
+	directedGraph() {}
 
 	void addGraph(vector<Pair>& v)
 	{
@@ -68,7 +75,9 @@ public:
 			if (!foundNodeFirst)
 			{
 				node* firstNode = new node(it->first);
+
 				head.push_back(firstNode);
+				debugHead.push_back(firstNode);
 
 				if (foundNodeSecond)
 				{
@@ -78,7 +87,8 @@ public:
 				{
 					node* secondNode = new node(it->second);
 					firstNode->SetNextNode(secondNode);
-					
+
+					debugHead.push_back(secondNode);
 				}
 			}
 			else // found foundNodeFirst
@@ -91,19 +101,62 @@ public:
 				{
 					node* secondNode = new node(it->second);
 					foundNodeFirst->SetNextNode(secondNode);
-				}
 
+					debugHead.push_back(secondNode);
+				}
 			}
 		}
 	}
 
 	void printGraph()
 	{
+		for (auto it = debugHead.begin(); it != debugHead.end(); ++it)
+		{
+			node* curNode = *it;
+			cout << "Node: " << curNode->value << "-> ";
 
+			printAdj(curNode);
+		}
+	}
+
+	void printAdj(node* curNode)
+	{
+		vector<node*> curNodeAdj = curNode->adjacent();
+		for (auto it = curNodeAdj.begin(); it != curNodeAdj.end(); ++it)
+		{
+			cout << (*it)->value << " ";
+		}
+
+		cout << endl;
+	}
+
+	node* findNode(int target)
+	{
+		for (auto it = head.begin(); it != head.end(); ++it)
+		{
+			node* targetNode = findNode(target, (*it));
+			if (targetNode)
+			{
+				return targetNode;
+			}
+		}
+
+		return NULL;
+	}
+
+	~directedGraph()
+	{
+		for (auto it = debugHead.begin(); it != debugHead.end(); ++it)
+		{
+			free((*it));
+		}
 	}
 
 private:
 	vector<node*> head;
+
+	// Store all the nodes for debug purpose
+	vector<node*> debugHead;
 
 	bool isRootNode(int target)
 	{
@@ -116,14 +169,6 @@ private:
 		}
 
 		return false;
-	}
-
-	node* findNode(int target)
-	{
-		for (auto it = head.begin(); it != head.end(); ++it)
-		{
-			findNode(target, *it);
-		}
 	}
 
 	node* findNode(int target, node* root)
@@ -140,5 +185,7 @@ private:
 				return targetNode;
 			}
 		}
+
+		return NULL;
 	}
 };
