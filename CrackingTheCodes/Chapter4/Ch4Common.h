@@ -198,3 +198,48 @@ private:
 		return NULL;
 	}
 };
+
+
+class TreeNode
+{
+public:
+	TreeNode(int v)
+	{
+		value = v;
+	}
+
+	int getValue()
+	{
+		return value;
+	}
+
+	void setValue(int v)
+	{
+		value = v;
+	}
+
+	TreeNode* getLeft()
+	{
+		return left;
+	}
+
+	TreeNode* getRight()
+	{
+		return right;
+	}
+
+	void setLeftNode(TreeNode* node)
+	{
+		left = node;
+	}
+
+	void setRightNode(TreeNode* node)
+	{
+		right = node;
+	}
+
+private:
+	int value;
+	TreeNode* left;
+	TreeNode* right;
+};
