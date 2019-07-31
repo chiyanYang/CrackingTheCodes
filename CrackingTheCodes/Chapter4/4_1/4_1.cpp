@@ -107,6 +107,11 @@ bool existConnection_UseQueue(directedGraph &g, int n1, int n2)
 	node* nodeStart = g.findNode(n1);
 	node* nodeEnd = g.findNode(n2);
 
+	if (nodeStart == nodeEnd)
+	{
+		return true;
+	}
+
 	nodeStart->state = Visiting;
 
 	qToBeVisited.push(nodeStart);
@@ -116,18 +121,20 @@ bool existConnection_UseQueue(directedGraph &g, int n1, int n2)
 		node* cur = qToBeVisited.front();
 		qToBeVisited.pop();
 
-		if (cur == nodeEnd)
-		{
-			return true;
-		}
-
 		cur->state = Visited;
 
 		vector<node*> adj = cur->adjacent();
 
 		for (auto it = adj.begin(); it != adj.end(); ++it)
 		{
-			if ((*it)->state == NotVisited)
+			node* curNode = *it;
+
+			if (curNode == nodeEnd)
+			{
+				return true;
+			}
+
+			if (curNode->state == NotVisited)
 			{
 				(*it)->state = Visiting;
 				qToBeVisited.push((*it));
