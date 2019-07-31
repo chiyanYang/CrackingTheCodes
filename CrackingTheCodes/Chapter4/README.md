@@ -4,7 +4,9 @@
 Route Between Nodes: Given a directed graph, design an algorithm to find out whether there is a
 route between two nodes.  
 
-Solution1:
+Solution1: Use recursive to loop through all the adjacent nodes. Do this method for both direction (n1 -> n2 and n2-> n1), use tag visited/Notvisited in case of loop in Graph.
+
+Soultion2: Use queue to store the nodes to be visited.
 
 ### [4_2](./4_2)
 Minimal Tree: Given a sorted (increasing order) array with unique integer elements, write an algorithm
