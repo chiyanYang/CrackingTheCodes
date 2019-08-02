@@ -7,6 +7,13 @@ void test4_2()
 
 	TreeNode* treeRoot = createMinBST(v, 0, v.size() - 1);
 
+	/*
+	            4
+			2       6
+		  1   3   5   7
+		                 8
+	*/
+
 	printTree(treeRoot);
 }
 

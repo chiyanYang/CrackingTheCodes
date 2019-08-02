@@ -14,13 +14,13 @@ Note: Breadth-First Search can find the shortest path, however Depth-First Searc
 Minimal Tree: Given a sorted (increasing order) array with unique integer elements, write an algorithm
 to create a binary search tree with minimal height.  
 
-Solution1:
+Solution1: Use recursive method, due to minimum height, create parent node from the middle of array, and recursive to get the left and right node.  
 
 ### [4_3](./4_3)
 List of Depths: Given a binary tree, design an algorithm which creates a linked list of all the nodes
 at each depth (e.g., if you have a tree with depth D, you'll have D linked lists).  
 
-Solution1:
+Solution1: Use BFS, and record the amount of next level and deducte the number of current level when pop, so we can know when will shitf to next level.  
 
 ### [4_4](./4_4)
 Check Balanced: Implement a function to check if a binary tree is balanced. For the purposes of

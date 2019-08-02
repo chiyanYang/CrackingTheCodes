@@ -3,6 +3,9 @@
 
 typedef pair<int, int> Pair;
 
+class TreeNode;
+TreeNode* createBinaryTree(vector<int>& v, int start, int end);
+
 enum status
 {
 	NotVisited,

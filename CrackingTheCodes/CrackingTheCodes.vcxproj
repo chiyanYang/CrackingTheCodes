@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -116,12 +116,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chapter4\4_2\4_2.cpp" />
+    <ClCompile Include="Chapter4\4_3\4_3.cpp" />
     <ClCompile Include="Chapter4\Ch4Common.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chapter4\4_2\4_2.h" />
+    <ClInclude Include="Chapter4\4_3\4_3.h" />
     <ClInclude Include="Chapter4\Ch4Common.h" />
     <ClInclude Include="Common.h" />
   </ItemGroup>
