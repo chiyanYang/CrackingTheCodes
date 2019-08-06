@@ -27,7 +27,7 @@ Check Balanced: Implement a function to check if a binary tree is balanced. For 
 this question, a balanced tree is defined to be a tree such that the heights of the two subtrees of any
 node never differ by more than one.  
 
-Solution1:
+Solution1: Use recursive method, get the height of left and right sub tree to see if it is balanced tree.
 
 ### [4_5](./4_5)
 Validate BST: Implement a function to check if a binary tree is a binary search tree.  

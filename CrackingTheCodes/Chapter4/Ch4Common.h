@@ -5,6 +5,11 @@ typedef pair<int, int> Pair;
 
 class TreeNode;
 TreeNode* createBinaryTree(vector<int>& v, int start, int end);
+TreeNode* createRandomBTree(vector<int>& v, int start, int end);
+
+void printSpace(int num);
+void printBinaryTree(TreeNode* rootNode);
+TreeNode* createZeroTreeNode();
 
 enum status
 {

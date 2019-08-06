@@ -104,11 +104,3 @@ void printTree(TreeNode* treeRoot)
 
 	cout << endl << endl;
 }
-
-void printSpace(int num)
-{
-	for (int i = 0; i < num; i++)
-	{
-		cout << " ";
-	}
-}
