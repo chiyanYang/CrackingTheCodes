@@ -3,3 +3,5 @@
 
 void test4_5();
 
+bool IsBST(TreeNode* rootNode);
+

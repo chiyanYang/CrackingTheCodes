@@ -32,7 +32,7 @@ Solution1: Use recursive method, get the height of left and right sub tree to se
 ### [4_5](./4_5)
 Validate BST: Implement a function to check if a binary tree is a binary search tree.  
 
-Solution1:
+Solution1: Use recursive method, to make sure the root value >= left node value and root value < right value
 
 ### [4_6](./4_6)
 Successor: Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a
