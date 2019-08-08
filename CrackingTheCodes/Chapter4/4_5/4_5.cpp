@@ -3,7 +3,7 @@
 // Validate BST
 void test4_5()
 {
-	vector<int> v{ 1, 2, 3, 10, 5, 6, 7 ,8 };
+	vector<int> v{ 1, 2, 3, 9, 5, 6, 7 ,8 };
 
 	TreeNode* treeRoot = createRandomBTree(v, 0, v.size() - 1);
 
@@ -16,32 +16,34 @@ void test4_5()
 
 bool IsBST(TreeNode* rootNode)
 {
+	int lastValue = INT_MIN;
+	return InOrderTraversal(rootNode, lastValue);
+}
+
+bool InOrderTraversal(TreeNode* rootNode, int& lastValue)
+{
 	bool resultLeft = true;
 	bool resultRight = true;
 
 	TreeNode* left = rootNode->getLeft();
-	TreeNode* right = rootNode->getRight();
 
-	int middleValue = rootNode->getValue();
-	
 	if (left)
 	{
-		if (left->getValue() > middleValue)
-		{
-			return false;
-		}
-
-		resultLeft = IsBST(left);
+		resultLeft = InOrderTraversal(left, lastValue);
 	}
+
+	if (rootNode->getValue() <= lastValue)
+	{
+		return false;
+	}
+
+	lastValue = rootNode->getValue();
+	
+	TreeNode* right = rootNode->getRight();
 
 	if (right)
 	{
-		if (right->getValue() <= middleValue)
-		{
-			return false;
-		}
-
-		resultRight = IsBST(right);
+		resultRight = InOrderTraversal(right, lastValue);
 	}
 
 	return resultLeft && resultRight;
