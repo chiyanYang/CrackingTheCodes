@@ -40,7 +40,15 @@ Solution1: Use recursive and In-Order method, to make sure ALL left subtree < ro
 Successor: Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a
 binary search tree. You may assume that each node has a link to its parent.  
 
-Solution1:
+Solution1:  
+There are five situation for the given node:  
+(1) leaf node and is parent's left node: parent is the next node  
+(2) leaf node and is parent's right node: up to the ancester until the previous ancester is left node. If no such node, the node is the last one.  
+(3) no left node and not leaf: left most node in right subtree  
+(4) no right node and not leaf: parent is the next node  
+(5) left and right node exist: left most node in right subtree  
+
+So three method need to be implemted, findParent, left most node in right subtree, up to the ancester.
 
 ### [4_7](./4_7)
 Build Order: You are given a list of projects and a list of dependencies (which is a list of pairs of

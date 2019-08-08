@@ -214,6 +214,9 @@ public:
 	TreeNode(int v)
 	{
 		value = v;
+		left = NULL;
+		right = NULL;
+		parent = NULL;
 	}
 
 	int getValue()
@@ -236,18 +239,39 @@ public:
 		return right;
 	}
 
+	TreeNode* getParent()
+	{
+		return parent;
+	}
+
 	void setLeftNode(TreeNode* node)
 	{
 		left = node;
+
+		if (node != NULL)
+		{
+			node->setParent(this);
+		}
 	}
 
 	void setRightNode(TreeNode* node)
 	{
 		right = node;
+
+		if (node != NULL)
+		{
+			node->setParent(this);
+		}
+	}
+
+	void setParent(TreeNode* node)
+	{
+		parent = node;
 	}
 
 private:
 	int value;
 	TreeNode* left;
 	TreeNode* right;
+	TreeNode* parent;
 };

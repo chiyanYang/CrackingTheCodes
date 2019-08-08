@@ -3,3 +3,6 @@
 
 void test4_6();
 
+TreeNode* findAncesterMatchLeft(TreeNode* curNode);
+TreeNode* findNextNode(TreeNode* curNode);
+TreeNode* leftMostNode(TreeNode* curNode);
