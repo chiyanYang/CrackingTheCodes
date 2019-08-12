@@ -13,7 +13,8 @@
 #include <thread> // For sleep function
 #include <chrono> // For sleep function
 #include <climits> // for max, min of short,int etc.
-#include <list> // std:list
-#include <algorithm> // std:find
+#include <list> // std::list
+#include <algorithm> // std::find
+#include <map> // std::map
 
 using namespace std;
