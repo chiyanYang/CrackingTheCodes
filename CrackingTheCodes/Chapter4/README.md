@@ -61,7 +61,11 @@ projects: a, b, c, d, e, f
 dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)  
 Output: f, e, a, b, d, c  
 
-Solution1:
+Solution1: build a class of project, and a graph. Create the graph based on the dependency. Loop through the projects and remove the dependency,  
+           if the dependency count down to zero, add the prohect to the "to-do list".  
+
+Solution2: Based in the structure above, loop through the projects and each project use the depth first search to find out the sequence,  
+           if during the depth frist search, a node is being process also "be touched" again, it means loop, return NULL.
 
 ### [4_8](./4_8)
 First Common Ancestor: Design an algorithm and write code to find the first common ancestor

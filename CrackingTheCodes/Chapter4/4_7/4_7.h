@@ -7,6 +7,12 @@ class projectGraph;
 class project;
 class projectDependency;
 
+enum state
+{
+	notProcess,
+	processing,
+	processed
+};
 
 class projectDependency
 {
@@ -38,8 +44,9 @@ public:
 	project(string pName)
 	{
 		this->projectName = pName;
-		linkedProject = vector<project*>();
-		dependencyCount = 0;
+		this->linkedProject = vector<project*>();
+		this->dependencyCount = 0;
+		this->curState = notProcess;
 	}
 
 	void addChild(project* cNode)
@@ -73,10 +80,21 @@ public:
 		return dependencyCount;
 	}
 
+	state getState()
+	{
+		return curState;
+	}
+
+	void setState(state s)
+	{
+		curState = s;
+	}
+
 private:
 	string projectName;
 	vector<project*> linkedProject;
 	int dependencyCount;
+	state curState;
 };
 
 class projectGraph
@@ -124,6 +142,26 @@ public:
 		cout << endl;
 	}
 
+	stack<string> buildProjectOrderRecursive()
+	{
+		stack<string> projectOrder;
+
+		for (auto curProj : this->projects)
+		{
+			if (curProj->getState() == notProcess)
+			{
+				bool loopDetected = depthFirstSearch(curProj, projectOrder);
+
+				if (loopDetected == true)
+				{
+					return stack<string>();
+				}
+			}
+		}
+
+		return projectOrder;
+	}
+
 	vector<string> buildProjectOrder()
 	{
 		vector<string> projectOrder;
@@ -157,6 +195,36 @@ public:
 	}
 
 private:
+	bool depthFirstSearch(project* curProject, stack<string>& projectOrder)
+	{
+		curProject->setState(processing);
+
+		vector<project*> children = curProject->getChildren();
+
+		for (auto childProj : children)
+		{
+			if (childProj->getState() == processing)
+			{
+				return true;
+			}
+
+			if (childProj->getState() == notProcess)
+			{
+				bool cycleDetected = depthFirstSearch(childProj, projectOrder);
+				
+				if (cycleDetected == true)
+				{
+					return true;
+				}
+			}
+		}
+
+		projectOrder.push(curProject->getName());
+		curProject->setState(processed);
+
+		return false;
+	}
+
 	void removeDependency(project* curProject, vector<string>& projectOrder)
 	{
 		vector<project*> depProjs = curProject->getChildren();
