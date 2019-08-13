@@ -4,16 +4,19 @@
 void test4_7()
 {
 	vector<projectDependency> dependencyPro = {
-												 projectDependency("a", "c"), 
-												 projectDependency("b", "c"),
-												 projectDependency("c", "a"),
-												 projectDependency("d", "e"),
-												 projectDependency("e", "g"),
-												 projectDependency("f", "g"),
-												 projectDependency("g", "h"),
-												 projectDependency("h", "i"),
+												 projectDependency("a", "d"), 
+												 projectDependency("f", "b"),
+												 projectDependency("b", "d"),
+												 projectDependency("f", "a"),
+												 projectDependency("d", "c"),
+												 projectDependency("e", "")
 											  };
 
 	projectGraph pG(dependencyPro);
 	pG.printProjectDependency();
+
+	vector<string> buildOrder = pG.buildProjectOrder();
+
+	for (auto s = buildOrder.begin(); s != buildOrder.end(); ++s)
+		std::cout << *s << ' ';
 }

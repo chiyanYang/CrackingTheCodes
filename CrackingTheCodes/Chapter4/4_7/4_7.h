@@ -39,11 +39,13 @@ public:
 	{
 		this->projectName = pName;
 		linkedProject = vector<project*>();
+		dependencyCount = 0;
 	}
 
 	void addChild(project* cNode)
 	{
 		linkedProject.push_back(cNode);
+		cNode->addDependency();
 	}
 
 	vector<project*> getChildren()
@@ -56,9 +58,25 @@ public:
 		return projectName;
 	}
 
+	void addDependency()
+	{
+		dependencyCount++;
+	}
+
+	void subDependency()
+	{
+		dependencyCount--;
+	}
+
+	int getDependencyNum()
+	{
+		return dependencyCount;
+	}
+
 private:
 	string projectName;
 	vector<project*> linkedProject;
+	int dependencyCount;
 };
 
 class projectGraph
@@ -81,7 +99,10 @@ public:
 				curProject = createProject(headProjectName);
 			}
 
-			this->addLinkedProject(curProject, linkedProjectName);
+			if (linkedProjectName != "")
+			{
+				this->addLinkedProject(curProject, linkedProjectName);
+			}
 		}
 	}
 
@@ -107,16 +128,52 @@ public:
 	{
 		vector<string> projectOrder;
 
-		int idxToBeProcessed = 0;
+		int processedNum = 0;
 
 		for (auto curP : this->projects)
 		{
-
+			if (curP->getDependencyNum() == 0)
+			{
+				projectOrder.push_back(curP->getName());
+			}
 		}
 
+		while (processedNum != projectOrder.size())
+		{
+			string toBeProcessedName = projectOrder[processedNum];
+			project* toBeProcessedProj = projectMapping[toBeProcessedName];
+
+			removeDependency(toBeProcessedProj, projectOrder);
+
+			processedNum++;
+		}
+
+		if (projectOrder.size() != this->projects.size())
+		{
+			projectOrder.clear();
+		}
+
+		return projectOrder;
 	}
 
 private:
+	void removeDependency(project* curProject, vector<string>& projectOrder)
+	{
+		vector<project*> depProjs = curProject->getChildren();
+
+		for (auto depP : depProjs)
+		{
+			depP->subDependency();
+
+			if (depP->getDependencyNum() == 0)
+			{
+				projectOrder.push_back(depP->getName());
+			}
+		}
+
+		depProjs.clear();
+	}
+
 	void addLinkedProject(project* curProject, string linkedProject)
 	{
 		if (projectMapping.find(linkedProject) != projectMapping.end())
