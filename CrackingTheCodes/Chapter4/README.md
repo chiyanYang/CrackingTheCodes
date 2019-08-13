@@ -72,7 +72,18 @@ First Common Ancestor: Design an algorithm and write code to find the first comm
 of two nodes in a binary tree. Avoid storing additional nodes in a data structure. NOTE: This is not
 necessarily a binary search tree.  
 
-Solution1:
+Solution1: (Note: in the code each node has unique value, so the same value means they are the same node to simplify test codes)  
+Given the assumption that both target nodes are in the current tree. (Or make sure the target nodes are in the tree)
+Use recursive method to find the target nodes in left tree and right tree (and the current node)  
+(1) If both left and right tree return a node, the current node is the common ancestor, return the current node.  
+(2) If one of the sub tree is null, it means the subtree with value is either returned the common ancestor or one of the target node.  
+(3) If both are null, return NULL.  
+(4) If current node is one of the target node, return current node. (Based one the assumption, this equation can be judged at first)  
+
+Solution2: (Not implemented)  
+Given the assumption that all the nodes have the link to parent.
+Get the depth of each target node, move the deeper node up the diff depth so that they are in the same level,  
+then loop up to root and see if they have same parent.
 
 ### [4_9](./4_9)
 BST Sequences: A binary search tree was created by traversing through an array from left to right
