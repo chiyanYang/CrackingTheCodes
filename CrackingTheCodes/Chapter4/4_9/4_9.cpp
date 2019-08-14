@@ -3,7 +3,7 @@
 // BST Sequences
 void test4_9()
 {
-	vector<int> v{ 1, 2, 3};
+	vector<int> v{ 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 	TreeNode* treeRoot = createBinaryTree(v, 0, v.size() - 1);
 
@@ -115,7 +115,7 @@ vector<vector<int>> mixSquence(vector<int> leftBSTSequence, vector<int> rightBST
 
 vector<vector<int>> addPrefix(vector<vector<int>> totalBSTSequences, int prefix)
 {
-	for (auto sequences : totalBSTSequences)
+	for (auto& sequences : totalBSTSequences)
 	{
 		sequences.insert(sequences.begin(), prefix);
 	}
