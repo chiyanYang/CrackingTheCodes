@@ -139,3 +139,16 @@ TreeNode* createZeroTreeNode()
 {
 	return new TreeNode(0);
 }
+
+void freeTree(TreeNode* curNode)
+{
+	if (curNode == NULL)
+	{
+		return;
+	}
+
+	freeTree(curNode->getLeft());
+	freeTree(curNode->getRight());
+
+	delete curNode;
+}

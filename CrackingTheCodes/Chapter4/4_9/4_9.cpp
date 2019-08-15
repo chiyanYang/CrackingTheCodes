@@ -3,14 +3,24 @@
 // BST Sequences
 void test4_9()
 {
-	vector<int> v{ 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	vector<int> v{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 	TreeNode* treeRoot = createBinaryTree(v, 0, v.size() - 1);
 
 	vector<vector<int>> totalSequences = GenerateBSTSequences(treeRoot);
 
+	TreeNode* firstSequenceTree = sequeceToBST(totalSequences[0]);
+
 	for (auto sequence : totalSequences)
 	{
+		TreeNode* secondSequenceTree = sequeceToBST(sequence);
+
+		bool result = compareTwoTrees(firstSequenceTree, secondSequenceTree);
+
+		freeTree(firstSequenceTree);
+
+		firstSequenceTree = secondSequenceTree;
+
 		cout << "Sequence: ";
 
 		for (auto item : sequence)
@@ -18,8 +28,19 @@ void test4_9()
 			cout << item << " ";
 		}
 
+		if (result == false)
+		{
+			cout << "    ERROR: Not equal to previous!!!";
+		}
+		else
+		{
+			cout << "    Same as previous";
+		}
+
 		cout << endl;
 	}
+
+	freeTree(firstSequenceTree);
 
 	cout << endl;
 }
@@ -36,81 +57,172 @@ vector<vector<int>> GenerateBSTSequences(TreeNode* rootNode)
 	vector<vector<int>> leftBSTSequences = GenerateBSTSequences(rootNode->getLeft());
 	vector<vector<int>> rightBSTSequences = GenerateBSTSequences(rootNode->getRight());
 
-	vector<vector<int>> totalSubBSTSequences = mixSequences(leftBSTSequences, rightBSTSequences);
+	vector<vector<int>> totalBSTSequences = mixSequences(leftBSTSequences, rightBSTSequences, prefix);
 
-	if (totalSubBSTSequences.size() == 0)
+	return totalBSTSequences;
+}
+
+vector<vector<int>> mixSequences(vector<vector<int>>& leftBSTSequences, vector<vector<int>>& rightBSTSequences, int prefix)
+{
+	vector<vector<int>> mixedTotalSequences;
+	vector<int> prefixVec{ prefix };
+
+	if (leftBSTSequences.size() == 0)
 	{
-		vector<int> curSequence{ prefix };
-		totalSubBSTSequences.push_back(curSequence);
+		vector<vector<int>> curResult = addPrefix(rightBSTSequences, prefix);
+
+		for (auto& sequences : curResult)
+		{
+			mixedTotalSequences.push_back(sequences);
+		}
+	}
+	else if (rightBSTSequences.size() == 0)
+	{
+		vector<vector<int>> curResult = addPrefix(leftBSTSequences, prefix);
+
+		for (auto& sequences : curResult)
+		{
+			mixedTotalSequences.push_back(sequences);
+		}
 	}
 	else
 	{
-		totalSubBSTSequences = addPrefix(totalSubBSTSequences, prefix);
-	}
-	
-	return totalSubBSTSequences;
-}
-
-vector<vector<int>> mixSequences(vector<vector<int>> leftBSTSequences, vector<vector<int>> rightBSTSequences)
-{
-	vector<vector<int>> mixedTotalSequences;
-
-	for (auto lsequences : leftBSTSequences)
-	{
-		for (auto rSequences : rightBSTSequences)
+		for (auto& lsequences : leftBSTSequences)
 		{
-			vector<vector<int>> mixedSequences = mixSquence(lsequences, rSequences);
-
-			for (auto sequence : mixedSequences)
+			for (auto& rSequences : rightBSTSequences)
 			{
-				mixedTotalSequences.push_back(sequence);
+				mixSequence(lsequences, rSequences, prefixVec, mixedTotalSequences);
 			}
 		}
+	}
+
+
+	if (mixedTotalSequences.size() == 0)
+	{
+		mixedTotalSequences.push_back(prefixVec);
 	}
 
 	return mixedTotalSequences;
 }
 
-vector<vector<int>> mixSquence(vector<int> leftBSTSequence, vector<int> rightBSTSequence)
+void mixSequence(vector<int>& leftBSTSequence, vector<int>& rightBSTSequence, vector<int>& prefixVec, vector<vector<int>>& mixedTotalSequences)
 {
-	vector<vector<int>> result;
-
 	if (leftBSTSequence.size() == 0)
 	{
-		result.push_back(rightBSTSequence);
+		vector<int> curResult(prefixVec.begin(), prefixVec.end());
 
-		return result;
+		curResult.insert(curResult.end(), rightBSTSequence.begin(), rightBSTSequence.end());
+
+		mixedTotalSequences.push_back(curResult);
+
+		return;
 	}
 	else if (rightBSTSequence.size() == 0)
 	{
-		result.push_back(leftBSTSequence);
+		vector<int> curResult(prefixVec.begin(), prefixVec.end());
 
-		return result;
+		curResult.insert(curResult.end(), leftBSTSequence.begin(), leftBSTSequence.end());
+
+		mixedTotalSequences.push_back(curResult);
+
+		return;
 	}
 
 	int prefixLeft = leftBSTSequence.front();
 	leftBSTSequence.erase(leftBSTSequence.begin());
-	vector<vector<int>> leftMix = mixSquence(leftBSTSequence, rightBSTSequence);
-	leftMix = addPrefix(leftMix, prefixLeft);
+	prefixVec.push_back(prefixLeft);
+
+	mixSequence(leftBSTSequence, rightBSTSequence, prefixVec, mixedTotalSequences);
+
 	leftBSTSequence.insert(leftBSTSequence.begin(), prefixLeft);
+	prefixVec.pop_back();
 
 	int prefixRight = rightBSTSequence.front();
 	rightBSTSequence.erase(rightBSTSequence.begin());
-	vector<vector<int>> rightMix = mixSquence(leftBSTSequence, rightBSTSequence);
-	rightMix = addPrefix(rightMix, prefixRight);
+	prefixVec.push_back(prefixRight);
+
+	mixSequence(leftBSTSequence, rightBSTSequence, prefixVec, mixedTotalSequences);
+
 	rightBSTSequence.insert(rightBSTSequence.begin(), prefixRight);
+	prefixVec.pop_back();
+}
 
-	for (auto mix : leftMix)
+TreeNode* sequeceToBST(vector<int>& sequence)
+{
+	int endOfSequence = sequence.size();
+	int curIdx = 0;
+	int rootValue = sequence[curIdx];
+	curIdx++;
+
+	TreeNode* rootNode = new TreeNode(rootValue);
+
+	while (curIdx < endOfSequence)
 	{
-		result.push_back(mix);
+		int targetValue = sequence[curIdx];
+		int curValue = rootNode->getValue();
+		TreeNode* curNode = rootNode;
+
+		while (true)
+		{
+			if (targetValue < curValue && curNode->getLeft() != NULL)
+			{
+				curNode = curNode->getLeft();
+				curValue = curNode->getValue();
+			}
+			else if (targetValue < curValue && curNode->getLeft() == NULL)
+			{
+				TreeNode* targetNode = new TreeNode(targetValue);
+				curNode->setLeftNode(targetNode);
+				curIdx++;
+				break;
+			}
+			else if (targetValue > curValue && curNode->getRight() != NULL)
+			{
+				curNode = curNode->getRight();
+				curValue = curNode->getValue();
+			}
+			else if (targetValue > curValue && curNode->getRight() == NULL)
+			{
+				TreeNode* targetNode = new TreeNode(targetValue);
+				curNode->setRightNode(targetNode);
+				curIdx++;
+				break;
+			}
+			else
+			{
+				cout << "ERROR: Sequence cannot have identical value" << endl << endl;
+				break;
+			}
+		}
 	}
 
-	for (auto mix : rightMix)
+	return rootNode;
+}
+
+bool compareTwoTrees(TreeNode* first, TreeNode* second)
+{
+	if (first == NULL && second == NULL)
 	{
-		result.push_back(mix);
+		return true;
+	}
+	else if (first != NULL && second == NULL)
+	{
+		return false;
+	}
+	else if (first == NULL && second != NULL)
+	{
+		return false;
 	}
 
-	return result;
+	if (first->getValue() != second->getValue())
+	{
+		return false;
+	}
+
+	bool resultLeft = compareTwoTrees(first->getLeft(), second->getLeft());
+	bool resultRight = compareTwoTrees(first->getRight(), second->getRight());
+
+	return resultLeft && resultRight;
 }
 
 vector<vector<int>> addPrefix(vector<vector<int>> totalBSTSequences, int prefix)
@@ -122,3 +234,4 @@ vector<vector<int>> addPrefix(vector<vector<int>> totalBSTSequences, int prefix)
 
 	return totalBSTSequences;
 }
+

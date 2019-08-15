@@ -11,6 +11,8 @@ void printSpace(int num);
 void printBinaryTree(TreeNode* rootNode);
 TreeNode* createZeroTreeNode();
 
+void freeTree(TreeNode* curNode);
+
 enum status
 {
 	NotVisited,
