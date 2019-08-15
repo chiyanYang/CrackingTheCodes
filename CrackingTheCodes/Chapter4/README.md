@@ -90,7 +90,14 @@ BST Sequences: A binary search tree was created by traversing through an array f
 and inserting each element. Given a binary search tree with distinct elements, print all possible
 arrays that could have led to this tree.  
 
-Solution1:
+Solution1:  
+The key point is that what kind of array can perform the same BST.
+The left subtree has a array, the right subtree has its own, the array if the root is combined the two array and put itselft to the front.  
+The combined method is keep each array the same sequence in the combined array.  
+The coding will have one recursive containing another recursive.  
+Two ways for combining arrays:  
+(1) Each recursive returns the possible combined subarray. (Not implemented)  
+(2) Each recursive will add one node to the prefix array, at the end is the valid combined array then put it to the result.
 
 ### [4_10](./4_10)
 Check Subtree: Tl and T2 are two very large binary trees, with Tl much bigger than T2. Create an

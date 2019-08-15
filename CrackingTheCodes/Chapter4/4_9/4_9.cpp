@@ -11,6 +11,8 @@ void test4_9()
 
 	TreeNode* firstSequenceTree = sequeceToBST(totalSequences[0]);
 
+	cout << "Num of result: " << totalSequences.size() << endl;
+
 	for (auto sequence : totalSequences)
 	{
 		TreeNode* secondSequenceTree = sequeceToBST(sequence);
