@@ -105,7 +105,8 @@ algorithm to determine if T2 is a subtree of Tl.
 A tree T2 is a subtree of Tl if there exists a node n in Tl such that the subtree of n is identical to T2.
 That is, if you cut off the tree at node n, the two trees would be identical.  
 
-Solution1:
+Solution1: Run through all the node in T1, if the current node is the same as root node in T2,  
+start the procedure to judge if T1 contains T2.  
   
 ### [4_11](./4_11)
 Random Node: You are implementing a binary tree class from scratch which, in addition to

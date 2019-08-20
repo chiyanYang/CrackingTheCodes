@@ -7,6 +7,10 @@ class TreeNode;
 TreeNode* createBinaryTree(vector<int>& v, int start, int end);
 TreeNode* createRandomBTree(vector<int>& v, int start, int end);
 
+TreeNode* getRandomNodeInTree(TreeNode* rootNode);
+int getTotalNumOfNode(TreeNode* rootNode);
+TreeNode* getNodeByNumber(TreeNode* rootNode, int& num);
+
 void printSpace(int num);
 void printBinaryTree(TreeNode* rootNode);
 TreeNode* createZeroTreeNode();

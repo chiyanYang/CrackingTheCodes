@@ -53,6 +53,53 @@ TreeNode* createRandomBTree(vector<int>& v, int start, int end)
 	return curNode;
 }
 
+TreeNode* getRandomNodeInTree(TreeNode* rootNode)
+{
+	int totalNumOfNode = getTotalNumOfNode(rootNode);
+
+	/* initialize random seed: */
+	srand(time(NULL));
+
+	int randomNum = rand() % totalNumOfNode;
+
+	return getNodeByNumber(rootNode, randomNum);
+}
+
+int getTotalNumOfNode(TreeNode* rootNode)
+{
+	if (rootNode == NULL)
+	{
+		return 0;
+	}
+
+	int count = 1;
+
+	count += getTotalNumOfNode(rootNode->getLeft());
+	count += getTotalNumOfNode(rootNode->getRight());
+
+	return count;
+}
+
+// pre-order sequence
+TreeNode* getNodeByNumber(TreeNode* rootNode, int& num)
+{
+	if (rootNode == NULL || num == 1)
+	{
+		return rootNode;
+	}
+
+	num--;
+
+	TreeNode* result = getNodeByNumber(rootNode->getLeft(), num);
+
+	if (result == NULL)
+	{
+		result = getNodeByNumber(rootNode->getRight(), num);
+	}
+
+	return result;
+}
+
 void printBinaryTree(TreeNode* treeRoot)
 {
 	queue<TreeNode*> qToBeVisited;
