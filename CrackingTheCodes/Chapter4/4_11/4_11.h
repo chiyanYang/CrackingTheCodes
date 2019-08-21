@@ -6,99 +6,6 @@ void test4_11();
 class TreeNode4_11;
 class Tree4_11;
 
-class Tree4_11
-{
-public:
-	Tree4_11()
-	{
-		root = NULL;
-	}
-
-	void insertNode(int value)
-	{
-		if (root == NULL)
-		{
-			root = new TreeNode4_11(value);
-			return;
-		}
-
-		bool isAddedToLeft = false;
-		TreeNode4_11* parentNode = NULL;
-		TreeNode4_11* curNode = root;
-
-		while (curNode != NULL)
-		{
-			parentNode = curNode;
-			parentNode->addSize();
-
-			if (curNode->getValue() < value)
-			{
-				curNode = curNode->getLeft();
-				isAddedToLeft = true;
-			}
-			else
-			{
-				curNode = curNode->getRight();
-				isAddedToLeft = false;
-			}
-		}
-
-		curNode = new TreeNode4_11(value);
-
-		if (isAddedToLeft)
-		{
-			parentNode->setLeftNode(curNode);
-		}
-		else
-		{
-			parentNode->setRightNode(curNode);
-		}
-	}
-
-	void deleteNode(int value)
-	{
-		TreeNode4_11* nodeToDelete = this->findNode(value);
-
-		if (nodeToDelete == NULL)
-		{
-			return;
-		}
-
-
-	}
-
-	TreeNode4_11* findNode(int value)
-	{	
-		TreeNode4_11* curNode = root;
-
-		while (curNode != NULL)
-		{
-			if (curNode->getValue() < value)
-			{
-				curNode = curNode->getLeft();
-			}
-			else if (curNode->getValue() > value)
-			{
-				curNode = curNode->getRight();
-			}
-			else
-			{
-				return curNode;
-			}
-		}
-
-		return curNode;
-	}
-
-	TreeNode4_11* getRandomNode()
-	{
-		return NULL;
-	}
-
-private:
-	TreeNode4_11* root;
-};
-
 class TreeNode4_11
 {
 public:
@@ -187,4 +94,264 @@ private:
 	TreeNode4_11* right;
 	TreeNode4_11* parent;
 	int size;
+};
+
+class Tree4_11
+{
+public:
+	Tree4_11()
+	{
+		root = NULL;
+	}
+
+	void insertNode(int value)
+	{
+		if (root == NULL)
+		{
+			root = new TreeNode4_11(value);
+			return;
+		}
+
+		bool isAddedToLeft = false;
+		TreeNode4_11* parentNode = NULL;
+		TreeNode4_11* curNode = root;
+
+		while (curNode != NULL)
+		{
+			parentNode = curNode;
+			parentNode->addSize();
+
+			if (curNode->getValue() < value)
+			{
+				curNode = curNode->getLeft();
+				isAddedToLeft = true;
+			}
+			else
+			{
+				curNode = curNode->getRight();
+				isAddedToLeft = false;
+			}
+		}
+
+		curNode = new TreeNode4_11(value);
+
+		if (isAddedToLeft)
+		{
+			parentNode->setLeftNode(curNode);
+		}
+		else
+		{
+			parentNode->setRightNode(curNode);
+		}
+	}
+
+	void deleteNode(int value)
+	{
+		TreeNode4_11* nodeToDelete = this->findNode(value);
+
+		if (nodeToDelete == NULL)
+		{
+			return;
+		}
+
+		TreeNode4_11* parentNode = nodeToDelete->getParent();
+
+		if (parentNode == NULL)
+		{
+
+		}
+		else if (nodeToDelete->getRight() != NULL)
+		{
+			if (nodeToDelete->getRight()->getLeft() != NULL)
+			{
+				TreeNode4_11* nodeToMove = this->findLeftMostNode(nodeToDelete);
+
+				if (nodeToMove->getRight() != NULL)
+				{
+					nodeToMove->getParent()->setLeftNode(nodeToMove->getRight());
+				}
+				else
+				{
+					nodeToMove->getParent()->setLeftNode(NULL);
+				}
+				
+				if (parentNode->getLeft() == nodeToDelete)
+				{
+					parentNode->setLeftNode(nodeToMove);
+				}
+				else
+				{
+					parentNode->setRightNode(nodeToMove);
+				}
+
+				nodeToMove->setLeftNode(nodeToDelete->getLeft());
+				nodeToMove->setRightNode(nodeToDelete->getRight());
+			}
+			else
+			{
+				if (parentNode->getLeft() == nodeToDelete)
+				{
+					parentNode->setLeftNode(nodeToDelete->getRight());
+				}
+				else
+				{
+					parentNode->setRightNode(nodeToDelete->getRight());
+				}
+			}
+		}
+		else if (nodeToDelete->getLeft() != NULL && nodeToDelete->getRight() == NULL)
+		{
+			if (parentNode->getLeft() == nodeToDelete)
+			{
+				parentNode->setLeftNode(nodeToDelete->getLeft());
+			}
+			else
+			{
+				parentNode->setRightNode(nodeToDelete->getLeft());
+			}
+		}
+		else if (nodeToDelete->getLeft() == NULL && nodeToDelete->getRight() == NULL)
+		{
+			if (parentNode->getLeft() == nodeToDelete)
+			{
+				parentNode->setLeftNode(NULL);
+			}
+			else
+			{
+				parentNode->setRightNode(NULL);
+			}
+		}
+
+		free(nodeToDelete);
+	}
+
+	TreeNode4_11* findNode(int value)
+	{	
+		TreeNode4_11* curNode = root;
+
+		while (curNode != NULL)
+		{
+			if (curNode->getValue() < value)
+			{
+				curNode = curNode->getLeft();
+			}
+			else if (curNode->getValue() > value)
+			{
+				curNode = curNode->getRight();
+			}
+			else
+			{
+				return curNode;
+			}
+		}
+
+		return curNode;
+	}
+
+	TreeNode4_11* getRandomNode()
+	{
+		return NULL;
+	}
+
+	void printTree()
+	{
+		queue<TreeNode4_11*> qToBeVisited;
+		int lastLevel = 0;
+		int negCount = 0;
+		int nextLevel = 0;
+		int spaceCount = 20;
+
+		printSpace(spaceCount);
+		spaceCount -= 1;
+
+		qToBeVisited.push(root);
+		lastLevel++;
+		negCount++;
+
+		while (qToBeVisited.size() != 0)
+		{
+			TreeNode4_11* cur = qToBeVisited.front();
+			qToBeVisited.pop();
+
+			cout << cur->getValue() << " ";
+
+			lastLevel--;
+
+			if (cur->getValue() == 0)
+			{
+				negCount--;
+			}
+
+			TreeNode4_11* left = cur->getLeft();
+			TreeNode4_11* right = cur->getRight();
+
+			if (left)
+			{
+				qToBeVisited.push(left);
+			}
+			else
+			{
+				qToBeVisited.push(this->createZeroTreeNode());
+			}
+
+			if (right)
+			{
+				qToBeVisited.push(right);
+			}
+			else
+			{
+				qToBeVisited.push(this->createZeroTreeNode());
+			}
+
+			nextLevel += 2;
+
+			if (lastLevel == 0)
+			{
+				cout << endl;
+
+				if (negCount == 0)
+				{
+					cout << endl;
+					return;
+				}
+
+				this->printSpace(spaceCount);
+				spaceCount -= 2;
+
+				lastLevel = nextLevel;
+				negCount = nextLevel;
+				nextLevel = 0;
+			}
+		}
+
+		cout << endl << endl;
+	}
+
+private:
+	TreeNode4_11* root;
+
+	TreeNode4_11* findLeftMostNode(TreeNode4_11* node)
+	{
+		TreeNode4_11* curNode = node;
+
+		while (curNode != NULL && curNode->getLeft() != NULL)
+		{
+			curNode = curNode->getLeft();
+		}
+
+		return curNode;
+	}
+
+	void printSpace(int num)
+	{
+		for (int i = 0; i < num; i++)
+		{
+			cout << " ";
+		}
+	}
+
+	TreeNode4_11* createZeroTreeNode()
+	{
+		return new TreeNode4_11(0);
+	}
 };
