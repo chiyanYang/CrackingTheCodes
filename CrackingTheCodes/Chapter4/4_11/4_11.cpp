@@ -14,7 +14,12 @@ void test4_11()
 	tree->insertNode(3);
 	tree->insertNode(6);
 	tree->insertNode(4);
-	tree->insertNode(0);
-
 	tree->printTree();
+
+	tree->deleteNode(3);
+	tree->printTree();
+	tree->deleteNode(8);
+	tree->printTree();
+	//tree->deleteNode(5);
+	//tree->printTree();
 }

@@ -83,7 +83,7 @@ int getTotalNumOfNode(TreeNode* rootNode)
 // pre-order sequence
 TreeNode* getNodeByNumber(TreeNode* rootNode, int& num)
 {
-	if (rootNode == NULL || num == 1)
+	if (rootNode == NULL || num == 0)
 	{
 		return rootNode;
 	}
@@ -100,11 +100,17 @@ TreeNode* getNodeByNumber(TreeNode* rootNode, int& num)
 	return result;
 }
 
+// Node with zero value is used for redundant purpose, so don't insert value zeor node in the tree
 void printBinaryTree(TreeNode* treeRoot)
 {
+	if (treeRoot == NULL)
+	{
+		cout << "NULL" << endl << endl;
+		return;
+	}
+
 	queue<TreeNode*> qToBeVisited;
 	int lastLevel = 0;
-	int negCount = 0;
 	int nextLevel = 0;
 	int spaceCount = 20;
 
@@ -113,60 +119,51 @@ void printBinaryTree(TreeNode* treeRoot)
 
 	qToBeVisited.push(treeRoot);
 	lastLevel++;
-	negCount++;
 
 	while (qToBeVisited.size() != 0)
 	{
 		TreeNode* cur = qToBeVisited.front();
+
 		qToBeVisited.pop();
 
 		cout << cur->getValue() << " ";
 
 		lastLevel--;
 
-		if (cur->getValue() == 0)
+		if (cur->getValue() != 0)
 		{
-			negCount--;
-		}
+			TreeNode* left = cur->getLeft();
+			TreeNode* right = cur->getRight();
 
-		TreeNode* left = cur->getLeft();
-		TreeNode* right = cur->getRight();
+			if (left != NULL)
+			{
+				qToBeVisited.push(left);
+			}
+			else
+			{
+				qToBeVisited.push(createZeroTreeNode());
+			}
 
-		if (left)
-		{
-			qToBeVisited.push(left);
-		}
-		else
-		{
-			qToBeVisited.push(createZeroTreeNode());
-		}
+			if (right != NULL)
+			{
+				qToBeVisited.push(right);
+			}
+			else
+			{
+				qToBeVisited.push(createZeroTreeNode());
+			}
 
-		if (right)
-		{
-			qToBeVisited.push(right);
+			nextLevel += 2;
 		}
-		else
-		{
-			qToBeVisited.push(createZeroTreeNode());
-		}
-
-		nextLevel += 2;
 
 		if (lastLevel == 0)
 		{
 			cout << endl;
 
-			if (negCount == 0)
-			{
-				cout << endl;
-				return;
-			}
-
 			printSpace(spaceCount);
 			spaceCount -= 2;
 
 			lastLevel = nextLevel;
-			negCount = nextLevel;
 			nextLevel = 0;
 		}
 	}

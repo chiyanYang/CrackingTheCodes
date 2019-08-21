@@ -158,7 +158,10 @@ public:
 
 		if (parentNode == NULL)
 		{
+			if (nodeToDelete->getRight() == NULL)
+			{
 
+			}
 		}
 		else if (nodeToDelete->getRight() != NULL)
 		{
@@ -257,16 +260,14 @@ public:
 	{
 		queue<TreeNode4_11*> qToBeVisited;
 		int lastLevel = 0;
-		int negCount = 0;
 		int nextLevel = 0;
 		int spaceCount = 20;
 
 		printSpace(spaceCount);
 		spaceCount -= 1;
 
-		qToBeVisited.push(root);
+		qToBeVisited.push(this->root);
 		lastLevel++;
-		negCount++;
 
 		while (qToBeVisited.size() != 0)
 		{
@@ -277,49 +278,40 @@ public:
 
 			lastLevel--;
 
-			if (cur->getValue() == 0)
+			if (cur->getValue() != 0)
 			{
-				negCount--;
-			}
+				TreeNode4_11* left = cur->getLeft();
+				TreeNode4_11* right = cur->getRight();
 
-			TreeNode4_11* left = cur->getLeft();
-			TreeNode4_11* right = cur->getRight();
+				if (left)
+				{
+					qToBeVisited.push(left);
+				}
+				else
+				{
+					qToBeVisited.push(this->createZeroTreeNode());
+				}
 
-			if (left)
-			{
-				qToBeVisited.push(left);
-			}
-			else
-			{
-				qToBeVisited.push(this->createZeroTreeNode());
-			}
+				if (right)
+				{
+					qToBeVisited.push(right);
+				}
+				else
+				{
+					qToBeVisited.push(this->createZeroTreeNode());
+				}
 
-			if (right)
-			{
-				qToBeVisited.push(right);
+				nextLevel += 2;
 			}
-			else
-			{
-				qToBeVisited.push(this->createZeroTreeNode());
-			}
-
-			nextLevel += 2;
 
 			if (lastLevel == 0)
 			{
 				cout << endl;
 
-				if (negCount == 0)
-				{
-					cout << endl;
-					return;
-				}
-
 				this->printSpace(spaceCount);
 				spaceCount -= 2;
 
 				lastLevel = nextLevel;
-				negCount = nextLevel;
 				nextLevel = 0;
 			}
 		}
