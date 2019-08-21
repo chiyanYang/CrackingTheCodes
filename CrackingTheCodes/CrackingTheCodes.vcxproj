@@ -115,13 +115,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chapter4\4_10\4_10.cpp" />
+    <ClCompile Include="Chapter4\4_11\4_11.cpp" />
     <ClCompile Include="Chapter4\Ch4Common.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chapter4\4_10\4_10.h" />
+    <ClInclude Include="Chapter4\4_11\4_11.h" />
     <ClInclude Include="Chapter4\Ch4Common.h" />
     <ClInclude Include="Common.h" />
   </ItemGroup>

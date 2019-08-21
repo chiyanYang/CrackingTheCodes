@@ -160,6 +160,16 @@ public:
 		{
 			if (nodeToDelete->getRight() == NULL)
 			{
+				root = nodeToDelete->getLeft();
+			}
+			else if (nodeToDelete->getLeft() == NULL)
+			{
+				root = nodeToDelete->getRight();
+			}
+			else
+			{
+				TreeNode4_11* nodeToMove = this->findLeftMostNode(nodeToDelete);
+
 
 			}
 		}
@@ -167,7 +177,7 @@ public:
 		{
 			if (nodeToDelete->getRight()->getLeft() != NULL)
 			{
-				TreeNode4_11* nodeToMove = this->findLeftMostNode(nodeToDelete);
+				TreeNode4_11* nodeToMove = this->findLeftMostNode(nodeToDelete->getRight());
 
 				if (nodeToMove->getRight() != NULL)
 				{
