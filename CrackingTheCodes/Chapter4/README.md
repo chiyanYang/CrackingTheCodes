@@ -120,8 +120,8 @@ This calculation will be done in deleteting and inserting.
 Random a number depending in the total number of nodes, then find the node that match the number, the sequence is [leftSize, cur, RightSize]
 Note:  
 Deleting Node in my implementation has two cases:  
-(1) deleting root node  
-(2) deleting not a root node  
+(a) deleting root node  
+(b) deleting not a root node  
 The reason that has these two cases is that I wnat to simulate linked-list-like structure, not just replace value, but the whole node.  
 
 ### [4_12](./4_12)
