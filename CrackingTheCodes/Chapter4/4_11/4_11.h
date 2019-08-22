@@ -158,6 +158,10 @@ public:
 
 		if (parentNode == NULL)
 		{
+			if (nodeToDelete->getRight() == NULL && nodeToDelete->getLeft() == NULL)
+			{
+				root = NULL;
+			}
 			if (nodeToDelete->getRight() == NULL)
 			{
 				root = nodeToDelete->getLeft();
@@ -168,12 +172,34 @@ public:
 			}
 			else
 			{
-				TreeNode4_11* nodeToMove = this->findLeftMostNode(nodeToDelete);
+				if (nodeToDelete->getRight()->getLeft() != NULL)
+				{
+					TreeNode4_11* nodeToMove = this->findLeftMostNode(nodeToDelete->getRight());
 
+					if (nodeToMove->getRight() != NULL)
+					{
+						nodeToMove->getParent()->setLeftNode(nodeToMove->getRight());
+					}
+					else
+					{
+						nodeToMove->getParent()->setLeftNode(NULL);
+					}
 
+					nodeToMove->setParent(NULL);
+
+					root = nodeToMove;
+
+					nodeToMove->setLeftNode(nodeToDelete->getLeft());
+					nodeToMove->setRightNode(nodeToDelete->getRight());
+				}
+				else
+				{
+					root = nodeToDelete->getRight();
+					nodeToDelete->getRight()->setLeftNode(nodeToDelete->getLeft());
+				}
 			}
 		}
-		else if (nodeToDelete->getRight() != NULL)
+		else if (nodeToDelete->getRight() != NULL && nodeToDelete->getLeft() != NULL)
 		{
 			if (nodeToDelete->getRight()->getLeft() != NULL)
 			{
@@ -210,6 +236,19 @@ public:
 				{
 					parentNode->setRightNode(nodeToDelete->getRight());
 				}
+
+				nodeToDelete->getRight()->setLeftNode(nodeToDelete->getLeft());
+			}
+		}
+		else if (nodeToDelete->getRight() != NULL && nodeToDelete->getLeft() == NULL)
+		{
+			if (parentNode->getLeft() == nodeToDelete)
+			{
+				parentNode->setLeftNode(nodeToDelete->getRight());
+			}
+			else
+			{
+				parentNode->setRightNode(nodeToDelete->getRight());
 			}
 		}
 		else if (nodeToDelete->getLeft() != NULL && nodeToDelete->getRight() == NULL)
@@ -272,12 +311,15 @@ public:
 		int lastLevel = 0;
 		int nextLevel = 0;
 		int spaceCount = 20;
+		bool isCurrentLevelHasNode = false;
+		bool isNextLevelHasNode = false;
 
 		printSpace(spaceCount);
 		spaceCount -= 1;
 
 		qToBeVisited.push(this->root);
 		lastLevel++;
+		isCurrentLevelHasNode = true;
 
 		while (qToBeVisited.size() != 0)
 		{
@@ -288,7 +330,7 @@ public:
 
 			lastLevel--;
 
-			if (cur->getValue() != 0)
+			if (cur->getValue() != 0 || isCurrentLevelHasNode == true)
 			{
 				TreeNode4_11* left = cur->getLeft();
 				TreeNode4_11* right = cur->getRight();
@@ -296,6 +338,7 @@ public:
 				if (left)
 				{
 					qToBeVisited.push(left);
+					isNextLevelHasNode = true;
 				}
 				else
 				{
@@ -305,6 +348,7 @@ public:
 				if (right)
 				{
 					qToBeVisited.push(right);
+					isNextLevelHasNode = true;
 				}
 				else
 				{
@@ -323,6 +367,9 @@ public:
 
 				lastLevel = nextLevel;
 				nextLevel = 0;
+
+				isCurrentLevelHasNode = isNextLevelHasNode;
+				isNextLevelHasNode = false;
 			}
 		}
 

@@ -113,12 +113,15 @@ void printBinaryTree(TreeNode* treeRoot)
 	int lastLevel = 0;
 	int nextLevel = 0;
 	int spaceCount = 20;
+	bool isCurrentLevelHasNode = false;
+	bool isNextLevelHasNode = false;
 
 	printSpace(spaceCount);
 	spaceCount -= 1;
 
 	qToBeVisited.push(treeRoot);
 	lastLevel++;
+	isCurrentLevelHasNode = true;
 
 	while (qToBeVisited.size() != 0)
 	{
@@ -130,7 +133,7 @@ void printBinaryTree(TreeNode* treeRoot)
 
 		lastLevel--;
 
-		if (cur->getValue() != 0)
+		if (cur->getValue() != 0 || isCurrentLevelHasNode == true)
 		{
 			TreeNode* left = cur->getLeft();
 			TreeNode* right = cur->getRight();
@@ -138,6 +141,7 @@ void printBinaryTree(TreeNode* treeRoot)
 			if (left != NULL)
 			{
 				qToBeVisited.push(left);
+				isNextLevelHasNode = true;
 			}
 			else
 			{
@@ -147,6 +151,7 @@ void printBinaryTree(TreeNode* treeRoot)
 			if (right != NULL)
 			{
 				qToBeVisited.push(right);
+				isNextLevelHasNode = true;
 			}
 			else
 			{
@@ -165,6 +170,9 @@ void printBinaryTree(TreeNode* treeRoot)
 
 			lastLevel = nextLevel;
 			nextLevel = 0;
+
+			isCurrentLevelHasNode = isNextLevelHasNode;
+			isNextLevelHasNode = false;
 		}
 	}
 
