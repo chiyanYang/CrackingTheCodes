@@ -117,12 +117,13 @@ for getRandomNode, and explain how you would implement the rest of the methods.
 Solution1:  
 Design a tree node, which count the size of left and right subtree.  
 This calculation will be done in deleteting and inserting.
-Random a number depending in the total number of nodes, the nfind the node that match the number, the sequence is [leftSize, cur, RightSize]
+Random a number depending in the total number of nodes, then find the node that match the number, the sequence is [leftSize, cur, RightSize]
 Note:  
 Deleting Node in my implementation has two cases:  
 (1) deleting root node  
 (2) deleting not a root node  
-The reason that has these two cases is that I wnat to simulate linked-list-like structure, not just replace value, but the whole node.   
+The reason that has these two cases is that I wnat to simulate linked-list-like structure, not just replace value, but the whole node.  
+
 ### [4_12](./4_12)
 Paths with Sum: You are given a binary tree in which each node contains an integer value (which
 might be positive or negative). Design an algorithm to count the number of paths that sum to a

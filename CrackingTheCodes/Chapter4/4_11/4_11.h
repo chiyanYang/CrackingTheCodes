@@ -145,6 +145,7 @@ public:
 		}
 	}
 
+	// Not update the node size
 	void deleteNode(int value)
 	{
 		TreeNode4_11* nodeToDelete = this->findNode(value);
@@ -302,7 +303,15 @@ public:
 
 	TreeNode4_11* getRandomNode()
 	{
-		return NULL;
+		int totalNodeCounts = root->getSize();
+		/* initialize random seed: */
+		srand(time(NULL));
+
+		int randomNum = rand() % totalNodeCounts + 1; // Count from 1 instead of 0
+
+		cout << "Random Num = " << randomNum << endl << endl;
+
+		return getRandomNode(root, randomNum);
 	}
 
 	void printTree()
@@ -402,5 +411,35 @@ private:
 	TreeNode4_11* createZeroTreeNode()
 	{
 		return new TreeNode4_11(0);
+	}
+
+	TreeNode4_11* getRandomNode(TreeNode4_11* curNode, int randomNum)
+	{
+		int totalNodeCounts = curNode->getSize();
+
+		int leftCount = 0; 
+		if (curNode->getLeft())
+		{
+			leftCount = curNode->getLeft()->getSize();
+		}
+
+		int rightCount = 0;
+		if (curNode->getRight())
+		{
+			rightCount = curNode->getRight()->getSize();
+		}
+
+		if (randomNum <= leftCount)
+		{
+			return getRandomNode(curNode->getLeft(), randomNum);
+		}
+		else if (randomNum == leftCount + 1)
+		{
+			return curNode;
+		}
+		else
+		{
+			return getRandomNode(curNode->getRight(), randomNum - leftCount - 1);
+		}
 	}
 };

@@ -16,12 +16,18 @@ void test4_11()
 	tree->insertNode(4);
 	tree->printTree();
 
-	tree->deleteNode(5);
-	tree->printTree();
-	tree->deleteNode(7);
-	tree->printTree();
-	tree->deleteNode(4);
-	tree->printTree();
-	//tree->deleteNode(5);
-	//tree->printTree();
+	TreeNode4_11* randomNode = NULL;
+	
+	int keepRunning = 1;
+	while (keepRunning)
+	{
+		randomNode = tree->getRandomNode();
+
+		cout << "randomNode is: " << randomNode->getValue() << endl << endl;;
+		cout << "Do you want to continue? Enter 1" << endl;
+		cin >> keepRunning;
+
+		cout << endl;
+	}
+	
 }
