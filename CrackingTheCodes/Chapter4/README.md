@@ -130,4 +130,7 @@ might be positive or negative). Design an algorithm to count the number of paths
 given value. The path does not need to start or end at the root or a leaf, but it must go downwards
 (traveling only from parent nodes to child nodes).  
 
-Solution1:
+Solution1: bruth and forced way, implement a function that calculate the sum from root(current) node only.   
+Call this function with all the nodes in the tree.  
+
+Solution2: 
