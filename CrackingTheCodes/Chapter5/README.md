@@ -2,19 +2,19 @@
 ## Table of contents
 ### [5_1](./5_1)
 Insertion: You are given two 32-bit numbers, N and M, and two bit positions, i and j. Write a method  
-to insert Minto N such that M starts at bit j and ends at bit i. You can assume that the bits j through  
+to insert M into N such that M starts at bit j and ends at bit i. You can assume that the bits j through  
 i have enough space to fit all of M. That is, if M = 10011, you can assume that there are at least 5  
 bits between j and i. You would not, for example, have j = 3 and i = 2, because M could not fully  
 fit between bit 3 and bit 2.  
 EXAMPLE:  
-Input: N  
-Output: N  
-SOLUTION:  
-10000000000, M  
-10001001100  
-10011, i = 2, j  
+Input: N->10000000000, M->10011, i = 2, j = 6  
+Output: 10001001100
 
-Solution1: 
+Solution1:  
+This is quite straight forward, follow the steps below:
+(1) Do a zero mask from ith~jth in N, e.g. 2th~6th -> 111111110000011  
+(2) Create the mask of M.  
+(3) Combined.  
 
 ### [5_2](./5_2)
 Binary to String: Given a real number between 0 and 1 (e.g., 0.72) that is passed in as a double,  

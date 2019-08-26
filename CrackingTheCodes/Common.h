@@ -16,5 +16,6 @@
 #include <list> // std::list
 #include <algorithm> // std::find
 #include <map> // std::map
+#include <bitset>
 
 using namespace std;
