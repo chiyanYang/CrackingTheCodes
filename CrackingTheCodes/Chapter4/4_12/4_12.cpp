@@ -61,3 +61,51 @@ void preOrderTraversal(TreeNode* rootNode, int& totalCount, int& curSum, int tar
 
 	curSum -= rootNode->getValue();
 }
+
+int BottomUp_GetTotalPathsWithSum(TreeNode* rootNode, int targetSum)
+{
+	map<int, int> sunInCurPath;
+
+
+}
+
+int BottomUp_GetTotalPathsWithSumInCurNode(TreeNode* curNode, int targetSum, map<int, int>& sunInCurPath)
+{
+	int totalCount = 0;
+
+	if (curNode == NULL)
+	{
+		return totalCount;
+	}
+
+	int value = curNode->getValue();
+
+	if (value == targetSum)
+	{
+		totalCount++;
+	}
+
+	int curTarget = targetSum - value;
+
+	map<int, int>::iterator it;
+
+	it = sunInCurPath.find(curTarget);
+	if (it != sunInCurPath.end())
+	{
+		totalCount += it->second;
+	}
+
+
+
+	it = sunInCurPath.find(value);
+	if (it != sunInCurPath.end())
+	{
+		it->second++;
+	}
+	else
+	{
+		sunInCurPath.insert(pair<int, int>(value, 1));
+	}
+
+	sunInCurPath
+}
