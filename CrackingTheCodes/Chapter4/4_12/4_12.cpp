@@ -9,10 +9,17 @@ void test4_12()
 
 	printBinaryTree(t1);
 
-	int targetSum = 1;
-	int count = Bruth_And_Forced_GetTotalPathsWithSum(t1, targetSum);
+	int targetSum;
 
-	cout << "Total paths of Count = " << count << endl << endl;
+	cout << "Enter the target: ";
+	cin >> targetSum;
+	cout << endl;
+
+	int count1 = Bruth_And_Forced_GetTotalPathsWithSum(t1, targetSum);
+	int count2 = BottomUp_GetTotalPathsWithSum(t1, targetSum);
+
+	cout << "Total paths of Count1 = " << count1 << endl;
+	cout << "Total paths of Count2 = " << count2 << endl << endl;
 }
 
 int Bruth_And_Forced_GetTotalPathsWithSum(TreeNode* rootNode, int targetSum)
@@ -65,11 +72,12 @@ void preOrderTraversal(TreeNode* rootNode, int& totalCount, int& curSum, int tar
 int BottomUp_GetTotalPathsWithSum(TreeNode* rootNode, int targetSum)
 {
 	map<int, int> sunInCurPath;
+	sunInCurPath.insert(pair<int, int>(0, 1));
 
-
+	return BottomUp_GetTotalPathsWithSumPreOrder(rootNode, targetSum, 0, sunInCurPath);
 }
 
-int BottomUp_GetTotalPathsWithSumInCurNode(TreeNode* curNode, int targetSum, map<int, int>& sunInCurPath)
+int BottomUp_GetTotalPathsWithSumPreOrder(TreeNode* curNode, int targetSum, int preSum, map<int, int>& sunInCurPath)
 {
 	int totalCount = 0;
 
@@ -79,33 +87,49 @@ int BottomUp_GetTotalPathsWithSumInCurNode(TreeNode* curNode, int targetSum, map
 	}
 
 	int value = curNode->getValue();
+	int curSum = preSum + value;
 
-	if (value == targetSum)
-	{
-		totalCount++;
-	}
-
-	int curTarget = targetSum - value;
+	int curTarget = curSum - targetSum;
 
 	map<int, int>::iterator it;
 
+	// find the matched moving sum
 	it = sunInCurPath.find(curTarget);
 	if (it != sunInCurPath.end())
 	{
 		totalCount += it->second;
 	}
 
-
-
-	it = sunInCurPath.find(value);
+	// Add curSum to the hash table
+	it = sunInCurPath.find(curSum);
 	if (it != sunInCurPath.end())
 	{
 		it->second++;
 	}
 	else
 	{
-		sunInCurPath.insert(pair<int, int>(value, 1));
+		sunInCurPath.insert(pair<int, int>(curSum, 1));
 	}
 
-	sunInCurPath
+	totalCount += BottomUp_GetTotalPathsWithSumPreOrder(curNode->getLeft(), targetSum, curSum, sunInCurPath);
+	totalCount += BottomUp_GetTotalPathsWithSumPreOrder(curNode->getRight(), targetSum, curSum, sunInCurPath);
+
+	// remove curSum from the hash table
+	it = sunInCurPath.find(curSum);
+
+	if (it != sunInCurPath.end() && it->second > 1)
+	{
+		it->second--;
+	}
+	else if(it != sunInCurPath.end() && it->second == 1)
+	{
+		sunInCurPath.erase(it);
+	}
+	else
+	{
+		cout << "Somehow there is an error" << endl;
+	}
+
+
+	return totalCount;
 }

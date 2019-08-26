@@ -133,4 +133,6 @@ given value. The path does not need to start or end at the root or a leaf, but i
 Solution1: bruth and forced way, implement a function that calculate the sum from root(current) node only.   
 Call this function with all the nodes in the tree.  
 
-Solution2: 
+Solution2: bottom up way. Using the diff of running sum, we can use a hash table to easily find out the sum of the path.    
+e.g: sum of [node1~node3] = 5, sum of [node1~node5] = 8, so sum of [node3~node5] = 2.  
+Use this method, we can get the each sum from node5 (the end node in search), then travel the whole tree preorder.
