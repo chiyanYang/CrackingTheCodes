@@ -21,7 +21,11 @@ Binary to String: Given a real number between 0 and 1 (e.g., 0.72) that is passe
 print the binary representation. If the number cannot be represented accurately in binary with at  
 most 32 characters, print"ERROR."  
 
-Solution1: 
+Solution1:  
+Come to examples to think through it:  
+0.101 -> 0 * (1/1) + 1 * (1/2) + 0 * (1/4) + 1 * (1/8)  
+So here we can multiplt the target and the binary by 2 (shilt left by 1), so the result point to the next.  
+0.101 (shift 1) -> 1.01 (shift 1) -> 10.1
 
 ### [5_3](./5_3)
 Flip Bit to Win: You have an integer and you can flip exactly one bit from a O to a 1. Write code to  

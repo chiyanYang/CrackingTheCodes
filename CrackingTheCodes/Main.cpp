@@ -1,5 +1,5 @@
 // #include "Chapter1/1_1/1_1.h" // Is Unique
-#include "Chapter5/5_1/5_1.h" // Check Permutation
+#include "Chapter5/5_2/5_2.h" // Check Permutation
 
 
 /* Every exercise start in Test function.
@@ -11,7 +11,7 @@ int main()
 	int toBreak = 0;
 	while (true)
 	{
-		test5_1();
+		test5_2();
 		cout << "To Leave the test, enter 1: " << endl;
 		cin >> toBreak;
 
