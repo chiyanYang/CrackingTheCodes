@@ -9,9 +9,54 @@ void test5_3()
 	cin >> target;
 	cout << endl;
 
-	int result = FlipBitToWin(target);
+	int result1 = FlipBitToWinInString(target);
+	int result2 = FlipBitToWinInInt(target);
 
-	cout << "Result = " << result << endl;
+	cout << "Result1 = " << result1 << endl;
+	cout << "Result2 = " << result2 << endl;
+}
+
+int FlipBitToWinInInt(int target)
+{
+	if ((~target) == 0)
+	{
+		return sizeof(int) * 8;
+	}
+
+	int cur1s = 0;
+	int pre1s = 0;
+	int maxResult = 0;
+
+	while (target != 0)
+	{
+		if ((target & 1) == 1)
+		{
+			cur1s++;
+		}
+		else // 0 case
+		{
+			if ((target & 2) == 1)
+			{
+				pre1s = cur1s;
+				cur1s = 0;
+			}
+			else // 0s case
+			{
+				pre1s = 0;
+			}
+		}
+
+		int curResult = cur1s + pre1s + 1;
+
+		if (curResult > maxResult)
+		{
+			maxResult = curResult;
+		}
+
+		target = target >> 1;
+	}
+
+	return maxResult;
 }
 
 int FlipBitToWinInString(int target)
