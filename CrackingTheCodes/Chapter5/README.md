@@ -34,7 +34,10 @@ EXAMPLE:
 Input: 1775 (or: 11011101111)  
 Output: 8  
 
-Solution1: 
+Solution1:  
+The only way to combine two string(1s) is only one zero between them,  
+So we can track the pre string(1s) and see if there is only one 0 to combine the current string(1s)  
+Remember to add result one more because if the flip except special case (like the string are all 1s)   
 
 ### [5_4](./5_4)
 Next Number: Given a positive integer, print the next smallest and the next largest number that  
