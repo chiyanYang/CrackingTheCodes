@@ -3,4 +3,5 @@
 
 void test5_4();
 
-int nextNumber(int number);
+int getNextBigNumber(int number);
+int getNextSmallNumber(int number);

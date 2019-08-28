@@ -44,11 +44,15 @@ Next Number: Given a positive integer, print the next smallest and the next larg
 have the same number of 1 bits in their binary representation.  
 
 Solution1:  
-Next smallest:  
+Next largest:  
 (1) Search from the least digit, find the first zero following 1(s).  
-(2) Use mask to set the zero to 1 and other least digits to zero.  
+(2) Use mask to set the 0 to 1 and other least digits to zero.  
 (3) Use mask to set rest 1(s) from the least digit.  
 
+Next smallest:  
+(1) Search from the least digit, find the first one following 0(s).  
+(2) Use mask to set the 1 to 0 and other least digits to zero.  
+(3) Use mask to set rest 1(s) from the least digit.  
 
 ### [5_5](./5_5)
 Debugger: Explain what the following code does: ((n & (n-1 )) == 0).  
