@@ -116,14 +116,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chapter5\5_2\5_2.cpp" />
-    <ClCompile Include="Chapter5\5_3\5_3.cpp" />
+    <ClCompile Include="Chapter5\5_4\5_4.cpp" />
     <ClCompile Include="Chapter5\Ch5Common.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chapter5\5_2\5_2.h" />
-    <ClInclude Include="Chapter5\5_3\5_3.h" />
+    <ClInclude Include="Chapter5\5_4\5_4.h" />
     <ClInclude Include="Chapter5\Ch5Common.h" />
     <ClInclude Include="Common.h" />
   </ItemGroup>

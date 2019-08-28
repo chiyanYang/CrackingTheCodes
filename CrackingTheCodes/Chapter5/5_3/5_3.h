@@ -4,6 +4,5 @@
 void test5_3();
 
 int FlipBitToWinInString(int target);
-string intToBinaryString(int target);
 
 int FlipBitToWinInInt(int target);
