@@ -9,3 +9,10 @@ string intToBinaryString(int target)
 
 	return s;
 }
+
+void intToBinaryStringPrintOnly(int target)
+{
+	string s = bitset< 32 >(target).to_string(); // string conversion
+
+	cout << "Target string is: " << s << endl << endl;
+}

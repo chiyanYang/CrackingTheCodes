@@ -3,17 +3,17 @@
 // Next Number
 void test5_4()
 {
-	int number;
+	int number = 0;
 
 	cout << "Enter the current number: ";
 	cin >> number;
 
 	cout << endl << "Current Number is: " << number << endl;
-	intToBinaryString(number);
+	intToBinaryStringPrintOnly(number);
 
 	int nextBigNumber = nextNumber(number);
 
-	intToBinaryString(nextBigNumber);
+	intToBinaryStringPrintOnly(nextBigNumber);
 
 	cout << "nextBigNumber = " << nextBigNumber << endl << endl;
 }
@@ -31,13 +31,13 @@ int nextNumber(int number)
 		return 0;
 	}
 
-	while (tmp & 1 == 0)
+	while ((tmp & 1) == 0)
 	{
 		tmp = tmp >> 1;
 		shiftDigit++;
 	}
 
-	while (tmp & 1 == 1)
+	while ((tmp & 1) == 1)
 	{
 		tmp = tmp >> 1;
 		count1s++;
@@ -45,7 +45,7 @@ int nextNumber(int number)
 	}
 
 	// (2) Use mask to set the zero to 1 and other least digits to zero.
-	int maskZero = ((~0) << shiftDigit); 
+	int maskZero = ~((1 << shiftDigit) - 1); 
 	number = number & maskZero; // 1001110 -> 1000000
 
 	int maskOne = 1 << shiftDigit;
