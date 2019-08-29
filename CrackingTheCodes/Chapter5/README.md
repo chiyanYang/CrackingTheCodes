@@ -81,7 +81,11 @@ Instead of check every bit, use the method mentioned in last problem -> ((n & (n
 Pairwise Swap: Write a program to swap odd and even bits in an integer with as few instructions as  
 possible (e.g., bit O and bit 1 are swapped, bit 2 and bit 3 are swapped, and so on).  
 
-Solution1: 
+Solution1:  
+"bit swap" is equivalent to bit shift on both direction.  
+(1) And A mask of 01010101 on target, then left shift.  
+(2) And A mask of 10101010 on target, then right shift.
+(3) Combined.  
 
 ### [5_8](./5_8)
 Draw Line: A monochrome screen is stored as a single array of bytes, allowing eight consecutive  
@@ -91,4 +95,6 @@ and the width. Implement a function that draws a horizontal line from (xl, y) to
 The method signature should look something like:  
 drawLine(byte[] screen, int width, int xl, int x2, int y)  
 
-Solution1: 
+Solution1:  
+(Not quite sure what the question's meaning, skip this one)  
+(Not implemented)  

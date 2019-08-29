@@ -3,3 +3,4 @@
 
 void test5_7();
 
+int PairwiseSwap(int number);
