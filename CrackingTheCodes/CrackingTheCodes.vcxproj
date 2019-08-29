@@ -115,11 +115,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Chapter8\8_10\8_10.cpp" />
+    <ClCompile Include="Chapter8\8_11\8_11.cpp" />
+    <ClCompile Include="Chapter8\8_12\8_12.cpp" />
+    <ClCompile Include="Chapter8\8_13\8_13.cpp" />
+    <ClCompile Include="Chapter8\8_14\8_14.cpp" />
+    <ClCompile Include="Chapter8\8_1\8_1.cpp" />
+    <ClCompile Include="Chapter8\8_2\8_2.cpp" />
+    <ClCompile Include="Chapter8\8_3\8_3.cpp" />
+    <ClCompile Include="Chapter8\8_4\8_4.cpp" />
+    <ClCompile Include="Chapter8\8_5\8_5.cpp" />
+    <ClCompile Include="Chapter8\8_6\8_6.cpp" />
+    <ClCompile Include="Chapter8\8_7\8_7.cpp" />
+    <ClCompile Include="Chapter8\8_8\8_8.cpp" />
+    <ClCompile Include="Chapter8\8_9\8_9.cpp" />
+    <ClCompile Include="Chapter8\Ch8Common.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Chapter8\8_10\8_10.h" />
+    <ClInclude Include="Chapter8\8_11\8_11.h" />
+    <ClInclude Include="Chapter8\8_12\8_12.h" />
+    <ClInclude Include="Chapter8\8_13\8_13.h" />
+    <ClInclude Include="Chapter8\8_14\8_14.h" />
+    <ClInclude Include="Chapter8\8_1\8_1.h" />
+    <ClInclude Include="Chapter8\8_2\8_2.h" />
+    <ClInclude Include="Chapter8\8_3\8_3.h" />
+    <ClInclude Include="Chapter8\8_4\8_4.h" />
+    <ClInclude Include="Chapter8\8_5\8_5.h" />
+    <ClInclude Include="Chapter8\8_6\8_6.h" />
+    <ClInclude Include="Chapter8\8_7\8_7.h" />
+    <ClInclude Include="Chapter8\8_8\8_8.h" />
+    <ClInclude Include="Chapter8\8_9\8_9.h" />
+    <ClInclude Include="Chapter8\Ch8Common.h" />
     <ClInclude Include="Common.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Chapter8\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
