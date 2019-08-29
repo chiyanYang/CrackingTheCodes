@@ -57,7 +57,11 @@ Next smallest:
 ### [5_5](./5_5)
 Debugger: Explain what the following code does: ((n & (n-1 )) == 0).  
 
-Solution1: 
+Solution1:  
+n-1 -> the least 1 will be set to 0, all right side zeros set to 1.  
+So n & (n-1 ) is like having a mask to set the least 1 to 0.  
+Hence (n & (n-1 )) == 0 Check if n has only 1 digit set to 1 (is multiple of 2)  
+(No code implemented)
 
 ### [5_6](./5_6)
 Conversion: Write a function to determine the number of bits you would need to flip to convert  
@@ -67,6 +71,11 @@ Input: 29 (or: 11101), 15 (or: 01111)
 Output: 2  
 
 Solution1:  
+Straight forward way is to compare digit by digit. (Not implemented)  
+
+Solution2:
+Xor can tell if two number are identical, so we xor two number, the result show how many bit are not the same.  
+Instead of check every bit, use the method mentioned in last problem -> ((n & (n-1 )) == 0).
 
 ### [5_7](./5_7)
 Pairwise Swap: Write a program to swap odd and even bits in an integer with as few instructions as  

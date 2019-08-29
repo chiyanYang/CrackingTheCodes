@@ -3,3 +3,5 @@
 
 void test5_6();
 
+int Conversion(int number1, int number2);
+
