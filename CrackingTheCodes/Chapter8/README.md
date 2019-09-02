@@ -21,6 +21,8 @@ the robot cannot step on them. Design an algorithm to find a path for the robot 
 the bottom right.  
 
 Solution1:  
+Can be done by depth first search.  
+In my codes, mark 1 as obstacle, 5 as correct path, 9 as the route never works.  
 
 
 ### [8_3](./8_3)
