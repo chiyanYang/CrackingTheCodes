@@ -5,6 +5,13 @@ Triple Step: A child is running up a staircase with n steps and can hop either 1
 or 3 steps at a time. Implement a method to count how many possible ways the child can run up the stairs.  
 
 Solution1:  
+Use recursive method, e.g. tripleStep(remainSteps), which get the all possible ways for the remaining steps,  
+In current steps, you can call this method three times with currentSteps - 1, currentSteps - 2, currentSteps - 3.  
+These are three ways to get to current steps, so add them up as total steps for current steps.
+
+Solution2(optimized):  
+Lots of same function are called repeatedly, it will be good if we keep the result and no need to calculate the result again.  
+This optimization is bottom-up.
 
 
 ### [8_2](./8_2)
