@@ -38,7 +38,11 @@ but walk through brute force, we can tell that some steps can be skip because of
 Solution2:
 Binary search. Sorted array hint us Binary search, and also distinct integers can perform a easy Binary search.  
 
-Follow up:
+Follow up:  
+Although the array is not distinct, it is still sorted array,  
+so Binary search works better in this case compared to Brute force.  
+This case we need to consider both left and right search because mid idx greater or smaller than the mid value  
+does not mean we can skip search for one part, but we can skip a few number because of the diff between value and idx.  
 
 ### [8_4](./8_4)
 Power Set: Write a method to return all subsets of a set.  
