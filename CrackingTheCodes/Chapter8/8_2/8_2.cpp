@@ -21,7 +21,7 @@ void test8_2()
 	robotMap[3][6] = 1;
 	robotMap[3][7] = 1;
 
-	printMap(robotMap);
+	print2DVector(robotMap);
 
 	robotInGrid(robotMap, 0, 0);
 	printMap(robotMap);
@@ -38,17 +38,6 @@ void initMap(vector<vector<int>>& robotMap, int col, int row)
 			col = 0;
 		}
 	}
-}
-
-void printMap(vector<vector<int>>& robotMap)
-{
-	for (auto& row : robotMap) {
-		for (auto& col : row) {
-			cout << col << " ";
-		}
-		cout << endl;
-	}
-	cout << endl << endl;
 }
 
 bool robotInGrid(vector<vector<int>>& robotMap, int curRow, int curCol)

@@ -48,6 +48,8 @@ does not mean we can skip search for one part, but we can skip a few number beca
 Power Set: Write a method to return all subsets of a set.  
 
 Solution1:  
+All subsets mean that each element we can decide choose or not choose to the current subset.  
+Collecting all the cases for choosing or not choosing, all subsets get.  
 
 ### [8_5](./8_5)
 Recursive Multiply: Write a recursive function to multiply two positive integers without using the  
