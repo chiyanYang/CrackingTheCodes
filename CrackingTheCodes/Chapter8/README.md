@@ -11,7 +11,7 @@ These are three ways to get to current steps, so add them up as total steps for 
 
 Solution2(optimized):  
 Lots of same function are called repeatedly, it will be good if we keep the result and no need to calculate the result again.  
-This optimization is bottom-up.
+This optimization is memoization.
 
 
 ### [8_2](./8_2)
@@ -26,12 +26,19 @@ In my codes, mark 1 as obstacle, 5 as correct path, 9 as the route never works.
 
 
 ### [8_3](./8_3)
-Magic Index: A magic index in an array A [ 0 ••• n -1] is defined to be an index such that A[ i] = i.  
+Magic Index: A magic index in an array A [0 ••• n -1] is defined to be an index such that A[i] = i.  
 Given a sorted array of distinct integers, write a method to find a magic index, if one exists, in array A.    
 FOLLOW UP  
 What if the values are not distinct?  
 
-Solution1:  
+Solution1 and follow up:  
+Brute force way works for the question and follow up,  
+but walk through brute force, we can tell that some steps can be skip because of "A[i] = i". (Not implemented)  
+
+Solution2:
+Binary search. Sorted array hint us Binary search, and also distinct integers can perform a easy Binary search.  
+
+Follow up:
 
 ### [8_4](./8_4)
 Power Set: Write a method to return all subsets of a set.  
