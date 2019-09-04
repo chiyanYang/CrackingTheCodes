@@ -8,5 +8,6 @@ void print2DVector(vector<vector<int>>& twoDVector)
 		}
 		cout << endl;
 	}
-	cout << endl << endl;
+	cout << "-------------------" << endl;
+	cout << endl;
 }
