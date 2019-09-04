@@ -57,6 +57,10 @@ Recursive Multiply: Write a recursive function to multiply two positive integers
 of those operations.  
 
 Solution1:  
+Bit shifting is the same as multiply by 2. Use minimum operations, we can shift the larger number.  
+(1) The smaller number will seperate into multiple of 2 (e.g. 2^5 + 2^4 + ....).  
+(2) The larger number will be shifted according to the "multiple of 2", and add it up to the result.   
+Step (1) can be achieved by shift and get the remaining (e.g. 65 -> 32 ....1).  
 
 
 ### [8_6](./8_6)
