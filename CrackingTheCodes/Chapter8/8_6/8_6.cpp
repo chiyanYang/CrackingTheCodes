@@ -22,7 +22,7 @@ void towersOfHanoi(stack<int> towers[3], int source, int des, int middle)
 
 	towers[middle].push(value);
 
-	towersOfHanoi(towers, int source, int des, int middle)
+	towersOfHanoi(towers, source, int des, int middle)
 
 }
 
