@@ -102,6 +102,8 @@ Input: 3
 Output: ( ( () ) ) , ( () () ) , ( () ) () , () ( () ) , () () ()  
 
 Solution1:  
+One left parenthese then we can put a right parenthese.
+So at each iteration we know we can put a left parenthese and if we can put a right one by counting the existing left.  
 
 ### [8_10](./8_10)
 Paint Fill: Implement the "paint fill" function that one might see on many image editing programs.  
