@@ -74,6 +74,12 @@ constraints:
 Write a program to move the disks from the first tower to the last using stacks.  
 
 Solution1:  
+(1) The purpose of the recursive function is important.  
+(2) The actor and exit condition is important.  
+In the case, to move the source to destination, we keep repeat this process:  
+(a) Leave the largest one, move the others to another stack.  
+(b) Move the largest one to the destination.  
+(c) Move the rest upon the largest one.  
 
 ### [8_7](./8_7)
 Permutations without Dups: Write a method to compute all permutations of a string of unique characters.  
