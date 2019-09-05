@@ -85,7 +85,7 @@ In the case, to move the source to destination, we keep repeat this process:
 Permutations without Dups: Write a method to compute all permutations of a string of unique characters.  
 
 Solution1:  
-
+In each recursive call, choose one char from the string (and loop through the string) then call the recursive.
 
 ### [8_8](./8_8)
 Permutations with Dups: Write a method to compute all permutations of a string whose characters  
