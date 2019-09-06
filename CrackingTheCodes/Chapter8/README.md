@@ -120,17 +120,19 @@ Solution1:
 We can go through all possibilities, start from all posibilities in 25 cents, then count down to 10 cents, then 5 cents.
 If the result match the target, add one to the number of ways.  
 
-
 ### [8_12](./8_12)
 Eight Queens: Write an algorithm to print all ways of arranging eight queens on an 8x8 chess board  
 so that none of them share the same row, column, or diagonal. In this case, "diagonal" means all  
 diagonals, not just the two that bisect the board.  
 
 Solution1:  
+We can tell that each row has one queen only, so we can start from first rolw.  
+After placing the first queen, we can mark the areas that can not place a queen.
+Row by row, we can know the available area in each row and find all the ways.
 
 
 ### [8_13](./8_13)
-Stack of Boxes: You have a stack of n boxes, with widths wi , heights hi, and depths di. The boxes  
+Stack of Boxes: You have a stack of n boxes, with widths wi, heights hi, and depths di. The boxes  
 cannot be rotated and can only be stacked on top of one another if each box in the stack is strictly  
 larger than the box above it in width, height, and depth. Implement a method to compute the  
 height of the tallest possible stack. The height of a stack is the sum of the heights of each box.  
