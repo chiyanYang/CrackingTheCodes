@@ -117,6 +117,8 @@ Coins: Given an infinite number of quarters (25 cents), dimes (10 cents), nickel
 pennies (1 cent), write code to calculate the number of ways of representing n cents.  
 
 Solution1:  
+We can go through all possibilities, start from all posibilities in 25 cents, then count down to 10 cents, then 5 cents.
+If the result match the target, add one to the number of ways.  
 
 
 ### [8_12](./8_12)
