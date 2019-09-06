@@ -23,7 +23,14 @@ public:
 		{
 			for (int j = 0; j < 8; j++)
 			{
-				cout << board[i][j] << " ";
+				if (board[i][j] != 9)
+				{
+					cout << "0" << " ";
+				}
+				else
+				{
+					cout << "1" << " ";
+				}
 			}
 
 			cout << endl;

@@ -24,8 +24,7 @@ void getAllWays(board8x8* queenboard, int curRow)
 
 			if (curRow == 7)
 			{
-				queenboard->printBoard();
-				
+				queenboard->printBoard();		
 			}
 			else
 			{
@@ -46,22 +45,31 @@ vector<pair<int, int>> fillNoAccessArea(board8x8* queenboard, int rowIdx, int co
 	// Fill col
 	for (int i = rowIdx + 1; i < 8; i++)
 	{
-		queenboard->board[i][colIdx] = 1;
-		filledArea.push_back(make_pair(i, colIdx));
+		if (queenboard->board[i][colIdx] == 0)
+		{
+			queenboard->board[i][colIdx] = 1;
+			filledArea.push_back(make_pair(i, colIdx));
+		}
 	}
 
 	// Fill diagonal right
 	for (int i = rowIdx + 1, j = colIdx + 1; i < 8 && j < 8; i++, j++)
 	{
-		queenboard->board[i][j] = 1;
-		filledArea.push_back(make_pair(i, j));
+		if (queenboard->board[i][j] == 0)
+		{
+			queenboard->board[i][j] = 1;
+			filledArea.push_back(make_pair(i, j));
+		}
 	}
 
 	// Fill diagonal left
 	for (int i = rowIdx + 1, j = colIdx - 1; i < 8 && j >= 0; i++, j--)
 	{
-		queenboard->board[i][j] = 1;
-		filledArea.push_back(make_pair(i, j));
+		if (queenboard->board[i][j] == 0)
+		{
+			queenboard->board[i][j] = 1;
+			filledArea.push_back(make_pair(i, j));
+		}
 	}
 
 	return filledArea;
