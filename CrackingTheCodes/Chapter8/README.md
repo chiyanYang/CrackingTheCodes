@@ -138,6 +138,8 @@ larger than the box above it in width, height, and depth. Implement a method to 
 height of the tallest possible stack. The height of a stack is the sum of the heights of each box.  
 
 Solution1:  
+Get all possible combinations and return the tallest one.
+
 
 ### [8_14](./8_14)
 Boolean Evaluation: Given a boolean expression consisting of the symbols  
