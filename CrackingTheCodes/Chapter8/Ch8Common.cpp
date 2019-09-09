@@ -11,3 +11,15 @@ void print2DVector(vector<vector<int>>& twoDVector)
 	cout << "-------------------" << endl;
 	cout << endl;
 }
+
+void printVectorString(vector<string> permutations)
+{
+	cout << endl;
+
+	for (int i = 0; i < permutations.size(); i++)
+	{
+		cout << permutations[i] << endl;
+	}
+
+	cout << endl;
+}

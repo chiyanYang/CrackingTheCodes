@@ -23,6 +23,7 @@ void getPermutation(vector<string>& permutations, string uniChars, string thisPe
 	if (uniChars.length() == 0)
 	{
 		permutations.push_back(thisPermutation);
+		return;
 	}
 
 	for(char& c : uniChars)
@@ -33,16 +34,4 @@ void getPermutation(vector<string>& permutations, string uniChars, string thisPe
 		nextPermutation += c;
 		getPermutation(permutations, curS, nextPermutation);
 	}
-}
-
-void printVectorString(vector<string> permutations)
-{
-	cout << endl;
-
-	for (int i = 0; i < permutations.size(); i++)
-	{
-		cout << permutations[i] << endl;
-	}
-
-	cout << endl;
 }

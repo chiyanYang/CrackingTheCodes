@@ -92,7 +92,14 @@ Permutations with Dups: Write a method to compute all permutations of a string w
 are not necessarily unique. The list of permutations should not have duplicates.  
 
 Solution1:  
-
+There is a good trick to complete this.
+In 8_7, we can use a method to solve 8_7, that is every char has its chance to be at the beginning:
+P(a, b) = {a + P(b)} + {b + P(a)};  
+P(a, b, c) = {a + P(b, c)} + {b + P(a, c)} + {c + P(a, b)};  
+  
+Using the above method in 8_8, we can see that for duplicated chars, we can easily tell which is duplicated calculation.  
+E.g. P(a, b, b) = {a + P(b, b)} + {b + P(a, b)};  
+{b + P(a, b)} should only be called one time.   
 
 ### [8_9](./8_9)
 Parens: Implement an algorithm to print all valid (e.g., properly opened and closed) combinations  
