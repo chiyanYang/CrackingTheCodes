@@ -1,12 +1,16 @@
 #pragma once
 #include "../Ch8Common.h"
 
-# define numOfBox 5
+# define numOfBox 3
 
 void test8_13();
 
 class stacksOfBox;
 class box;
+
+int getTallestStackofBoxes(stacksOfBox* totalBoxs, box* preBox, vector<int>& boxsequences);
+bool isValidBoxOn(box* curBox, box* preBox);
+void printSequences(vector<int>& boxsequences);
 
 class box
 {
@@ -43,11 +47,25 @@ public:
 			stackBoxs[i].edge[0] = (rand() % 50) + 1;
 			stackBoxs[i].edge[1] = (rand() % 50) + 1;
 			stackBoxs[i].edge[2] = (rand() % 50) + 1;
+
+			usedBox.push_back(0);
 		}
 	}
 
 	int getNumOfBox()
 	{
 		return numOfBox;
+	}
+
+	void printBoxs()
+	{
+		for (int i = 0; i < numOfBox; i++)
+		{
+			cout << "box" << i << ": ";
+			cout << "width = " << stackBoxs[i].edge[0] << " ";
+			cout << "height = " << stackBoxs[i].edge[1] << " ";
+			cout << "depth = " << stackBoxs[i].edge[2] << " ";
+			cout << endl;
+		}
 	}
 };
