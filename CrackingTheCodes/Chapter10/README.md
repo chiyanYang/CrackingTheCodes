@@ -13,9 +13,11 @@ to prevent shift remaining items when insert from B.
 Group Anagrams: Write a method to sort an array of strings so that all the anagrams are next to each other.  
 
 Solution1:  
-Use existing sorting function and modify comparision function.
+Use existing sorting function and modify comparision function (sort the string then comapre).  
 
-
+Solution2:
+Use map. Define a key for Anagrams, the string with same key put to value together.  
+Loop through the map and combine the value.  
 
 ### [10_3](./10_3)
 Search in Rotated Array: Given a sorted array of n integers that has been rotated an unknown  

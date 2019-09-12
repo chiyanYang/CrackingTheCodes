@@ -17,5 +17,6 @@
 #include <algorithm> // std::find
 #include <map> // std::map
 #include <bitset>
+#include <unordered_map> // std::unordered_map
 
 using namespace std;
