@@ -5,6 +5,9 @@ Sorted Merge: You are given two sorted arrays, A and B, where A has a large enou
 Write a method to merge B into A in sorted order.  
 
 Solution1:  
+Sorted array is the key point. Merge in two sorted array just need to compare each one by one.
+IN this case, we need to put the result in A, so the first thing to do is move the items in A to the last,
+to prevent shift remaining items when insert from B.
 
 ### [10_2](./10_2)
 Group Anagrams: Write a method to sort an array of strings so that all the anagrams are next to each other.  
