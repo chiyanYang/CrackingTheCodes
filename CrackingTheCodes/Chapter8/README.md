@@ -151,11 +151,11 @@ Get all possible combinations and return the tallest one.
 
 ### [8_14](./8_14)
 Boolean Evaluation: Given a boolean expression consisting of the symbols  
-0 (false), 1 (true), &(AND), I (OR), and /\ (XOR), and a desired boolean result value result,  
+0 (false), 1 (true), &(AND), | (OR), and ^ (XOR), and a desired boolean result value result,  
 implement a function to count the number of ways of parenthesizing the expression such that it evaluates to result.  
 EXAMPLE  
-countEval("l /\01011", false) -> 2  
-countEval("0&0&0&1/\ ll0", true) -> 10  
+countEval("l^0|0|1", false) -> 2  
+countEval("0&0&0&1^l|0", true) -> 10  
 Hints: #748, #168, #197, #305, #327  
 
 Solution1:  
