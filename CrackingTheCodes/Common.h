@@ -20,3 +20,19 @@
 #include <unordered_map> // std::unordered_map
 
 using namespace std;
+
+int getRandomNum(int min, int max);
+
+
+template <class T>
+void printVector(vector<T>& v)
+{
+	cout << endl;
+
+	for (int i = 0; i < v.size(); i++)
+	{
+		cout << v[i] << " ";
+	}
+
+	cout << endl;
+}

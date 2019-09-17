@@ -1,5 +1,5 @@
 // #include "Chapter1/1_1/1_1.h" // Is Unique
-#include "Chapter10/10_2/10_2.h"
+#include "Chapter10/10_3/10_3.h"
 
 
 /* Every exercise start in Test function.
@@ -11,7 +11,7 @@ int main()
 	int toBreak = 0;
 	while (true)
 	{
-		test10_2();
+		test10_3();
 		cout << "To Leave the test, enter 1: " << endl;
 		cin >> toBreak;
 

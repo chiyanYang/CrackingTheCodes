@@ -24,10 +24,11 @@ Search in Rotated Array: Given a sorted array of n integers that has been rotate
 number of times, write code to find an element in the array. You may assume that the array was  
 originally sorted in increasing order.  
 EXAMPLE  
-lnput:findSin{lS, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14}  
+lnput:find5in{15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14}  
 Output: 8 (the index of 5 in the array)  
 
 Solution1:  
+Because the target can appear on the both side, so we do the binary search on both sides.  
 
 ### [10_4](./10_4)
 Sorted Search, No Size: You are given an array-like data structure Listy which lacks a size  
