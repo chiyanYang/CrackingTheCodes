@@ -54,18 +54,8 @@ int searchRotatedArr(vector<int>& v, int target)
 
 int binarySearch(vector<int>& v, int begin, int end, int target)
 {
-	if (end < begin)
+	if (begin > end)
 	{
-		return -1;
-	}
-
-	if (end == begin)
-	{
-		if (v[end] == target)
-		{
-			return end;
-		}
-
 		return -1;
 	}
 
@@ -76,13 +66,51 @@ int binarySearch(vector<int>& v, int begin, int end, int target)
 		return middle;
 	}
 
-	int result = binarySearch(v, begin, middle, target);
-
-	if (result != -1)
+	if (v[middle] > v[begin]) // Left is in correct order
 	{
-		return result;
+		if (v[middle] > target && v[begin] <= target) // target is at left
+		{
+			return binarySearch(v, begin, middle - 1, target);
+		}
+		else
+		{
+			return binarySearch(v, middle + 1, end, target);
+		}
+	}
+	else if (v[middle] < v[begin]) // Right is in correct order
+	{
+		if (v[middle] < target && v[end] >= target) // target is at right
+		{
+			return binarySearch(v, middle + 1, end, target);
+		}
+		else
+		{
+			return binarySearch(v, begin, middle - 1, target);
+		}
+	}
+	else // v[middle] == v[begin]
+	{
+		if (v[middle] != v[end]) // If right is different, it means left side and right side are in order, and left side is all the same value.
+		{
+			return binarySearch(v, middle + 1, end, target);
+		}
+		else
+		{
+			int result = binarySearch(v, begin, middle - 1, target);
+
+			if (result != -1)
+			{
+				return result;
+			}
+
+			return binarySearch(v, middle + 1, end, target);
+		}
 	}
 
-	return binarySearch(v, middle + 1, end, target);
+	return -1;
 }
+
+
+
+
 
