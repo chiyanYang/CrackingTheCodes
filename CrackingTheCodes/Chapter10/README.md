@@ -42,7 +42,8 @@ structure only supports positive integers.) Given a Listy which contains sorted,
 find the index at which an element x occurs. If x occurs multiple times, you may return any index.  
 
 Solution1:  
-
+(1) Get the size of the array by 2^0, 2^1, 2^2...., until we get -1.
+(2) Implement binary search by the lenth we got, note that if we get -1, it means beyond the boundary, search left!  
 
 ### [10_5](./10_5)
 Sparse Search: Given a sorted array of strings that is interspersed with empty strings,  
