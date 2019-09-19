@@ -9,7 +9,6 @@ void test10_4()
 	int targetIdx = sortedSearchNoSize(v, target);
 
 	cout << "target index = " << targetIdx << endl;
-
 }
 
 int sortedSearchNoSize(vector<int>& v, int target)

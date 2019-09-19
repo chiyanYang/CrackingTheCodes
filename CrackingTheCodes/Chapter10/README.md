@@ -53,7 +53,8 @@ Input: ball,{"at","", "", "", "ball", "", "", "car", "", "", "dad", "", ""}
 Output: 4  
 
 Solution1:  
-
+Binary search, and if the middle value is empty, keep search the direction (left side search left)  
+until find an value, then repeat binary search.  
 
 ### [10_6](./10_6)
 Sort Big File: Imagine you have a 20 GB file with one string per line.  
