@@ -9,6 +9,10 @@ Sorted array is the key point. Merge in two sorted array just need to compare ea
 IN this case, we need to put the result in A, so the first thing to do is move the items in A to the last,
 to prevent shift remaining items when insert from B.
 
+Optimized:  
+Instead of moving element to the back of array, we can compare two arrays from the larger, and put the largest  
+the end of array. (not implemented)  
+
 ### [10_2](./10_2)
 Group Anagrams: Write a method to sort an array of strings so that all the anagrams are next to each other.  
 
@@ -32,9 +36,9 @@ Because the target can appear on the both side, so we do the binary search on bo
 
 ### [10_4](./10_4)
 Sorted Search, No Size: You are given an array-like data structure Listy which lacks a size  
-method. It does, however, have an elementAt ( i) method that returns the element at index i in  
-0( 1) time. If i is beyond the bounds of the data structure, it returns -1. (For this reason, the data  
-structure only supports positive integers.) Given a Li sty which contains sorted, positive integers,  
+method. It does, however, have an elementAt (i) method that returns the element at index i in  
+0(1) time. If i is beyond the bounds of the data structure, it returns -1. (For this reason, the data  
+structure only supports positive integers.) Given a Listy which contains sorted, positive integers,  
 find the index at which an element x occurs. If x occurs multiple times, you may return any index.  
 
 Solution1:  
