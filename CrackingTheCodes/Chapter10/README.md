@@ -86,7 +86,12 @@ Sorted Matrix Search: Given an M x N matrix in which each row and each column is
 ascending order, write a method to find an element.  
 
 Solution1:  
-
+Choose a location, 
+(1) If it is smaller than target, we know that we exclude the items of down and right from this location.  
+(2) If it is larger than target, we know that we include the items of down and right from this location.  
+There are two steps to do binary search:  
+(1) Search diagonal, find the two locations near each other which one is larger than target, the other is smaller.
+(2) Search both the down line and right line of the smaller one.  
 
 ### [10_10](./10_10)
 Rank from Stream: Imagine you are reading in a stream of integers. Periodically, you wish to be able  
