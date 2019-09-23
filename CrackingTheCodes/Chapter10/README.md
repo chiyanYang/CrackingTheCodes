@@ -74,7 +74,7 @@ Solution1:
 
 
 ### [10_8](./10_8)
-Find Duplicates: You have an array with all the numbers from 1 to N, where N is at most 32,000.  
+Find Duplicates: You have an array with all the numbers from 1 to N, where N is at most 32000.  
 The array may have duplicate entries and you do not know what N is.  
 With only 4 kilobytes of memory available, how would you print all duplicate elements in the array?  
 
@@ -95,7 +95,7 @@ There are two steps to do binary search:
 
 ### [10_10](./10_10)
 Rank from Stream: Imagine you are reading in a stream of integers. Periodically, you wish to be able  
-to look up the rank of a numberx (the number of values less than or equal to x). lmplement the data  
+to look up the rank of a number x (the number of values less than or equal to x). lmplement the data  
 structures and algorithms to support these operations. That is, implement the method track ( int  
 x), which is called when each number is generated, and the method getRankOfNumber(int  
 x), which returns the number of values less than or equal to x (not including x itself).  
