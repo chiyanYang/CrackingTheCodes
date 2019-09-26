@@ -118,3 +118,14 @@ Input: {5, 3, 1, 2, 3}
 Output: {5, 1, 3, 2, 3}  
 
 Solution1:  
+We can have 3 numbers as a group, and shift two as next group, which means each group has a common valley.  
+If we make sure the middle one is always the peaks, then the left and right are sure to be the valleys.  
+Step1: Find the peak in the group, exchange with the middle number.  
+Step2: Move to next group, repeat step1.  
+In the first group, we can make sure the peak is at the middle after exchange.  
+In the next group,  
+(1) If the peak at the first number, which is the valley of previous group, exchange with middle surely not affect previous group.  
+(2) If the peak at the miidle, no need any action.  
+(3) If the peak at the right, exchange with the middle and no affect on the previous group.  
+So each step will make the current group [valley, peak, valley] and does not affect previous one.  
+After all is done, we will have all that match the rule.  
