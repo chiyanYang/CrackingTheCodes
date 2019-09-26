@@ -97,16 +97,21 @@ There are two steps to do binary search:
 ### [10_10](./10_10)
 Rank from Stream: Imagine you are reading in a stream of integers. Periodically, you wish to be able  
 to look up the rank of a number x (the number of values less than or equal to x). lmplement the data  
-structures and algorithms to support these operations. That is, implement the method track ( int  
-x), which is called when each number is generated, and the method getRankOfNumber(int  
-x), which returns the number of values less than or equal to x (not including x itself).  
+structures and algorithms to support these operations. That is, implement the method track(int x),  
+which is called when each number is generated, and the method getRankOfNumber(int x),  
+which returns the number of values less than or equal to x (not including x itself).  
 EXAMPLE  
 Stream (in order of appearance): 5, 1, 4, 4, 5, 9, 7, 13, 3  
-getRankOfNumber(l) 0  
+getRankOfNumber(l) = 0  
 getRankOfNumber(3) = 1  
-getRankOfNumber(4) 3  
+getRankOfNumber(4) = 3  
 
 Solution1:  
+Binary search tree can be used here. We know that the left tree is less or equal than the middle node.
+So we just need to calcuate each node's left tree number of nodes.  
+(1) If we search left, do nothing.
+(2) If we search right, add the number of left tree and the middle node.
+(3) If found nothing, return -1.  
 
 ### [10_11](./10_11)
 Peaks and Valleys: In an array of integers, a "peak" is an element which is greater than or equal to  

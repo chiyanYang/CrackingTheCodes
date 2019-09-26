@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chapter10\10_11\10_11.cpp" />
+    <ClCompile Include="Chapter10\10_10\10_10.cpp" />
     <ClCompile Include="Chapter10\10_5\10_5.cpp" />
     <ClCompile Include="Chapter10\Ch10Common.cpp" />
     <ClCompile Include="Chapter8\Ch8Common.cpp" />
@@ -123,7 +123,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chapter10\10_11\10_11.h" />
+    <ClInclude Include="Chapter10\10_10\10_10.h" />
     <ClInclude Include="Chapter10\10_5\10_5.h" />
     <ClInclude Include="Chapter10\Ch10Common.h" />
     <ClInclude Include="Chapter8\Ch8Common.h" />
