@@ -105,6 +105,7 @@ Stream (in order of appearance): 5, 1, 4, 4, 5, 9, 7, 13, 3
 getRankOfNumber(l) = 0  
 getRankOfNumber(3) = 1  
 getRankOfNumber(4) = 3  
+Note: getRankOfNumber(4) = 3 is because remove a 4, then find the value which is less or equal than 4.
 
 Solution1:  
 Binary search tree can be used here. We know that the left tree is less or equal than the middle node.

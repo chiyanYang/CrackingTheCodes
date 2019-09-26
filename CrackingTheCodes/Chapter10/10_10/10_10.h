@@ -69,7 +69,7 @@ public:
 
 			if (root->getSubNode(1) != NULL)
 			{
-				treeNode* curNode = root->getSubNode(0);
+				treeNode* curNode = root->getSubNode(1);
 				printTree(curNode);
 			}
 		}
