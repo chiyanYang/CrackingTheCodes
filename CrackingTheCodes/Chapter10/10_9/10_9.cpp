@@ -17,53 +17,52 @@ void test10_9()
 	cin >> target;
 	cout << endl;
 
-	int result = sortedMatrixSearch(vMatrix, target);
+	int result = sortedMatrixSearch(vMatrix, 0, 0, vMatrix.size() - 1, vMatrix[0].size() - 1 ,target);
 
 	cout << "result: " << result << endl;
 }
 
-int sortedMatrixSearch(vector<vector<int>>& vMatrix, int target)
+int sortedMatrixSearch(vector<vector<int>>& vMatrix, int beginRow, int beginCol, int endRow, int endCol, int target)
 {
-	int row = vMatrix.size();
-	int column = vMatrix[0].size();
 	// Step1: search diagonal:
 	int begin = 0;
-	int end = column > row ? row - 1 : column - 1;
+	int end = endCol > endRow ? endRow : endCol;
 	int middle = begin + (end - begin) / 2;
 	int result = INT_MIN;
+
+	int matrixColSize = vMatrix[0].size();
+	int matrixRowSize = vMatrix.size();
+
+	if (vMatrix[end][end] == target)
+	{
+		return end * matrixColSize + end;
+	}
 
 	while (true)
 	{
 		if (vMatrix[middle][middle] == target)
 		{
-			result = middle * column + middle;
-			break;
+			return middle * matrixColSize + middle;
 		}
-		else if (vMatrix[middle][middle] < target) // Target is at right down.
+		else if (vMatrix[middle][middle] < target) // Target is excluded from top.
 		{
 			if (vMatrix[end][end] > target)
 			{
 				if (begin + 1 == end)
 				{
-					result = 0;
-					break;
+					result = sortedMatrixSearch(vMatrix, int beginRow, int beginCol, int endRow, int endCol, int target);
+					result = sortedMatrixSearch(vMatrix, int beginRow, int beginCol, int endRow, int endCol, int target);
 				}
 
 				begin = middle;
 				middle = begin + (end - begin) / 2;
 			}
-			else if (vMatrix[end][end] == target)
-			{
-				result = end * column + end;
-				break;
-			}
 			else
 			{
-				result = -1;
-				break;
+				return sortedMatrixSearch(vMatrix, end, end, matrixRowSize - 1, matrixColSize - 1, target);
 			}
 		}
-		else // Target is excluded from items at right down.
+		else // Target is excluded from down.
 		{
 			if (vMatrix[begin][begin] < target)
 			{
@@ -104,7 +103,7 @@ int sortedMatrixSearch(vector<vector<int>>& vMatrix, int target)
 		{
 			if (column > row)
 			{
-				int result = searchRight(vMatrix, target, end);
+				int result = searchTopRight(vMatrix, target, end);
 
 				if (result != -1)
 				{
@@ -115,7 +114,7 @@ int sortedMatrixSearch(vector<vector<int>>& vMatrix, int target)
 			}
 			else
 			{
-				int result = searchDown(vMatrix, target, end);
+				int result = searchDownLeft(vMatrix, target, end);
 
 				if (result != -1)
 				{
@@ -128,14 +127,14 @@ int sortedMatrixSearch(vector<vector<int>>& vMatrix, int target)
 	}
 	else if (result == 0) // between begin and end
 	{
-		int result = searchRight(vMatrix, target, begin);
+		int result = searchTopRight(vMatrix, target, begin);
 
 		if (result != -1)
 		{
 			return begin * column + result;
 		}
 
-		result = searchDown(vMatrix, target, end);
+		result = searchDownLeft(vMatrix, target, end);
 
 		if (result != -1)
 		{
@@ -149,39 +148,5 @@ int sortedMatrixSearch(vector<vector<int>>& vMatrix, int target)
 		return result;
 	}
 
-	return -1;
-}
-
-int searchRight(vector<vector<int>>& vMatrix, int target, int diagonal)
-{
-	vector<int>& searchLine = vMatrix[diagonal];
-	int begin = diagonal;
-	int end = vMatrix[diagonal].size() - 1;
-	int middle = begin + (end - begin) / 2;
-
-	while (searchLine[middle] != target)
-	{
-		if (searchLine[middle] < target)
-		{
-			begin = middle + 1;
-			middle = begin + (end - begin) / 2;
-		}
-		else
-		{
-			end = middle - 1;
-			middle = begin + (end - begin) / 2;
-		}
-
-		if (begin > end)
-		{
-			return -1;
-		}
-	}
-	
-	return middle;
-}
-
-int searchDown(vector<vector<int>>& vMatrix, int target, int diagonal)
-{
 	return -1;
 }
