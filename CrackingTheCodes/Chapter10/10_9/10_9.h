@@ -3,4 +3,15 @@
 
 void test10_9();
 
-int sortedMatrixSearch(vector<vector<int>>& vMatrix, int beginRow, int beginCol, int endRow, int endCol, int target);
+struct coordinate
+{
+	int row;
+	int col;
+};
+
+coordinate sortedMatrixSearch(vector<vector<int>>& vMatrix, coordinate begin, coordinate end, int target);
+
+bool isValidSquare(coordinate coordBegin, coordinate coordEnd);
+coordinate getMiddle(coordinate coordBegin, coordinate coordEnd);
+int getValue(vector<vector<int>>& vMatrix, coordinate coordCur);
+
