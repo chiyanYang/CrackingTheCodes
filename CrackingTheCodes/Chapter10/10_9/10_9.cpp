@@ -3,6 +3,7 @@
 // Sorted Matrix Search
 void test10_9()
 {
+	
 	vector<vector<int>> vMatrix { 
 									{ 0, 1, 2, 3, 4, 5 }, 
 									{ 1, 2, 3, 4, 5, 6 }, 
@@ -10,6 +11,12 @@ void test10_9()
 									{ 3, 4, 5, 6, 7, 11 },
 									{ 4, 5, 6, 7, 8, 15 }
 								};
+	
+	/*
+	vector<vector<int>> vMatrix{
+								{ 0, 1, 2, 3, 4, 5 }
+	};
+	*/
 
 	int target = -1;
 
@@ -40,16 +47,24 @@ coordinate sortedMatrixSearch(vector<vector<int>>& vMatrix, coordinate coordBegi
 	}
 
 	// Step1: search diagonal:
-	int diagEnd = coordEnd.col > coordEnd.row ? coordEnd.row : coordEnd.col;
-	coordinate coorDiagEnd{ diagEnd, diagEnd };
+	int diagDist;
+	if ((coordEnd.col - coordBegin.col) > (coordEnd.row - coordBegin.row))
+	{
+		diagDist = coordEnd.row - coordBegin.row;
+	}
+	else
+	{
+		diagDist = coordEnd.col - coordBegin.col;
+	}
+
+	coordinate coorDiagEnd{ coordBegin.row + diagDist, coordBegin.col + diagDist };
 	
 	coordinate coorMid;
 	coordinate tmpBegin = coordBegin;
-	coordinate tmpEnd = coordEnd;
 
-	while (isValidSquare(tmpBegin, tmpEnd))
+	while (isValidSquare(tmpBegin, coorDiagEnd))
 	{
-		coorMid = getMiddle(tmpBegin, tmpEnd);
+		coorMid = getMiddle(tmpBegin, coorDiagEnd);
 
 		if (getValue(vMatrix, coorMid) == target)
 		{
@@ -62,10 +77,15 @@ coordinate sortedMatrixSearch(vector<vector<int>>& vMatrix, coordinate coordBegi
 		}
 		else // Target is excluded from down right.
 		{
-			tmpEnd.row = coorMid.row - 1;
-			tmpEnd.col = coorMid.col - 1;
+			coorDiagEnd.row = coorMid.row - 1;
+			coorDiagEnd.col = coorMid.col - 1;
 		}
 	}
+
+	cout << "-------------miidle value---------------" << endl;
+	cout << "row: " << tmpBegin.row << endl;
+	cout << "col: " << tmpBegin.col << endl;
+	cout << "-------------miidle value---------------" << endl;
 
 	// Step2: search down left and right top square:
 	coordinate lowerLeftBegin{ tmpBegin.row, coordBegin.col };

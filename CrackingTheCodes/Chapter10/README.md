@@ -94,6 +94,12 @@ There are two steps to do binary search:
 (1) Search diagonal, find the two locations near each other which one is larger than target, the other is smaller.
 (2) Search both the down left and top right zone, and repeat step (1).  
 
+Advanced thinking:
+In a row = 1 square, the above method go through every item.  
+Maybe instead of choosing the diagonal item to seperate the square,  
+We can choose "middle of the square", the other concept remains the same.  
+In the thinking, row = 1 square we do the binary search as well.  
+
 ### [10_10](./10_10)
 Rank from Stream: Imagine you are reading in a stream of integers. Periodically, you wish to be able  
 to look up the rank of a number x (the number of values less than or equal to x). lmplement the data  
